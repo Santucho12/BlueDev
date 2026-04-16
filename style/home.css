@@ -174,54 +174,65 @@
     gap: 1rem;
   }
 
-  .hero-services-cards.is-carousel-mobile {
+  .hero-service-selector {
+    display: none;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto 0.8rem;
+  }
+
+  .hero-service-selector.is-visible {
+    display: flex;
+  }
+
+  .hero-service-slot {
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.03);
+    color: rgba(255, 255, 255, 0.72);
+    border-radius: 12px;
+    padding: 0.62rem 0.9rem;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-align: left;
+    transition: all 0.25s ease;
+    cursor: pointer;
+  }
+
+  .hero-service-slot.is-active {
+    border-color: rgba(42, 186, 243, 0.65);
+    background: rgba(42, 186, 243, 0.1);
+    color: #9de6ff;
+    box-shadow: 0 0 0 1px rgba(42, 186, 243, 0.18), 0 0 20px rgba(42, 186, 243, 0.12);
+  }
+
+  .hero-services-cards.is-selector-mobile {
     display: block;
     position: relative;
     min-height: 178px;
     overflow: hidden;
   }
 
-  .hero-services-cards.is-carousel-mobile .hero-service-card {
+  .hero-services-cards.is-selector-mobile .hero-service-card {
     display: none;
     opacity: 1 !important;
     transform: none !important;
     margin: 0;
   }
 
-  .hero-services-cards.is-carousel-mobile .hero-service-card.is-active {
+  .hero-services-cards.is-selector-mobile .hero-service-card.is-active {
     display: block;
     animation: heroCardFadeIn 0.45s ease;
   }
+
   .hero-carousel-indicators {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.6rem;
-    margin-top: 0.3rem;
-    margin-bottom: 1.8rem;
+    display: none !important;
   }
-
-  .hero-carousel-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.25);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border: none;
-    padding: 0;
-  }
-
-  .hero-carousel-dot.is-active {
-    background: var(--color-celeste);
-    width: 8px;
-    border-radius: 50%;
-    box-shadow: 0 0 12px rgba(42, 186, 243, 0.5);
-  }
-
-  .hero-carousel-dot:hover {
-    background: rgba(42, 186, 243, 0.6);
-  }}
+}
 
 @keyframes heroCardFadeIn {
   from {
@@ -611,6 +622,7 @@
   }
 
   .feature-bar {
+    display: none;
     justify-content: center;
     padding: 0.8rem 5%;
     gap: 0.5rem;
