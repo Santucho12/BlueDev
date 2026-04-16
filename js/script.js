@@ -72,18 +72,26 @@ document.addEventListener('DOMContentLoaded', function () {
       // Smooth easing scroll
       const startY = window.pageYOffset;
       const diff = y - startY;
-      const duration = 900;
+      const distance = Math.abs(diff);
+      const duration = Math.min(1900, Math.max(1200, distance * 0.9));
       let startTime = null;
 
-      function easeOutCubic(t) {
-        return 1 - Math.pow(1 - t, 3);
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        window.scrollTo(0, y);
+        return;
+      }
+
+      function easeInOutQuint(t) {
+        return t < 0.5
+          ? 16 * t * t * t * t * t
+          : 1 - Math.pow(-2 * t + 2, 5) / 2;
       }
 
       function step(timestamp) {
         if (!startTime) startTime = timestamp;
         const elapsed = timestamp - startTime;
         const progress = Math.min(elapsed / duration, 1);
-        window.scrollTo(0, startY + diff * easeOutCubic(progress));
+        window.scrollTo(0, startY + diff * easeInOutQuint(progress));
         if (progress < 1) window.requestAnimationFrame(step);
       }
 
