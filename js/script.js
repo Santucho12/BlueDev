@@ -147,6 +147,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const heroCards = Array.from(heroCardsContainer.querySelectorAll('.hero-service-card'));
     let heroCardsInterval = null;
     let activeHeroCardIndex = 0;
+    let swipeStartX = 0;
+    let swipeStartY = 0;
+
+    const swipeThreshold = 45;
 
     function isMobileViewport() {
       return window.innerWidth <= 768;
@@ -227,6 +231,43 @@ document.addEventListener('DOMContentLoaded', function () {
       updateCarouselIndicators();
     }
 
+    function onHeroCardsSwipe(endX, endY) {
+      const deltaX = endX - swipeStartX;
+      const deltaY = endY - swipeStartY;
+
+      if (Math.abs(deltaX) < swipeThreshold) return;
+      if (Math.abs(deltaX) <= Math.abs(deltaY)) return;
+
+      stopHeroCardsAutoplay();
+
+      if (deltaX < 0) {
+        activeHeroCardIndex = (activeHeroCardIndex + 1) % heroCards.length;
+      } else {
+        activeHeroCardIndex = (activeHeroCardIndex - 1 + heroCards.length) % heroCards.length;
+      }
+
+      setActiveHeroCard(activeHeroCardIndex);
+
+      if (isMobileViewport()) {
+        startHeroCardsAutoplay();
+      }
+    }
+
+    heroCardsContainer.addEventListener('touchstart', function (event) {
+      if (!isMobileViewport()) return;
+      if (!event.changedTouches || !event.changedTouches.length) return;
+
+      swipeStartX = event.changedTouches[0].clientX;
+      swipeStartY = event.changedTouches[0].clientY;
+    }, { passive: true });
+
+    heroCardsContainer.addEventListener('touchend', function (event) {
+      if (!isMobileViewport()) return;
+      if (!event.changedTouches || !event.changedTouches.length) return;
+
+      onHeroCardsSwipe(event.changedTouches[0].clientX, event.changedTouches[0].clientY);
+    }, { passive: true });
+
     syncHeroCardsMode();
     window.addEventListener('resize', syncHeroCardsMode, { passive: true });
 
@@ -240,6 +281,91 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // ── Light follow effect for cards ───
+  const serviceCards = Array.from(document.querySelectorAll('.service-card-new'));
+  if (serviceCards.length) {
+    let ticking = false;
+
+    function updateServiceReadingCard() {
+      const viewportCenter = window.innerHeight * 0.5;
+      let bestCard = null;
+      let bestDistance = Number.POSITIVE_INFINITY;
+
+      serviceCards.forEach(function (card) {
+        const rect = card.getBoundingClientRect();
+        const isVisible = rect.bottom > window.innerHeight * 0.18 && rect.top < window.innerHeight * 0.82;
+
+        if (!isVisible) return;
+
+        const cardCenter = rect.top + (rect.height / 2);
+        const distance = Math.abs(cardCenter - viewportCenter);
+        if (distance < bestDistance) {
+          bestDistance = distance;
+          bestCard = card;
+        }
+      });
+
+      serviceCards.forEach(function (card) {
+        card.classList.toggle('is-reading', card === bestCard);
+      });
+    }
+
+    function requestServiceCardUpdate() {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(function () {
+        updateServiceReadingCard();
+        ticking = false;
+      });
+    }
+
+    updateServiceReadingCard();
+    window.addEventListener('scroll', requestServiceCardUpdate, { passive: true });
+    window.addEventListener('resize', requestServiceCardUpdate, { passive: true });
+  }
+
+  const portfolioCards = Array.from(document.querySelectorAll('.portfolio-item'));
+  if (portfolioCards.length) {
+    let portfolioTicking = false;
+
+    function updatePortfolioReadingCard() {
+      const viewportCenter = window.innerHeight * 0.5;
+      let bestCard = null;
+      let bestDistance = Number.POSITIVE_INFINITY;
+
+      portfolioCards.forEach(function (card) {
+        const rect = card.getBoundingClientRect();
+        const isVisible = rect.bottom > window.innerHeight * 0.16 && rect.top < window.innerHeight * 0.84;
+
+        if (!isVisible) return;
+
+        const cardCenter = rect.top + (rect.height / 2);
+        const distance = Math.abs(cardCenter - viewportCenter);
+
+        if (distance < bestDistance) {
+          bestDistance = distance;
+          bestCard = card;
+        }
+      });
+
+      portfolioCards.forEach(function (card) {
+        card.classList.toggle('is-reading', card === bestCard);
+      });
+    }
+
+    function requestPortfolioCardUpdate() {
+      if (portfolioTicking) return;
+      portfolioTicking = true;
+      window.requestAnimationFrame(function () {
+        updatePortfolioReadingCard();
+        portfolioTicking = false;
+      });
+    }
+
+    updatePortfolioReadingCard();
+    window.addEventListener('scroll', requestPortfolioCardUpdate, { passive: true });
+    window.addEventListener('resize', requestPortfolioCardUpdate, { passive: true });
+  }
+
   document.querySelectorAll('.about-stat-card, .about-info-card').forEach(card => {
     card.addEventListener('mousemove', e => {
       const rect = card.getBoundingClientRect();

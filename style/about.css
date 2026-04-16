@@ -1,7 +1,6 @@
 /* ========================================
    SOBRE NOSOTROS - Rediseño Moderno 2 Columnas
    ======================================== */
-
 .about {
   padding: 180px 0;
   /* Applying the identical Hero gradient as requested */
@@ -295,7 +294,7 @@
 /* RESPONSIVE */
 @media (max-width: 992px) {
   .about-container {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
     gap: 4rem;
   }
 
@@ -320,10 +319,32 @@
 }
 
 @media (max-width: 650px) {
+  .about-container {
+    grid-template-columns: 1fr !important;
+  }
+
   .about-stats-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-rows: auto;
     gap: 1.2rem;
+    margin: 0;
+    max-width: none;
+    width: 100%;
+    justify-items: stretch;
+    align-items: stretch;
+    padding: 0 16px;
+    box-sizing: border-box;
+  }
+  
+  .about-content-right {
+    display: block;
+    width: 100%;
+    max-width: none;
+    justify-self: stretch;
+    align-self: stretch;
+    grid-column: 1 / -1;
+    grid-row: auto;
+    margin-bottom: -100px;
   }
   
   .about-stat-card,
@@ -333,12 +354,42 @@
     grid-column: span 1 !important;
     grid-row: auto !important;
     min-height: auto;
+    width: 100%;
+    min-width: 0;
+    justify-self: stretch;
+  }
+
+  .about-stat-card {
+    text-align: center;
+  }
+
+  .about-stat-card .stat-card-inner {
+    align-items: center;
+  }
+
+  .about-stat-card .stat-content {
+    align-items: center;
+  }
+
+  .stat-proyectos {
+    grid-column: 1 / 2 !important;
+    grid-row: 1 / 2 !important;
+  }
+
+  .stat-consulta {
+    grid-column: 2 / 3 !important;
+    grid-row: 1 / 2 !important;
+  }
+
+  .stat-tiempo {
+    grid-column: 1 / -1 !important;
+    grid-row: 2 / 3 !important;
   }
 
   .stat-consulta {
     flex-direction: column !important;
-    align-items: flex-start !important;
-    text-align: left !important;
+    align-items: center !important;
+    text-align: center !important;
     gap: 0 !important;
     padding: 2rem !important;
   }
@@ -360,23 +411,31 @@
 
 @media (max-width: 768px) {
   .about {
-    padding: 95px 0;
+    padding: 95px 0 30px;
   }
 
   .about-container {
     gap: 2.2rem;
   }
 
+  .about-content-left {
+    text-align: center;
+    align-items: center;
+  }
+
   .about-badge {
     margin-bottom: 1.1rem;
     font-size: 0.7rem;
     letter-spacing: 0.11em;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .section-title.text-left {
     margin-bottom: 1.1rem;
     font-size: clamp(1.9rem, 8vw, 2.3rem);
     line-height: 1.12;
+    text-align: center;
   }
 
   .about-desc {
@@ -387,11 +446,14 @@
 
   .about-list-modern {
     gap: 1rem;
+    align-items: center;
   }
 
   .about-list-modern li {
     font-size: 0.88rem;
     line-height: 1.45;
+    text-align: center;
+    justify-content: center;
   }
 
   .about-stat-card {
@@ -411,7 +473,7 @@
 
 @media (max-width: 430px) {
   .about {
-    padding: 80px 0;
+    padding: 80px 0 24px;
   }
 
   .about-stat-number,
