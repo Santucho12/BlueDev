@@ -214,8 +214,8 @@
 
   .hero-carousel-dot.is-active {
     background: var(--color-celeste);
-    width: 24px;
-    border-radius: 4px;
+    width: 8px;
+    border-radius: 50%;
     box-shadow: 0 0 12px rgba(42, 186, 243, 0.5);
   }
 
