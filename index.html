@@ -90,23 +90,23 @@
     <!-- Hero Section -->
     <section id="inicio" class="hero">
         <div class="hero-background">
-            <div class="hero-image-bg"></div>
+            <div class="hero-image-bg parallax" data-speed="0.14"></div>
             <canvas id="hero-canvas" class="hero-canvas-bg"></canvas>
         </div>
         <div class="container hero-content">
 
             <!-- Premium Conversion Badge -->
-            <div class="hero-badge" data-aos="fade-down" data-delay="0">
+            <div class="hero-badge reveal fade-up" data-aos="fade-down" data-delay="0">
                 <span class="hero-badge-dot"></span>
                 AGENCIA DE DESARROLLO DE SOFTWARE
             </div>
 
-            <h1 class="hero-title" style="margin-bottom: 0.5em;">
+            <h1 class="hero-title reveal" style="margin-bottom: 0.5em;">
                 <span class="title-line">CONVERTI TU IDEA EN </span>
                 <span class="title-line highlight-large" data-text="SOFTWARE.">SOFTWARE QUE VENDE.</span>
             </h1>
 
-            <p class="hero-subtitle"
+            <p class="hero-subtitle fade-up"
                 style="margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto;">
                 Web, sistemas internos e IA. Construimos lo que tu negocio necesita para crecer.
             </p>
@@ -384,8 +384,8 @@
     <!-- Services Section -->
     <section id="servicios" class="services">
         <div class="container" data-aos="fade-up">
-            <h2 class="section-title" data-aos="fade-up">Nuestros Servicios</h2>
-            <p class="section-subtitle" data-aos="fade-up" data-delay="100">Soluciones de software de élite diseñadas
+            <h2 class="section-title reveal" data-aos="fade-up">Nuestros Servicios</h2>
+            <p class="section-subtitle fade-up" data-aos="fade-up" data-delay="100">Soluciones de software de élite diseñadas
                 para escalar tu negocio.</p>
 
             <div class="services-grid">
@@ -742,33 +742,10 @@
         </svg>
     </a>
 
+    <script src="https://unpkg.com/lenis@1.1.16/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="js/script.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Selector solo para el enlace de la navbar a #portfolio
-            const navbarPortfolioLink = document.querySelector('.navbar a[href="#portfolio"]');
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    const targetId = this.getAttribute('href').slice(1);
-                    const target = document.getElementById(targetId);
-                    if (target) {
-                        e.preventDefault();
-                        // Solo para el botón de Sobre Nosotros
-                        if (targetId === 'sobre-nosotros') {
-                            const y = target.getBoundingClientRect().top + window.pageYOffset - 10;
-                            window.scrollTo({ top: y, behavior: 'smooth' });
-                            // Solo para el enlace de la navbar a Portfolio
-                        } else if (this === navbarPortfolioLink) {
-                            const y = target.getBoundingClientRect().top + window.pageYOffset - 40;
-                            window.scrollTo({ top: y, behavior: 'smooth' });
-                        } else {
-                            target.scrollIntoView({ behavior: 'smooth' });
-                        }
-                    }
-                });
-            });
-        });
-    </script>
 </body>
 
 </html>

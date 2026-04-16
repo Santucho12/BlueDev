@@ -27,8 +27,38 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   font-size: 90%;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.reveal,
+.fade-up {
+  will-change: transform, opacity;
+}
+
+.parallax {
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .fade-up,
+  .parallax {
+    will-change: auto;
+  }
 }
 
 body {

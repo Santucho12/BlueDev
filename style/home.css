@@ -26,6 +26,7 @@
 
 @media (max-width: 768px) {
   .feature-bar {
+    display: none !important;
     font-size: 0.364em !important;
     bottom: 0px !important;
     gap: 0.42rem !important;
@@ -616,7 +617,7 @@
 
   .scroll-indicator {
     display: block;
-    bottom: 46px;
+    bottom: 26px;
     transform: translateX(-50%) scale(0.78);
   }
 
@@ -644,7 +645,7 @@
   }
 
   .scroll-indicator {
-    bottom: 42px;
+    bottom: 22px;
     transform: translateX(-50%) scale(0.72);
   }
 

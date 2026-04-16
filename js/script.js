@@ -4,6 +4,11 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 
+  const hasGsap = typeof window.gsap !== 'undefined';
+  const hasScrollTrigger = typeof window.ScrollTrigger !== 'undefined';
+  const hasLenis = typeof window.Lenis !== 'undefined';
+  let lenis = null;
+
   // ── Mobile Menu Toggle (improved) ─────
   const menuToggle = document.querySelector('.menu-toggle');
   const navLinks = document.querySelector('.nav-links');
@@ -30,6 +35,43 @@ document.addEventListener('DOMContentLoaded', function () {
         menuToggle.classList.remove('active');
       }
     });
+  }
+
+  // ── Premium Smooth Scroll (Lenis + GSAP ticker) ─────
+  if (hasGsap && hasScrollTrigger) {
+    window.gsap.registerPlugin(window.ScrollTrigger);
+    window.ScrollTrigger.config({ ignoreMobileResize: true });
+  }
+
+  if (hasLenis) {
+    lenis = new window.Lenis({
+      duration: 1.25,
+      lerp: 0.085,
+      smoothWheel: true,
+      smoothTouch: true,
+      wheelMultiplier: 0.95,
+      touchMultiplier: 1.05,
+      normalizeWheel: true,
+    });
+
+    if (hasGsap) {
+      window.gsap.ticker.add(function (time) {
+        lenis.raf(time * 1000);
+      });
+      window.gsap.ticker.lagSmoothing(0);
+    } else {
+      function raf(time) {
+        lenis.raf(time);
+        window.requestAnimationFrame(raf);
+      }
+      window.requestAnimationFrame(raf);
+    }
+
+    if (hasScrollTrigger) {
+      lenis.on('scroll', function () {
+        window.ScrollTrigger.update();
+      });
+    }
   }
 
   // ── Navbar scroll style (enhanced) ────
@@ -69,33 +111,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
       const y = target.getBoundingClientRect().top + window.pageYOffset - navH - extraOffset;
 
-      // Smooth easing scroll
-      const startY = window.pageYOffset;
-      const diff = y - startY;
-      const distance = Math.abs(diff);
-      const duration = Math.min(1900, Math.max(1200, distance * 0.9));
-      let startTime = null;
-
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         window.scrollTo(0, y);
         return;
       }
 
-      function easeInOutQuint(t) {
-        return t < 0.5
-          ? 16 * t * t * t * t * t
-          : 1 - Math.pow(-2 * t + 2, 5) / 2;
+      if (lenis) {
+        lenis.scrollTo(y, {
+          duration: 1.4,
+          easing: function (t) {
+            return 1 - Math.pow(1 - t, 4);
+          },
+        });
+        return;
       }
 
-      function step(timestamp) {
-        if (!startTime) startTime = timestamp;
-        const elapsed = timestamp - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        window.scrollTo(0, startY + diff * easeInOutQuint(progress));
-        if (progress < 1) window.requestAnimationFrame(step);
-      }
-
-      window.requestAnimationFrame(step);
+      window.scrollTo({ top: y, behavior: 'smooth' });
     });
   });
 
@@ -120,6 +151,51 @@ document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('[data-aos]').forEach(function (el) {
     observer.observe(el);
   });
+
+  // ── Auto Reveal + Parallax with ScrollTrigger ─────
+  if (hasGsap && hasScrollTrigger) {
+    const revealElements = Array.from(document.querySelectorAll('.reveal, .fade-up'));
+    revealElements.forEach(function (element) {
+      const isFadeUp = element.classList.contains('fade-up');
+      window.gsap.fromTo(element,
+        {
+          y: isFadeUp ? 42 : 26,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1.05,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: element,
+            start: 'top 88%',
+            once: true,
+          },
+        }
+      );
+    });
+
+    const parallaxElements = Array.from(document.querySelectorAll('.parallax'));
+    parallaxElements.forEach(function (element) {
+      const speedValue = parseFloat(element.getAttribute('data-speed') || '0.14');
+      const triggerElement = element.closest('section') || element;
+      window.gsap.to(element, {
+        y: function () {
+          return window.innerHeight * speedValue;
+        },
+        ease: 'none',
+        scrollTrigger: {
+          trigger: triggerElement,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1.2,
+        },
+      });
+    });
+
+    window.ScrollTrigger.refresh();
+  }
 
   // ── Hero word animation (enhanced) ────
   const heroVideo = document.getElementById('hero-bg-video');
