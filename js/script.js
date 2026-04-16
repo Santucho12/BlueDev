@@ -141,6 +141,104 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 600);
   }
 
+  // ── Hero cards carousel (mobile only) ───────
+  const heroCardsContainer = document.querySelector('.hero-services-cards');
+  if (heroCardsContainer) {
+    const heroCards = Array.from(heroCardsContainer.querySelectorAll('.hero-service-card'));
+    let heroCardsInterval = null;
+    let activeHeroCardIndex = 0;
+
+    function isMobileViewport() {
+      return window.innerWidth <= 768;
+    }
+
+    function stopHeroCardsAutoplay() {
+      if (heroCardsInterval) {
+        clearInterval(heroCardsInterval);
+        heroCardsInterval = null;
+      }
+    }
+
+    function startHeroCardsAutoplay() {
+      if (heroCards.length < 2 || heroCardsInterval) return;
+      heroCardsInterval = setInterval(function () {
+        if (!isMobileViewport()) return;
+        activeHeroCardIndex = (activeHeroCardIndex + 1) % heroCards.length;
+        setActiveHeroCard(activeHeroCardIndex);
+      }, 3200);
+    }
+
+    function syncHeroCardsMode() {
+      if (heroCards.length === 0) return;
+
+      if (isMobileViewport()) {
+        heroCardsContainer.classList.add('is-carousel-mobile');
+        if (!heroCards.some(function (card) { return card.classList.contains('is-active'); })) {
+          activeHeroCardIndex = 0;
+          setActiveHeroCard(activeHeroCardIndex);
+        }
+        startHeroCardsAutoplay();
+        return;
+      }
+
+      heroCardsContainer.classList.remove('is-carousel-mobile');
+      stopHeroCardsAutoplay();
+      heroCards.forEach(function (card) {
+        card.classList.remove('is-active');
+      });
+    }
+
+    // Create carousel indicators
+    let indicatorsContainer = document.querySelector('.hero-carousel-indicators');
+    if (!indicatorsContainer) {
+      indicatorsContainer = document.createElement('div');
+      indicatorsContainer.className = 'hero-carousel-indicators';
+      heroCardsContainer.parentNode.insertBefore(indicatorsContainer, heroCardsContainer.nextSibling);
+      heroCards.forEach(function (card, index) {
+        const dot = document.createElement('button');
+        dot.className = 'hero-carousel-dot';
+        if (index === 0) dot.classList.add('is-active');
+        dot.setAttribute('aria-label', 'Card ' + (index + 1));
+        dot.addEventListener('click', function (e) {
+          e.preventDefault();
+          stopHeroCardsAutoplay();
+          activeHeroCardIndex = index;
+          setActiveHeroCard(activeHeroCardIndex);
+          updateCarouselIndicators();
+          if (isMobileViewport()) {
+            startHeroCardsAutoplay();
+          }
+        });
+        indicatorsContainer.appendChild(dot);
+      });
+    }
+
+    function updateCarouselIndicators() {
+      const dots = document.querySelectorAll('.hero-carousel-dot');
+      dots.forEach(function (dot, index) {
+        dot.classList.toggle('is-active', index === activeHeroCardIndex);
+      });
+    }
+
+    function setActiveHeroCard(index) {
+      heroCards.forEach(function (card, cardIndex) {
+        card.classList.toggle('is-active', cardIndex === index);
+      });
+      updateCarouselIndicators();
+    }
+
+    syncHeroCardsMode();
+    window.addEventListener('resize', syncHeroCardsMode, { passive: true });
+
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) {
+        stopHeroCardsAutoplay();
+      } else if (heroCardsContainer.classList.contains('is-carousel-mobile')) {
+        startHeroCardsAutoplay();
+      }
+    });
+  }
+
   // ── Light follow effect for cards ───
   document.querySelectorAll('.about-stat-card, .about-info-card').forEach(card => {
     card.addEventListener('mousemove', e => {
