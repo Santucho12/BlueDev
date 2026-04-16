@@ -26,14 +26,14 @@
 
 @media (max-width: 768px) {
   .feature-bar {
-    font-size: 0.52em !important;
+    font-size: 0.364em !important;
     bottom: 0px !important;
-    gap: 0.6rem !important;
-    padding-left: 0.5rem !important;
+    gap: 0.42rem !important;
+    padding-left: 0.35rem !important;
   }
 
   .feature-bar span {
-    margin-right: 4px !important;
+    margin-right: 3px !important;
   }
 }
 
@@ -255,7 +255,7 @@
   color: var(--color-celeste);
   font-size: 0.85rem;
   font-weight: 500;
-  margin-bottom: 2.3rem;
+  margin-bottom: 4.6rem;
   letter-spacing: 0.03em;
   animation: fadeInDown 1s ease-out 0.2s both;
   backdrop-filter: blur(10px);
@@ -301,7 +301,7 @@
   font-size: 4rem;
   font-weight: 700;
   line-height: 1.1;
-  margin-bottom: 2.5rem;
+  margin-bottom: 5rem;
   letter-spacing: -0.04em;
   /* Editorial tracking */
 }
@@ -387,7 +387,7 @@
 .hero-subtitle {
   font-size: 1.2rem;
   color: rgba(255, 255, 255, 0.55);
-  margin-bottom: 3.8rem;
+  margin-bottom: 7.6rem;
   opacity: 0;
   animation: fadeIn 1s ease-out 0.8s forwards;
   font-weight: 400;
@@ -554,7 +554,7 @@
   .hero-badge {
     font-size: 0.72rem;
     padding: 0.4rem 0.8rem;
-    margin-bottom: 2.3rem;
+    margin-bottom: 4.6rem;
     text-align: center;
   }
 
@@ -562,7 +562,7 @@
     font-size: clamp(2rem, 8.3vw, 2.5rem) !important;
     line-height: 1.08 !important;
     letter-spacing: -0.02em;
-    margin-bottom: 2.2rem;
+    margin-bottom: 4.4rem;
     padding: 0 4px;
   }
 
@@ -574,7 +574,7 @@
   .hero-subtitle {
     font-size: 1rem;
     line-height: 1.45;
-    margin-bottom: 3.3rem !important;
+    margin-bottom: 6.6rem !important;
     padding: 0 4px;
   }
 
@@ -629,12 +629,12 @@
   }
 
   .feature-bar span {
-    gap: 0.3rem;
+    gap: 0.21rem;
   }
 
   .feature-dot {
-    width: 5px;
-    height: 5px;
+    width: 4px;
+    height: 4px;
   }
 }
 
