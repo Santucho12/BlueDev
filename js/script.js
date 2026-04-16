@@ -141,95 +141,143 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 600);
   }
 
-  // ── Hero service selector (mobile editorial mode) ───────
+  // ── Hero cards carousel (mobile only) ───────
   const heroCardsContainer = document.querySelector('.hero-services-cards');
   if (heroCardsContainer) {
     const heroCards = Array.from(heroCardsContainer.querySelectorAll('.hero-service-card'));
+    let heroCardsInterval = null;
     let activeHeroCardIndex = 0;
-    let selectorContainer = document.querySelector('.hero-service-selector');
-    const selectorButtons = [];
+    let swipeStartX = 0;
+    let swipeStartY = 0;
+
+    const swipeThreshold = 45;
 
     function isMobileViewport() {
       return window.innerWidth <= 768;
     }
 
-    function buildHeroServiceSelector() {
-      if (selectorContainer || !heroCardsContainer.parentNode) return;
+    function stopHeroCardsAutoplay() {
+      if (heroCardsInterval) {
+        clearInterval(heroCardsInterval);
+        heroCardsInterval = null;
+      }
+    }
 
-      selectorContainer = document.createElement('div');
-      selectorContainer.className = 'hero-service-selector';
-
-      heroCards.forEach(function (card, index) {
-        const title = (card.querySelector('h4') && card.querySelector('h4').textContent
-          ? card.querySelector('h4').textContent.trim()
-          : 'Servicio ' + (index + 1));
-
-        const button = document.createElement('button');
-        button.type = 'button';
-        button.className = 'hero-service-slot';
-        button.textContent = title;
-        button.setAttribute('aria-label', 'Ver ' + title);
-        button.addEventListener('click', function () {
-          activeHeroCardIndex = index;
-          setActiveHeroCard(activeHeroCardIndex);
-        });
-
-        selectorButtons.push(button);
-        selectorContainer.appendChild(button);
-      });
-
-      heroCardsContainer.parentNode.insertBefore(selectorContainer, heroCardsContainer);
+    function startHeroCardsAutoplay() {
+      if (heroCards.length < 2 || heroCardsInterval) return;
+      heroCardsInterval = setInterval(function () {
+        if (!isMobileViewport()) return;
+        activeHeroCardIndex = (activeHeroCardIndex + 1) % heroCards.length;
+        setActiveHeroCard(activeHeroCardIndex);
+      }, 3200);
     }
 
     function syncHeroCardsMode() {
       if (heroCards.length === 0) return;
 
       if (isMobileViewport()) {
-        buildHeroServiceSelector();
-        heroCardsContainer.classList.add('is-selector-mobile');
-        if (selectorContainer) {
-          selectorContainer.classList.add('is-visible');
-        }
+        heroCardsContainer.classList.add('is-carousel-mobile');
         if (!heroCards.some(function (card) { return card.classList.contains('is-active'); })) {
           activeHeroCardIndex = 0;
           setActiveHeroCard(activeHeroCardIndex);
         }
+        startHeroCardsAutoplay();
         return;
       }
 
-      heroCardsContainer.classList.remove('is-selector-mobile');
-      if (selectorContainer) {
-        selectorContainer.classList.remove('is-visible');
-      }
+      heroCardsContainer.classList.remove('is-carousel-mobile');
+      stopHeroCardsAutoplay();
       heroCards.forEach(function (card) {
         card.classList.remove('is-active');
-        card.removeAttribute('hidden');
       });
-      selectorButtons.forEach(function (button) {
-        button.classList.remove('is-active');
+    }
+
+    // Create carousel indicators
+    let indicatorsContainer = document.querySelector('.hero-carousel-indicators');
+    if (!indicatorsContainer) {
+      indicatorsContainer = document.createElement('div');
+      indicatorsContainer.className = 'hero-carousel-indicators';
+      heroCardsContainer.parentNode.insertBefore(indicatorsContainer, heroCardsContainer.nextSibling);
+      heroCards.forEach(function (card, index) {
+        const dot = document.createElement('button');
+        dot.className = 'hero-carousel-dot';
+        if (index === 0) dot.classList.add('is-active');
+        dot.setAttribute('aria-label', 'Card ' + (index + 1));
+        dot.addEventListener('click', function (e) {
+          e.preventDefault();
+          stopHeroCardsAutoplay();
+          activeHeroCardIndex = index;
+          setActiveHeroCard(activeHeroCardIndex);
+          updateCarouselIndicators();
+          if (isMobileViewport()) {
+            startHeroCardsAutoplay();
+          }
+        });
+        indicatorsContainer.appendChild(dot);
+      });
+    }
+
+    function updateCarouselIndicators() {
+      const dots = document.querySelectorAll('.hero-carousel-dot');
+      dots.forEach(function (dot, index) {
+        dot.classList.toggle('is-active', index === activeHeroCardIndex);
       });
     }
 
     function setActiveHeroCard(index) {
       heroCards.forEach(function (card, cardIndex) {
-        const isActive = cardIndex === index;
-        card.classList.toggle('is-active', isActive);
-        if (isMobileViewport()) {
-          if (isActive) {
-            card.removeAttribute('hidden');
-          } else {
-            card.setAttribute('hidden', 'hidden');
-          }
-        }
+        card.classList.toggle('is-active', cardIndex === index);
       });
-
-      selectorButtons.forEach(function (button, buttonIndex) {
-        button.classList.toggle('is-active', buttonIndex === index);
-      });
+      updateCarouselIndicators();
     }
+
+    function onHeroCardsSwipe(endX, endY) {
+      const deltaX = endX - swipeStartX;
+      const deltaY = endY - swipeStartY;
+
+      if (Math.abs(deltaX) < swipeThreshold) return;
+      if (Math.abs(deltaX) <= Math.abs(deltaY)) return;
+
+      stopHeroCardsAutoplay();
+
+      if (deltaX < 0) {
+        activeHeroCardIndex = (activeHeroCardIndex + 1) % heroCards.length;
+      } else {
+        activeHeroCardIndex = (activeHeroCardIndex - 1 + heroCards.length) % heroCards.length;
+      }
+
+      setActiveHeroCard(activeHeroCardIndex);
+
+      if (isMobileViewport()) {
+        startHeroCardsAutoplay();
+      }
+    }
+
+    heroCardsContainer.addEventListener('touchstart', function (event) {
+      if (!isMobileViewport()) return;
+      if (!event.changedTouches || !event.changedTouches.length) return;
+
+      swipeStartX = event.changedTouches[0].clientX;
+      swipeStartY = event.changedTouches[0].clientY;
+    }, { passive: true });
+
+    heroCardsContainer.addEventListener('touchend', function (event) {
+      if (!isMobileViewport()) return;
+      if (!event.changedTouches || !event.changedTouches.length) return;
+
+      onHeroCardsSwipe(event.changedTouches[0].clientX, event.changedTouches[0].clientY);
+    }, { passive: true });
 
     syncHeroCardsMode();
     window.addEventListener('resize', syncHeroCardsMode, { passive: true });
+
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) {
+        stopHeroCardsAutoplay();
+      } else if (heroCardsContainer.classList.contains('is-carousel-mobile')) {
+        startHeroCardsAutoplay();
+      }
+    });
   }
 
   // ── Light follow effect for cards ───
