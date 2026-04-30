@@ -45,12 +45,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (hasLenis) {
     lenis = new window.Lenis({
-      duration: 1.25,
-      lerp: 0.085,
+      duration: 2.2, // Increased from 1.25 for slower scroll
+      lerp: 0.045,   // Decreased from 0.085 for more inertia
       smoothWheel: true,
       smoothTouch: true,
-      wheelMultiplier: 0.95,
-      touchMultiplier: 1.05,
+      wheelMultiplier: 0.65, // Reduced for less aggressive scroll impulse
+      touchMultiplier: 0.8,
       normalizeWheel: true,
     });
 
@@ -381,6 +381,27 @@ document.addEventListener('DOMContentLoaded', function () {
       shape.style.transform = 'translateY(' + (scrolled * speed) + 'px)';
     });
   }, { passive: true });
+
+  // ── FAQ Accordion Logic ────────────────
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    if (question) {
+      question.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+
+        // Close all other items
+        faqItems.forEach(otherItem => {
+          otherItem.classList.remove('active');
+        });
+
+        // Toggle current item
+        if (!isActive) {
+          item.classList.add('active');
+        }
+      });
+    }
+  });
 
   console.log('🚀 Software Factory — Enhanced UX Loaded');
 });
