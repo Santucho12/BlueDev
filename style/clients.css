@@ -72,16 +72,20 @@
   overflow: hidden;
 }
 
-.client-logo-box svg {
+.client-logo-box svg,
+.client-logo-box img {
   width: 100%;
   height: auto;
   max-width: 160px; /* Increased from the previous effective size */
   transform: scale(1.2); /* Scaled up all SVGs by 20% */
   transition: all 0.4s ease;
+  opacity: 0.6;
 }
 
-.client-logo-box:hover svg {
+.client-logo-box:hover svg,
+.client-logo-box:hover img {
   transform: scale(1.3); /* Even larger on hover */
+  opacity: 1;
 }
 
 .client-logo-box::before {

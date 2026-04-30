@@ -334,3 +334,37 @@ section::after {
     height: 25px;
   }
 }
+
+/* ====================================
+   HORIZONTAL SCROLL (L-Shape Layout)
+   ==================================== */
+#horizontal-scroll-container {
+  overflow: hidden;
+  background-color: var(--color-black);
+  position: relative;
+}
+
+#horizontal-scroll-wrapper {
+  display: flex;
+  width: 300vw;
+  height: 100vh;
+  will-change: transform;
+}
+
+.h-section {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.h-section::-webkit-scrollbar {
+  display: none;
+}

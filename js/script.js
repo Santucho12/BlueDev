@@ -403,5 +403,62 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
+  // ── Horizontal Scroll Sections (L-Shape) ──
+  if (hasGsap && hasScrollTrigger) {
+    const horizontalContainer = document.getElementById('horizontal-scroll-container');
+    const horizontalWrapper = document.getElementById('horizontal-scroll-wrapper');
+    const hSections = gsap.utils.toArray('.h-section');
+
+    if (horizontalContainer && horizontalWrapper && hSections.length > 0) {
+      // Create horizontal scroll timeline
+      let tl = gsap.to(hSections, {
+        xPercent: -100 * (hSections.length - 1),
+        ease: "none",
+        scrollTrigger: {
+          trigger: horizontalContainer,
+          pin: true,
+          scrub: 1,
+          end: () => "+=" + horizontalWrapper.offsetWidth
+        }
+      });
+
+      // Handle AOS animations inside the horizontal sections
+      hSections.forEach(section => {
+        const aosElements = Array.from(section.querySelectorAll('[data-aos]'));
+        aosElements.forEach(el => {
+          const delay = parseInt(el.getAttribute('data-delay') || '0');
+          const isFadeUp = el.classList.contains('fade-up') || el.getAttribute('data-aos') === 'fade-up';
+          
+          gsap.fromTo(el,
+            { 
+              opacity: 0, 
+              y: isFadeUp ? 40 : 0,
+              x: el.getAttribute('data-aos') === 'fade-right' ? -40 : (el.getAttribute('data-aos') === 'fade-left' ? 40 : 0),
+              scale: el.getAttribute('data-aos') === 'zoom-in' ? 0.9 : 1
+            },
+            {
+              opacity: 1,
+              y: 0,
+              x: 0,
+              scale: 1,
+              duration: 0.8,
+              delay: delay / 1000,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: el,
+                containerAnimation: tl,
+                start: "left 85%",
+                toggleActions: "play none none none"
+              }
+            }
+          );
+          
+          // Disable standard AOS for these elements to avoid conflicts
+          el.removeAttribute('data-aos');
+        });
+      });
+    }
+  }
+
   console.log('🚀 Software Factory — Enhanced UX Loaded');
 });
