@@ -417,8 +417,8 @@ document.addEventListener('DOMContentLoaded', function () {
         scrollTrigger: {
           trigger: horizontalContainer,
           pin: true,
-          scrub: 1,
-          end: () => "+=" + horizontalWrapper.offsetWidth
+          scrub: 2.5,
+          end: () => "+=" + (horizontalWrapper.offsetWidth * 1.5)
         }
       });
 
