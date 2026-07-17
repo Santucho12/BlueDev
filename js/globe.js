@@ -1,5 +1,5 @@
 /**
- * BlueDev - 3D Holographic Globe
+ * Vestra - 3D Holographic Globe
  * Powered by Three.js
  */
 
