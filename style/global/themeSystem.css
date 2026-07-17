@@ -121,26 +121,6 @@
   --gradient-text: linear-gradient(135deg, var(--color-white) 0%, var(--color-celeste) 100%);
 
   /* ========================================
-     ALIAS DEPRECADOS — TEMPORAL
-     Solo para que el sitio no se rompa durante la migración.
-     La Task 3 elimina este bloque completo.
-     ======================================== */
-  --color-gray: var(--color-white-2);
-  --color-gray-light: var(--color-white-2);
-  --color-gray-mid: rgba(var(--white-rgb), 0.5);
-  --color-azul: var(--color-white-2);
-  --color-celeste-light: var(--color-celeste-2);
-  --color-celeste-dark: var(--color-celeste-2);
-  --color-blue-deep: var(--color-celeste-2);
-  --color-navy-accent: var(--color-celeste);
-  --color-online: var(--color-whatsapp);
-  --color-navy-dark: var(--color-navy-2);
-  --surface-rgb: var(--black-rgb);
-  --surface-elevated-rgb: var(--black-2-rgb);
-  --section-dark-rgb: var(--black-rgb);
-  --navy-overlay-rgb: var(--navy-2-rgb);
-
-  /* ========================================
      ESPACIADO Y TAMAÑOS
      ======================================== */
   --spacing-xs: 0.5rem;
