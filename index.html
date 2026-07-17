@@ -10,6 +10,7 @@
         content="Agencia de desarrollo de software premium. Creamos sitios web empresariales, sistemas internos y automatizaciones a medida para potenciar tu negocio.">
     <link rel="stylesheet" href="style/global/styles.css">
     <link rel="stylesheet" href="style/global/themeSystem.css">
+    <link rel="stylesheet" href="style/intro.css">
     <link rel="stylesheet" href="style/navbar.css">
     <link rel="stylesheet" href="style/home.css?v=18">
     <link rel="stylesheet" href="style/services.css">
@@ -38,6 +39,17 @@
 </head>
 
 <body>
+    <!-- Intro cinematográfica (wipe del logo) -->
+    <script>
+        // Bloquear scroll y forzar top de inmediato (sin parpadeo). Corre en cada carga.
+        document.documentElement.classList.add('intro-active');
+        if ('scrollRestoration' in window.history) window.history.scrollRestoration = 'manual';
+        window.scrollTo(0, 0);
+    </script>
+    <div id="cinematic-intro" aria-hidden="true">
+        <img src="images/logo-vestra-wordmark.png" alt="Vestra" class="intro-logo">
+    </div>
+
     <!-- Navbar -->
     <nav class="navbar">
         <div class="container">
@@ -49,40 +61,53 @@
                 <span></span>
                 <span></span>
             </button>
-            <ul class="nav-links">
-                <li><a href="#inicio"><span class="nav-icon">
-                            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
-                                viewBox="0 0 24 24">
-                                <rect x="3" y="10" width="18" height="10" rx="2" />
-                                <path d="M9 21V13h6v8" />
-                                <path d="M12 3l9 7-9-7-9 7" />
+            <div class="nav-right">
+                <ul class="nav-links">
+                    <li><a href="#inicio" data-i18n="nav.inicio">Inicio</a></li>
+                    <li><a href="#sobre-nosotros" data-i18n="nav.sobre">Sobre Nosotros</a></li>
+                    <li><a href="#servicios" data-i18n="nav.servicios">Servicios</a></li>
+                    <li><a href="#portfolio" data-i18n="nav.portfolio">Portfolio</a></li>
+                </ul>
+
+                <!-- Selector de idioma -->
+                <div class="lang-switcher" id="langSwitcher">
+                    <button class="lang-trigger" aria-haspopup="true" aria-expanded="false">
+                        <svg class="lang-globe" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M2 12h20" />
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                        </svg>
+                        <span class="lang-current">ES</span>
+                        <svg class="lang-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6 9l6 6 6-6" />
+                        </svg>
+                    </button>
+                    <ul class="lang-menu" role="menu">
+                        <li><button class="lang-option" data-lang="es" role="menuitem">
+                            <svg class="lang-flag" width="20" height="14" viewBox="0 0 20 14" aria-hidden="true">
+                                <rect width="20" height="14" rx="2" fill="#74acdf" />
+                                <rect y="4.66" width="20" height="4.66" fill="#fff" />
+                                <circle cx="10" cy="7" r="1.5" fill="#f6b40e" />
                             </svg>
-                        </span>Inicio</a></li>
-                <li><a href="#sobre-nosotros"><span class="nav-icon">
-                            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
-                                viewBox="0 0 24 24">
-                                <circle cx="12" cy="8" r="4" />
-                                <path d="M2 21v-2a4 4 0 0 1 4-4h12a4 4 0 0 1 4 4v2" />
+                            <span>ES</span>
+                        </button></li>
+                        <li><button class="lang-option" data-lang="en" role="menuitem">
+                            <svg class="lang-flag" width="20" height="14" viewBox="0 0 20 14" aria-hidden="true">
+                                <rect width="20" height="14" rx="2" fill="#012169" />
+                                <path d="M0 0l20 14M20 0L0 14" stroke="#fff" stroke-width="2.4" />
+                                <path d="M0 0l20 14M20 0L0 14" stroke="#c8102e" stroke-width="1.2" />
+                                <path d="M10 0v14M0 7h20" stroke="#fff" stroke-width="3.4" />
+                                <path d="M10 0v14M0 7h20" stroke="#c8102e" stroke-width="2" />
                             </svg>
-                        </span>Sobre Nosotros</a></li>
-                <li><a href="#servicios"><span class="nav-icon">
-                            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
-                                viewBox="0 0 24 24">
-                                <path d="M9 18h6" />
-                                <path d="M10 22h4" />
-                                <path
-                                    d="M12 2a7 7 0 0 0-7 7c0 2.5 1.5 4.5 3.5 5.5V17a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2.5C17.5 13.5 19 11.5 19 9a7 7 0 0 0-7-7z" />
-                            </svg>
-                        </span>Servicios</a></li>
-                <li><a href="#portfolio"><span class="nav-icon">
-                            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
-                                viewBox="0 0 24 24">
-                                <rect x="3" y="7" width="18" height="13" rx="2" />
-                                <path d="M16 7V5a4 4 0 0 0-8 0v2" />
-                                <path d="M3 10h18" />
-                            </svg>
-                        </span>Portfolio</a></li>
-            </ul>
+                            <span>EN</span>
+                        </button></li>
+                    </ul>
+                </div>
+
+                <a href="contacto.html" class="btn btn-primary nav-cta" data-i18n="nav.cta">Comenzar Proyecto</a>
+            </div>
         </div>
     </nav>
 
@@ -98,15 +123,15 @@
             <!-- Premium Conversion Badge -->
             <div class="hero-badge reveal fade-up" data-aos="fade-down" data-delay="0">
                 <span class="hero-badge-dot"></span>
-                AGENCIA DE DESARROLLO DE SOFTWARE
+                <span data-i18n="hero.badge">AGENCIA DE DESARROLLO DE SOFTWARE</span>
             </div>
 
             <h1 class="hero-title reveal" style="margin-bottom: 0.5em;">
-                <span class="title-line">CONVERTI TU IDEA EN </span>
-                <span class="title-line highlight-large" data-text="SOFTWARE.">SOFTWARE QUE VENDE.</span>
+                <span class="title-line" data-i18n="hero.title1">CONVERTI TU IDEA EN </span>
+                <span class="title-line highlight-large" data-text="SOFTWARE." data-i18n="hero.title2">SOFTWARE QUE VENDE.</span>
             </h1>
 
-            <p class="hero-subtitle fade-up"
+            <p class="hero-subtitle fade-up" data-i18n="hero.subtitle"
                 style="margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto;">
                 Web, sistemas internos e IA. Construimos lo que tu negocio necesita para crecer.
             </p>
@@ -122,8 +147,8 @@
                             <line x1="12" y1="17" x2="12" y2="21"></line>
                         </svg>
                     </div>
-                    <h4>Páginas Web</h4>
-                    <p>Convierte visitas en clientes</p>
+                    <h4 data-i18n="hero.card1.t">Páginas Web</h4>
+                    <p data-i18n="hero.card1.d">Convierte visitas en clientes</p>
                 </div>
                 <div class="hero-service-card" data-aos="zoom-in" data-delay="200">
                     <div class="hero-service-icon">
@@ -136,8 +161,8 @@
                             <line x1="12" y1="22.08" x2="12" y2="12"></line>
                         </svg>
                     </div>
-                    <h4>Sistemas Internos</h4>
-                    <p>Optimización y gestión de tu empresa</p>
+                    <h4 data-i18n="hero.card2.t">Sistemas Internos</h4>
+                    <p data-i18n="hero.card2.d">Optimización y gestión de tu empresa</p>
                 </div>
                 <div class="hero-service-card" data-aos="zoom-in" data-delay="300">
                     <div class="hero-service-icon">
@@ -150,15 +175,14 @@
                             <line x1="16" y1="16" x2="16" y2="16"></line>
                         </svg>
                     </div>
-                    <h4>IA & Automatización</h4>
-                    <p>ELIMINÁ TAREAS REPETITIVAS Y OPTIMIZA TU TIEMPO</p>
+                    <h4 data-i18n="hero.card3.t">IA & Automatización</h4>
+                    <p data-i18n="hero.card3.d">ELIMINÁ TAREAS REPETITIVAS Y OPTIMIZA TU TIEMPO</p>
                 </div>
             </div>
 
             <div class="hero-buttons">
-                <a href="contacto.html" class="btn btn-primary" data-aos="zoom-in" data-delay="400">COMENZAR
-                    PROYECTO</a>
-                <a href="#servicios" class="btn btn-secondary" data-aos="zoom-in" data-delay="500">VER SERVICIOS</a>
+                <a href="contacto.html" class="btn btn-primary" data-aos="zoom-in" data-delay="400" data-i18n="hero.btn1">COMENZAR PROYECTO</a>
+                <a href="#servicios" class="btn btn-secondary" data-aos="zoom-in" data-delay="500" data-i18n="hero.btn2">VER SERVICIOS</a>
             </div>
 
             <script>
@@ -261,10 +285,9 @@
             </script>
         </div>
         <div class="feature-bar">
-            <span><span class="feature-dot" style="background: var(--color-whatsapp);"></span>+28 Proyectos Completados</span>
-            <span><span class="feature-dot" style="background: var(--color-celeste);"></span>100% CLIENTES
-                SATISFECHOS</span>
-            <span><span class="feature-dot" style="background: var(--color-celeste);"></span>Soporte 24/7</span>
+            <span><span class="feature-dot" style="background: var(--color-whatsapp);"></span><span data-i18n="feature.1">+28 Proyectos Completados</span></span>
+            <span><span class="feature-dot" style="background: var(--color-celeste);"></span><span data-i18n="feature.2">100% CLIENTES SATISFECHOS</span></span>
+            <span><span class="feature-dot" style="background: var(--color-celeste);"></span><span data-i18n="feature.3">Soporte 24/7</span></span>
         </div>
         <div class="scroll-indicator">
             <div class="mouse">
@@ -282,14 +305,14 @@
             <div class="about-content-left">
                 <div class="hero-badge about-badge" data-aos="fade-right" data-delay="0">
                     <span class="hero-badge-dot"></span>
-                    CONOCENOS
+                    <span data-i18n="about.badge">CONOCENOS</span>
                 </div>
                 <h2 class="section-title text-left about-title-custom" data-aos="fade-right" data-delay="100"
-                    style="font-size: 2.6rem;">
+                    style="font-size: 2.6rem;" data-i18n="about.title">
                     POTENCIAMOS NEGOCIOS CON <span class="about-title-highlight">TECNOLOGÍA.</span>
                 </h2>
 
-                <p class="about-desc" data-aos="fade-right" data-delay="300">
+                <p class="about-desc" data-aos="fade-right" data-delay="300" data-i18n="about.desc">
                     En <strong>Vestra</strong> desarrollamos webs, automatizaciones y sistemas a medida para
                     empresas y emprendimientos. Con más de 3 años experiencia, combinamos conocimiento técnico y
                     enfoque estratégico para crear productos alineados a los objetivos de cada cliente.
@@ -302,7 +325,7 @@
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
                         </span>
-                        <span><strong>Entrega en 3 a 6 semanas</strong> — cumplimos los tiempos acordados</span>
+                        <span data-i18n="about.li1"><strong>Entrega en 3 a 6 semanas</strong> — cumplimos los tiempos acordados</span>
                     </li>
                     <li>
                         <span class="about-icon-check">
@@ -310,7 +333,7 @@
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
                         </span>
-                        <span><strong>Código propio, sin dependencia de terceros</strong> — vos sos dueño de lo que
+                        <span data-i18n="about.li2"><strong>Código propio, sin dependencia de terceros</strong> — vos sos dueño de lo que
                             construimos</span>
                     </li>
                     <li>
@@ -319,7 +342,7 @@
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
                         </span>
-                        <span><strong>Soporte activo post-lanzamiento</strong> — seguimos acompañandote despues de la
+                        <span data-i18n="about.li3"><strong>Soporte activo post-lanzamiento</strong> — seguimos acompañandote despues de la
                             entrega</span>
                     </li>
                 </ul>
@@ -337,7 +360,7 @@
                             </div>
                             <div class="stat-content">
                                 <span class="about-stat-number">28+</span>
-                                <span class="about-stat-label">Proyectos exitosos</span>
+                                <span class="about-stat-label" data-i18n="about.stat1">Proyectos exitosos</span>
                             </div>
                             <div class="stat-card-glow"></div>
                         </div>
@@ -352,8 +375,8 @@
                                 </svg>
                             </div>
                             <div class="stat-content">
-                                <span class="about-stat-number">3 a 6 sem.</span>
-                                <span class="about-stat-label">Tiempo de entrega</span>
+                                <span class="about-stat-number" data-i18n="about.stat2num">3 a 6 sem.</span>
+                                <span class="about-stat-label" data-i18n="about.stat2">Tiempo de entrega</span>
                             </div>
                             <div class="stat-card-glow"></div>
                         </div>
@@ -368,7 +391,7 @@
                             </div>
                             <div class="stat-content">
                                 <span class="about-stat-number">24hs</span>
-                                <span class="about-stat-label">Respondemos tu consulta</span>
+                                <span class="about-stat-label" data-i18n="about.stat3">Respondemos tu consulta</span>
                             </div>
                             <div class="stat-card-glow"></div>
                         </div>
@@ -384,25 +407,25 @@
     <!-- Services Section -->
     <section id="servicios" class="services">
         <div class="container" data-aos="fade-up">
-            <h2 class="section-title reveal" data-aos="fade-up">Nuestros Servicios</h2>
-            <p class="section-subtitle fade-up" data-aos="fade-up" data-delay="100">Soluciones de software de élite diseñadas
+            <h2 class="section-title reveal" data-aos="fade-up" data-i18n="services.title">Nuestros Servicios</h2>
+            <p class="section-subtitle fade-up" data-aos="fade-up" data-delay="100" data-i18n="services.subtitle">Soluciones de software de élite diseñadas
                 para escalar tu negocio.</p>
 
             <div class="services-grid">
                 <!-- Card 1: Webs -->
                 <article class="service-card-new" data-aos="fade-up">
-                    <div class="service-tag">01. WEBS</div>
-                    <h3>Páginas Web</h3>
-                    <p>Creamos sitios web rápidos, pensados para brindar una excelente experiencia de usuario y
+                    <div class="service-tag" data-i18n="svc1.tag">01. WEBS</div>
+                    <h3 data-i18n="svc1.t">Páginas Web</h3>
+                    <p data-i18n="svc1.d">Creamos sitios web rápidos, pensados para brindar una excelente experiencia de usuario y
                         convertir visitas
                         en clientes.</p>
                     <ul class="service-features-new">
-                        <li class="service-feature-item"><span class="feature-dot"></span> Navegación simple e intuitiva
+                        <li class="service-feature-item"><span class="feature-dot"></span> <span data-i18n="svc1.f1">Navegación simple e intuitiva</span>
                         </li>
-                        <li class="service-feature-item"><span class="feature-dot"></span> Experiencia fluida en todos
-                            los dispositivos</li>
-                        <li class="service-feature-item"><span class="feature-dot"></span> Convertí visitas en clientes
-                            reales</li>
+                        <li class="service-feature-item"><span class="feature-dot"></span> <span data-i18n="svc1.f2">Experiencia fluida en todos
+                            los dispositivos</span></li>
+                        <li class="service-feature-item"><span class="feature-dot"></span> <span data-i18n="svc1.f3">Convertí visitas en clientes
+                            reales</span></li>
                     </ul>
                     <div class="service-image-stage">
                         <img src="images/Gemini_Generated_Image_mx4o96mx4o96mx4o.png" alt="Web Design Excellence"
@@ -412,17 +435,17 @@
 
                 <!-- Card 2: Sistemas -->
                 <article class="service-card-new" data-aos="fade-up" data-aos-delay="100">
-                    <div class="service-tag">02. SISTEMAS</div>
-                    <h3>Sistemas Internos</h3>
-                    <p>Desarrollamos sistemas internos personalizados para optimizar la gestión y potenciar el
+                    <div class="service-tag" data-i18n="svc2.tag">02. SISTEMAS</div>
+                    <h3 data-i18n="svc2.t">Sistemas Internos</h3>
+                    <p data-i18n="svc2.d">Desarrollamos sistemas internos personalizados para optimizar la gestión y potenciar el
                         crecimiento de tu empresa.</p>
                     <ul class="service-features-new">
-                        <li class="service-feature-item"><span class="feature-dot"></span> Control total de stock,
-                            ventas e ingresos</li>
-                        <li class="service-feature-item"><span class="feature-dot"></span> Panel de gestión para
-                            empleados y administradores</li>
-                        <li class="service-feature-item"><span class="feature-dot"></span> Información segura y
-                            centralizada en todo momento</li>
+                        <li class="service-feature-item"><span class="feature-dot"></span> <span data-i18n="svc2.f1">Control total de stock,
+                            ventas e ingresos</span></li>
+                        <li class="service-feature-item"><span class="feature-dot"></span> <span data-i18n="svc2.f2">Panel de gestión para
+                            empleados y administradores</span></li>
+                        <li class="service-feature-item"><span class="feature-dot"></span> <span data-i18n="svc2.f3">Información segura y
+                            centralizada en todo momento</span></li>
                     </ul>
                     <div class="service-image-stage">
                         <img src="images/Gemini_Generated_Image_301ln7301ln7301l.png" alt="Custom Software Systems"
@@ -432,17 +455,17 @@
 
                 <!-- Card 3: Automatizaciones -->
                 <article class="service-card-new" data-aos="fade-up" data-aos-delay="200">
-                    <div class="service-tag">03. IA & AUTO</div>
-                    <h3>Automatizaciones</h3>
-                    <p>Automatizá tareas repetitivas y dejá que sistemas inteligentes trabajen por vos, ahorrando tiempo
+                    <div class="service-tag" data-i18n="svc3.tag">03. IA & AUTO</div>
+                    <h3 data-i18n="svc3.t">Automatizaciones</h3>
+                    <p data-i18n="svc3.d">Automatizá tareas repetitivas y dejá que sistemas inteligentes trabajen por vos, ahorrando tiempo
                         y recursos.</p>
                     <ul class="service-features-new">
-                        <li class="service-feature-item"><span class="feature-dot"></span> Respuestas automáticas 24/7
+                        <li class="service-feature-item"><span class="feature-dot"></span> <span data-i18n="svc3.f1">Respuestas automáticas 24/7</span>
                         </li>
-                        <li class="service-feature-item"><span class="feature-dot"></span> Automatización de tareas
-                            repetitivas</li>
-                        <li class="service-feature-item"><span class="feature-dot"></span> Ahorro de tiempo en procesos
-                            diarios</li>
+                        <li class="service-feature-item"><span class="feature-dot"></span> <span data-i18n="svc3.f2">Automatización de tareas
+                            repetitivas</span></li>
+                        <li class="service-feature-item"><span class="feature-dot"></span> <span data-i18n="svc3.f3">Ahorro de tiempo en procesos
+                            diarios</span></li>
                     </ul>
                     <div class="service-image-stage">
                         <img src="images/Gemini_Generated_Image_ynjupeynjupeynju.png" alt="Digital Automation & AI"
@@ -474,8 +497,8 @@
     <!-- Portfolio Section -->
     <section id="portfolio" class="portfolio h-section">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up" data-delay="0">Nuestros Trabajos</h2>
-            <p class="section-subtitle" data-aos="fade-up" data-delay="200">Proyectos reales que generan impacto,
+            <h2 class="section-title" data-aos="fade-up" data-delay="0" data-i18n="portfolio.title">Nuestros Trabajos</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-delay="200" data-i18n="portfolio.subtitle">Proyectos reales que generan impacto,
                 eficiencia y crecimiento.</p>
 
             <div class="portfolio-grid">
@@ -484,8 +507,8 @@
                         <img src="images/Captura de pantalla 2026-01-15 010835.png" alt="Concesionaria Subaru">
                     </div>
                     <div class="portfolio-card-content">
-                        <h3 class="portfolio-title">Concesionaria Subaru</h3>
-                        <p class="portfolio-desc">Sitio web institucional para concesionaria oficial Subaru y Suzuki.
+                        <h3 class="portfolio-title" data-i18n="port1.t">Concesionaria Subaru</h3>
+                        <p class="portfolio-desc" data-i18n="port1.d">Sitio web institucional para concesionaria oficial Subaru y Suzuki.
                             Catálogo de vehículos, consultas rápidas por WhatsApp y gestión de marcas premium.</p>
                         <div class="portfolio-tags">
                             <span data-aos="fade-up" data-delay="400">Next.js</span>
@@ -493,7 +516,7 @@
                             <span data-aos="fade-up" data-delay="600">Node.js</span>
                         </div>
                         <div style="flex:1"></div>
-                        <a class="portfolio-link" href="#" target="_blank" style="margin-top:2.2rem;">Ver proyecto <span
+                        <a class="portfolio-link" href="#" target="_blank" style="margin-top:2.2rem;"><span data-i18n="port.link">Ver proyecto</span> <span
                                 class="portfolio-link-arrow">↗</span></a>
                     </div>
                 </div>
@@ -502,8 +525,8 @@
                         <img src="images/Captura de pantalla 2026-01-15 010927.png" alt="BitFlow Exchange">
                     </div>
                     <div class="portfolio-card-content">
-                        <h3 class="portfolio-title">BitFlow Exchange</h3>
-                        <p class="portfolio-desc">Plataforma de exchange de criptomonedas con trading, wallet, swap y
+                        <h3 class="portfolio-title" data-i18n="port2.t">BitFlow Exchange</h3>
+                        <p class="portfolio-desc" data-i18n="port2.d">Plataforma de exchange de criptomonedas con trading, wallet, swap y
                             monitoreo de mercados en tiempo real.</p>
                         <div class="portfolio-tags">
                             <span data-aos="fade-up" data-delay="400">React</span>
@@ -517,7 +540,7 @@
                                 <rect x="4" y="10" width="16" height="10" rx="2" />
                                 <path d="M8 10V7a4 4 0 0 1 8 0v3" />
                             </svg>
-                            <span class="portfolio-nda-text">Proyecto bajo acuerdo de confidencialidad</span>
+                            <span class="portfolio-nda-text" data-i18n="port.nda">Proyecto bajo acuerdo de confidencialidad</span>
                         </div>
                     </div>
                 </div>
@@ -526,8 +549,8 @@
                         <img src="images/Captura de pantalla 2026-01-15 011126.png" alt="Automatización de WhatsApp">
                     </div>
                     <div class="portfolio-card-content">
-                        <h3 class="portfolio-title">Automatización de WhatsApp</h3>
-                        <p class="portfolio-desc">Sistema de automatización para WhatsApp Business: respuestas
+                        <h3 class="portfolio-title" data-i18n="port3.t">Automatización de WhatsApp</h3>
+                        <p class="portfolio-desc" data-i18n="port3.d">Sistema de automatización para WhatsApp Business: respuestas
                             automáticas, integración con catálogos y gestión de campañas promocionales.</p>
                         <div class="portfolio-tags">
                             <span data-aos="fade-up" data-delay="400">Node.js</span>
@@ -541,7 +564,7 @@
                                 <rect x="4" y="10" width="16" height="10" rx="2" />
                                 <path d="M8 10V7a4 4 0 0 1 8 0v3" />
                             </svg>
-                            <span class="portfolio-nda-text">Proyecto bajo acuerdo de confidencialidad</span>
+                            <span class="portfolio-nda-text" data-i18n="port.nda">Proyecto bajo acuerdo de confidencialidad</span>
                         </div>
                     </div>
                 </div>
@@ -553,8 +576,8 @@
             <section id="clientes" class="clients h-section">
         <div class="container clients-container">
             <div class="clients-header">
-                <h2 data-aos="fade-up">Empresas que confían en nosotros</h2>
-                <p data-aos="fade-up" data-delay="100">Más de 28 proyectos exitosos respaldan nuestra trayectoria.</p>
+                <h2 data-aos="fade-up" data-i18n="clients.title">Empresas que confían en nosotros</h2>
+                <p data-aos="fade-up" data-delay="100" data-i18n="clients.subtitle">Más de 28 proyectos exitosos respaldan nuestra trayectoria.</p>
             </div>
 
             <div class="clients-grid">
@@ -603,29 +626,29 @@
                     <div class="map-header">
                         <div class="hero-badge about-badge" data-aos="fade-right" style="margin-bottom: 1rem;">
                             <span class="hero-badge-dot"></span>
-                            PRESENCIA INTERNACIONAL
+                            <span data-i18n="reach.badge">PRESENCIA INTERNACIONAL</span>
                         </div>
-                        <h2 data-aos="fade-right" data-delay="100">Alcance <span class="text-gradient">Global</span></h2>
-                        <p data-aos="fade-right" data-delay="200">Soluciones de software sin fronteras, con presencia estratégica en mercados clave de Iberoamérica y Europa.</p>
+                        <h2 data-aos="fade-right" data-delay="100" data-i18n="reach.title">Alcance <span class="text-gradient">Global</span></h2>
+                        <p data-aos="fade-right" data-delay="200" data-i18n="reach.desc">Soluciones de software sin fronteras, con presencia estratégica en mercados clave de Iberoamérica y Europa.</p>
                     </div>
 
                     <!-- Stats Box Inside Left Content -->
                     <div class="map-stats">
                         <div class="stat-item">
                             <h4>4</h4>
-                            <p>Países</p>
+                            <p data-i18n="reach.s1">Países</p>
                         </div>
                         <div class="stat-item">
                             <h4>2</h4>
-                            <p>Continentes</p>
+                            <p data-i18n="reach.s2">Continentes</p>
                         </div>
                         <div class="stat-item">
                             <h4>24/7</h4>
-                            <p>Soporte Global</p>
+                            <p data-i18n="reach.s3">Soporte Global</p>
                         </div>
                         <div class="stat-item">
                             <h4>28+</h4>
-                            <p>Proyectos IT</p>
+                            <p data-i18n="reach.s4">Proyectos IT</p>
                         </div>
                     </div>
                 </div>
@@ -648,22 +671,22 @@
     <section id="faq" class="faq">
         <div class="container faq-container">
             <div class="faq-header">
-                <span class="section-tag" data-aos="fade-up">Preguntas Frecuentes</span>
-                <h2 data-aos="fade-up" data-delay="100">Resolvemos tus dudas</h2>
+                <span class="section-tag" data-aos="fade-up" data-i18n="faq.tag">Preguntas Frecuentes</span>
+                <h2 data-aos="fade-up" data-delay="100" data-i18n="faq.title">Resolvemos tus dudas</h2>
             </div>
 
             <div class="faq-list">
                 <!-- Item 1 -->
                 <div class="faq-item" data-aos="fade-up" data-delay="200">
                     <button class="faq-question">
-                        <span>¿Cuánto tiempo toma desarrollar un software?</span>
+                        <span data-i18n="faq.q1">¿Cuánto tiempo toma desarrollar un software?</span>
                         <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
                     </button>
                     <div class="faq-answer">
-                        <div class="faq-answer-inner">
+                        <div class="faq-answer-inner" data-i18n="faq.a1">
                             El tiempo de desarrollo varía según la complejidad, pero la mayoría de nuestros proyectos (webs premium, sistemas internos o automatizaciones) se completan en un rango de <strong>3 a 6 semanas</strong>.
                         </div>
                     </div>
@@ -672,14 +695,14 @@
                 <!-- Item 2 -->
                 <div class="faq-item" data-aos="fade-up" data-delay="300">
                     <button class="faq-question">
-                        <span>¿El código es de mi propiedad?</span>
+                        <span data-i18n="faq.q2">¿El código es de mi propiedad?</span>
                         <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
                     </button>
                     <div class="faq-answer">
-                        <div class="faq-answer-inner">
+                        <div class="faq-answer-inner" data-i18n="faq.a2">
                             Absolutamente. Al finalizar el proyecto y completar el pago, entregamos la propiedad total del código fuente y toda la documentación técnica necesaria. En Vestra construimos activos para tu negocio, no dependencias.
                         </div>
                     </div>
@@ -688,14 +711,14 @@
                 <!-- Item 3 -->
                 <div class="faq-item" data-aos="fade-up" data-delay="400">
                     <button class="faq-question">
-                        <span>¿Ofrecen soporte después del lanzamiento?</span>
+                        <span data-i18n="faq.q3">¿Ofrecen soporte después del lanzamiento?</span>
                         <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
                     </button>
                     <div class="faq-answer">
-                        <div class="faq-answer-inner">
+                        <div class="faq-answer-inner" data-i18n="faq.a3">
                             Sí. Ofrecemos planes de soporte y mantenimiento post-lanzamiento para asegurar que tu software se mantenga actualizado, seguro y funcionando al 100% de su capacidad.
                         </div>
                     </div>
@@ -704,14 +727,14 @@
                 <!-- Item 4 -->
                 <div class="faq-item" data-aos="fade-up" data-delay="500">
                     <button class="faq-question">
-                        <span>¿Qué tecnologías utilizan?</span>
+                        <span data-i18n="faq.q4">¿Qué tecnologías utilizan?</span>
                         <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
                     </button>
                     <div class="faq-answer">
-                        <div class="faq-answer-inner">
+                        <div class="faq-answer-inner" data-i18n="faq.a4">
                             Utilizamos un stack tecnológico moderno y escalable, incluyendo <strong>React, Next.js, Node.js y servicios en la nube (AWS/Google Cloud)</strong>. Elegimos la herramienta que mejor se adapte a los objetivos de tu negocio.
                         </div>
                     </div>
@@ -720,14 +743,14 @@
                 <!-- Item 5 -->
                 <div class="faq-item" data-aos="fade-up" data-delay="600">
                     <button class="faq-question">
-                        <span>¿Pueden integrarse con mis sistemas actuales?</span>
+                        <span data-i18n="faq.q5">¿Pueden integrarse con mis sistemas actuales?</span>
                         <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
                     </button>
                     <div class="faq-answer">
-                        <div class="faq-answer-inner">
+                        <div class="faq-answer-inner" data-i18n="faq.a5">
                             Por supuesto. Nos especializamos en conectar tu software con herramientas de terceros como WhatsApp API, pasarelas de pago (Mercado Pago/Stripe), CRM o cualquier sistema interno que ya estés utilizando.
                         </div>
                     </div>
@@ -747,19 +770,19 @@
         <div class="container relative-z">
             <div class="cta-premium-card" data-aos="fade-up">
                 <div class="cta-premium-content">
-                    <div class="cta-badge" data-aos="fade-down" data-aos-delay="100">
+                    <div class="cta-badge" data-aos="fade-down" data-aos-delay="100" data-i18n="cta.badge">
                         ¿Listo para dar el siguiente paso?
                     </div>
-                    <h2 class="cta-premium-title" data-aos="fade-up" data-delay="200">
+                    <h2 class="cta-premium-title" data-aos="fade-up" data-delay="200" data-i18n="cta.title">
                         Converti tu idea en <span class="text-gradient">software</span>
                     </h2>
-                    <p class="cta-premium-subtitle" data-aos="fade-up" data-delay="300">
+                    <p class="cta-premium-subtitle" data-aos="fade-up" data-delay="300" data-i18n="cta.subtitle">
                         Desde sitios web increibles hasta automatizaciones complejas.
                         Estamos listos para construir la solución que tu negocio necesita.
                     </p>
                     <div class="cta-premium-actions" data-aos="zoom-in" data-aos-delay="400">
                         <a href="contacto.html" class="btn-premium-cta">
-                            <span>Comenzar proyecto</span>
+                            <span data-i18n="cta.btn">Comenzar proyecto</span>
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M5 12h14"></path>
@@ -833,7 +856,7 @@
                     <div class="footer-modern-logo">
                         <img src="images/logo-vestra-wordmark.png" alt="Vestra" class="logo-wordmark footer-logo-wordmark">
                     </div>
-                    <p class="footer-modern-claim">Desarrollamos webs, automatizaciones y sistemas a medida para
+                    <p class="footer-modern-claim" data-i18n="footer.claim">Desarrollamos webs, automatizaciones y sistemas a medida para
                         empresas y emprendimientos.
                     <div class="footer-modern-contact">
                         <a href="mailto:contacto@vestra.com" class="footer-modern-contact-item">
@@ -856,16 +879,16 @@
                     </div>
                 </div>
                 <div class="footer-modern-links" data-aos="fade-up" data-aos-delay="100">
-                    <h4>Mapa del Sitio</h4>
+                    <h4 data-i18n="footer.sitemap">Mapa del Sitio</h4>
                     <ul>
-                        <li><a href="#inicio">Inicio</a></li>
-                        <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
-                        <li><a href="#servicios">Servicios</a></li>
-                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#inicio" data-i18n="footer.inicio">Inicio</a></li>
+                        <li><a href="#sobre-nosotros" data-i18n="footer.sobre">Sobre Nosotros</a></li>
+                        <li><a href="#servicios" data-i18n="footer.servicios">Servicios</a></li>
+                        <li><a href="#portfolio" data-i18n="footer.portfolio">Portfolio</a></li>
                     </ul>
                 </div>
                 <div class="footer-modern-social" data-aos="fade-up" data-aos-delay="200">
-                    <h4>Redes Sociales</h4>
+                    <h4 data-i18n="footer.social">Redes Sociales</h4>
                     <div class="footer-modern-social-row">
                         <a href="https://linkedin.com" target="_blank" rel="noopener" class="footer-modern-social-link"
                             aria-label="LinkedIn">
@@ -900,11 +923,11 @@
             </div>
             <div class="footer-modern-bottom">
                 <div class="footer-modern-bottom-content">
-                    <span id="footer-year">&copy; 2025</span> Vestra. Todos los derechos reservados.
+                    <span id="footer-year">&copy; 2025</span> <span data-i18n="footer.rights">Vestra. Todos los derechos reservados.</span>
                     <span class="footer-modern-legal">
-                        <a href="#">Privacidad</a>
+                        <a href="#" data-i18n="footer.privacy">Privacidad</a>
                         <span class="separator">/</span>
-                        <a href="#">Términos</a>
+                        <a href="#" data-i18n="footer.terms">Términos</a>
                     </span>
                 </div>
             </div>
@@ -935,7 +958,9 @@
     <!-- Libraries -->
     <script src="https://unpkg.com/three@0.150.1/build/three.min.js"></script>
     <script src="js/globe.js"></script>
+    <script src="js/i18n.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/cinematic-intro.js"></script>
 </body>
 
 </html>

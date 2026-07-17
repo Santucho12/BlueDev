@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // ── Mobile Menu Toggle (improved) ─────
   const menuToggle = document.querySelector('.menu-toggle');
-  const navLinks = document.querySelector('.nav-links');
+  const navLinks = document.querySelector('.nav-right');
 
   if (menuToggle && navLinks) {
     menuToggle.addEventListener('click', function (e) {
@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
       touchMultiplier: 0.8,
       normalizeWheel: true,
     });
+    window.__lenis = lenis; // expuesto para la intro cinematográfica
 
     if (hasGsap) {
       window.gsap.ticker.add(function (time) {

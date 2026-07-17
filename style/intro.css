@@ -1,0 +1,80 @@
+/* ============================================================
+   INTRO CINEMATOGRÁFICA — wipe del logo (estilo MENDO / ConsurWhite)
+   Overlay a pantalla completa con blur; el logo se revela con un
+   clip-path de izquierda a derecha + leve scale, luego fade-out.
+   ============================================================ */
+
+#cinematic-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(var(--black-rgb), 0.55);
+  backdrop-filter: blur(22px) saturate(150%);
+  -webkit-backdrop-filter: blur(22px) saturate(150%);
+  opacity: 1;
+  transition: opacity 0.7s cubic-bezier(0.4, 0, 1, 1);
+  will-change: opacity;
+}
+
+#cinematic-intro.exiting {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#cinematic-intro.done {
+  display: none;
+}
+
+#cinematic-intro .intro-logo {
+  width: clamp(240px, 34vw, 460px);
+  height: auto;
+  user-select: none;
+  pointer-events: none;
+  /* Estado inicial: oculto (recorte total desde la derecha) + leve zoom */
+  clip-path: inset(0 100% 0 0);
+  transform: scale(1.12);
+  filter: drop-shadow(0 6px 32px rgba(0, 0, 0, 0.7));
+  will-change: clip-path, transform;
+  /* Transición en el estado base: garantiza el wipe al agregar .revealed */
+  transition:
+    clip-path 1.6s cubic-bezier(0.76, 0, 0.24, 1),
+    transform 1.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Revelado: wipe izq→der + vuelve a escala 1 */
+#cinematic-intro.revealed .intro-logo {
+  clip-path: inset(0 0% 0 0);
+  transform: scale(1);
+}
+
+/* Bloqueo de scroll mientras corre la intro */
+html.intro-active,
+body.intro-active {
+  overflow: hidden !important;
+  height: 100vh !important;
+  touch-action: none;
+}
+
+/* ============================================================
+   CONTENIDO DEL HERO DIFERIDO
+   Durante la intro solo se ve el fondo/foto del hero. Todo lo demás
+   (badge, título, subtítulo, tarjetas, botones, feature-bar, scroll)
+   entra recién cuando la intro termina.
+   ============================================================ */
+
+/* Transición de entrada para todos los hijos del hero salvo el fondo */
+.hero > *:not(.hero-background) {
+  transition:
+    opacity 1s cubic-bezier(0.22, 1, 0.36, 1) 0.1s,
+    transform 1s cubic-bezier(0.22, 1, 0.36, 1) 0.1s;
+}
+
+/* Oculto mientras la intro corre (la clase la pone el <head> al instante) */
+html.intro-active .hero > *:not(.hero-background) {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: none;
+}
