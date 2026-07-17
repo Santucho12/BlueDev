@@ -104,7 +104,7 @@ body.no-scroll {
   text-align: center;
   margin-top: 0;
   margin-bottom: 1rem;
-  color: #fff;
+  color: var(--color-white);
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.15;
@@ -176,12 +176,12 @@ section::after {
 }
 
 .btn-primary {
-  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)) padding-box,
+  background: linear-gradient(rgba(var(--black-rgb), 0.2), rgba(var(--black-rgb), 0.2)) padding-box,
     var(--gradient-primary) border-box;
   color: var(--text-white);
   border: 2px solid transparent;
   /* El borde ahora proviene del gradiente del border-box */
-  box-shadow: 0 10px 30px rgba(42, 186, 243, 0.2);
+  box-shadow: 0 10px 30px rgba(var(--celeste-rgb), 0.2);
   position: relative;
   z-index: 1;
 }
@@ -190,7 +190,7 @@ section::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #1a9fd4 0%, #2abaf3 100%);
+  background: var(--gradient-accent);
   opacity: 0;
   transition: opacity 0.4s ease;
   border-radius: inherit;
@@ -198,10 +198,10 @@ section::after {
 }
 
 .btn-primary:hover {
-  background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)) padding-box,
+  background: linear-gradient(rgba(var(--white-rgb), 0.1), rgba(var(--white-rgb), 0.1)) padding-box,
     var(--gradient-primary) border-box;
-  color: #fff;
-  box-shadow: 0 15px 45px rgba(42, 186, 243, 0.4);
+  color: var(--color-white);
+  box-shadow: 0 15px 45px rgba(var(--celeste-rgb), 0.4);
   transform: translateY(-3px) scale(1.02);
 }
 
@@ -210,17 +210,17 @@ section::after {
 }
 
 .btn-secondary {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(var(--white-rgb), 0.04);
   color: var(--color-white);
-  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  border: 1.5px solid rgba(var(--white-rgb), 0.15);
   backdrop-filter: blur(10px);
 }
 
 .btn-secondary:hover {
   transform: translateY(-3px);
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(42, 186, 243, 0.5);
-  box-shadow: 0 16px 48px rgba(42, 186, 243, 0.15);
+  background: rgba(var(--white-rgb), 0.08);
+  border-color: rgba(var(--celeste-rgb), 0.5);
+  box-shadow: 0 16px 48px rgba(var(--celeste-rgb), 0.15);
 }
 
 .btn-full {
@@ -236,13 +236,13 @@ section::after {
   right: 25px;
   width: 60px;
   height: 60px;
-  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  background: var(--gradient-whatsapp);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  color: var(--color-white);
+  box-shadow: 0 4px 20px rgba(var(--whatsapp-rgb), 0.4);
   z-index: 1000;
   transition: all 0.3s ease;
   text-decoration: none;
@@ -256,18 +256,18 @@ section::after {
 
 .whatsapp-float:hover {
   transform: scale(1.1) translateY(-3px);
-  box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
+  box-shadow: 0 8px 30px rgba(var(--whatsapp-rgb), 0.6);
 }
 
 @keyframes pulse-whatsapp {
 
   0%,
   100% {
-    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+    box-shadow: 0 4px 20px rgba(var(--whatsapp-rgb), 0.4);
   }
 
   50% {
-    box-shadow: 0 4px 30px rgba(37, 211, 102, 0.7), 0 0 0 10px rgba(37, 211, 102, 0.1);
+    box-shadow: 0 4px 30px rgba(var(--whatsapp-rgb), 0.7), 0 0 0 10px rgba(var(--whatsapp-rgb), 0.1);
   }
 }
 
@@ -275,8 +275,8 @@ section::after {
    SELECTION STYLING
    ==================================== */
 ::selection {
-  background: rgba(42, 186, 243, 0.3);
-  color: #fff;
+  background: rgba(var(--celeste-rgb), 0.3);
+  color: var(--color-white);
 }
 
 /* Responsive */
@@ -288,7 +288,7 @@ section::after {
   a,
   button {
     touch-action: manipulation;
-    -webkit-tap-highlight-color: rgba(42, 186, 243, 0.18);
+    -webkit-tap-highlight-color: rgba(var(--celeste-rgb), 0.18);
   }
 
   .container {

@@ -4,7 +4,7 @@
 
 .services {
   padding: 180px 0;
-  background: #fbfbfd;
+  background: var(--bg-light);
   position: relative;
   overflow: hidden;
 }
@@ -18,7 +18,7 @@
   transform: translate(-50%, -50%);
   width: 800px;
   height: 800px;
-  background: radial-gradient(circle, rgba(42, 186, 243, 0.05) 0%, transparent 60%);
+  background: radial-gradient(circle, rgba(var(--celeste-rgb), 0.05) 0%, transparent 60%);
   z-index: 0;
   pointer-events: none;
 }
@@ -38,17 +38,17 @@
 }
 
 .services .section-title {
-  color: #1d1d1f; 
+  color: var(--text-on-light); 
 }
 
 .services .section-subtitle {
-  color: #86868b; 
+  color: var(--text-on-light-muted); 
 }
 
 /* Elite Service Card - Light Mode */
 .service-card-new {
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.04); /* Subtly darker than pure white */
+  background: var(--color-white);
+  border: 1px solid rgba(var(--black-rgb), 0.04); /* Subtly darker than pure white */
   border-radius: 28px;
   padding: 3.5rem 3rem 0 3rem; /* bottom padding is 0 because image is at bottom */
   position: relative;
@@ -57,7 +57,7 @@
   height: 100%;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 10px 30px rgba(var(--black-rgb), 0.03);
 }
 
 /* Top internal highlight */
@@ -68,21 +68,21 @@
   left: 15%;
   right: 15%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(42, 186, 243, 0.4), transparent);
+  background: linear-gradient(90deg, transparent, rgba(var(--celeste-rgb), 0.4), transparent);
   opacity: 0;
   transition: opacity 0.4s ease;
 }
 
 .service-card-new:hover {
-  background: #ffffff;
-  border-color: rgba(42, 186, 243, 0.3);
+  background: var(--color-white);
+  border-color: rgba(var(--celeste-rgb), 0.3);
   transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06), 0 0 30px rgba(42, 186, 243, 0.04);
+  box-shadow: 0 20px 40px rgba(var(--black-rgb), 0.06), 0 0 30px rgba(var(--celeste-rgb), 0.04);
 }
 
 .service-card-new.is-reading {
-  border-color: rgba(42, 186, 243, 0.65);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(42, 186, 243, 0.18), 0 0 28px rgba(42, 186, 243, 0.16);
+  border-color: rgba(var(--celeste-rgb), 0.65);
+  box-shadow: 0 16px 36px rgba(var(--black-rgb), 0.06), 0 0 0 1px rgba(var(--celeste-rgb), 0.18), 0 0 28px rgba(var(--celeste-rgb), 0.16);
 }
 
 .service-card-new:hover::before {
@@ -98,22 +98,22 @@
   font-family: 'Inter', sans-serif;
   font-size: 0.75rem;
   font-weight: 700;
-  color: var(--color-celeste, #2abaf3);
+  color: var(--color-celeste, var(--color-celeste));
   letter-spacing: 0.15em;
   margin-bottom: 1.5rem;
   text-transform: uppercase;
   display: inline-block;
   padding: 4px 12px;
-  background: rgba(42, 186, 243, 0.08); 
+  background: rgba(var(--celeste-rgb), 0.08); 
   border-radius: 50px;
-  border: 1px solid rgba(42, 186, 243, 0.15);
+  border: 1px solid rgba(var(--celeste-rgb), 0.15);
 }
 
 .service-card-new h3 {
   font-family: 'Poppins', sans-serif;
   font-size: 2.2rem;
   font-weight: 600;
-  color: #1d1d1f; 
+  color: var(--text-on-light); 
   margin-bottom: 1.2rem;
   line-height: 1.1;
   text-transform: none; 
@@ -121,7 +121,7 @@
 }
 
 .service-card-new p {
-  color: #424245;
+  color: var(--text-on-light-secondary);
   font-size: 1.05rem;
   line-height: 1.6;
   margin-bottom: 2.5rem;
@@ -141,7 +141,7 @@
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  color: #1d1d1f;
+  color: var(--text-on-light);
   font-size: 0.95rem;
   margin-bottom: 1rem;
   text-transform: none;
@@ -151,9 +151,9 @@
 .feature-dot {
   width: 6px;
   height: 6px;
-  background: var(--color-celeste, #2abaf3);
+  background: var(--color-celeste, var(--color-celeste));
   border-radius: 50%;
-  box-shadow: 0 0 8px rgba(42, 186, 243, 0.5);
+  box-shadow: 0 0 8px rgba(var(--celeste-rgb), 0.5);
 }
 
 /* Image Stage */
@@ -163,7 +163,7 @@
   height: 240px;
   position: relative;
   overflow: hidden;
-  border-top: 1px solid rgba(0, 0, 0, 0.03);
+  border-top: 1px solid rgba(var(--black-rgb), 0.03);
   margin-top: auto;
 }
 

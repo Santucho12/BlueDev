@@ -5,7 +5,7 @@
 /* Portfolio Section */
 .portfolio {
   padding: 100px 0 90px 0;
-  background: radial-gradient(ellipse at center, #152945 0%, #0b1523 100%);
+  background: var(--bg-section-navy);
   position: relative;
   overflow: hidden;
 }
@@ -19,7 +19,7 @@
   left: -5%;
   width: 50%;
   height: 60%;
-  background: radial-gradient(circle, rgba(42, 186, 243, 0.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(var(--celeste-rgb), 0.08) 0%, transparent 70%);
   filter: blur(80px);
   pointer-events: none;
 }
@@ -102,8 +102,8 @@
 .portfolio-item {
   border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  background: rgba(255, 255, 255, 0.02);
+  box-shadow: 0 8px 32px rgba(var(--black-rgb), 0.3);
+  background: rgba(var(--white-rgb), 0.02);
   transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   opacity: 0;
   transform: scale(0.96);
@@ -112,7 +112,7 @@
   min-height: 480px;
   display: flex;
   flex-direction: column;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(var(--white-rgb), 0.05);
 }
 
 .portfolio-item.aos-animate {
@@ -122,20 +122,20 @@
 
 .portfolio-item:hover {
   transform: translateY(-8px) scale(1.01);
-  box-shadow: 0 24px 60px rgba(42, 186, 243, 0.1), 0 8px 24px rgba(0, 0, 0, 0.3);
-  border-color: rgba(42, 186, 243, 0.2);
+  box-shadow: 0 24px 60px rgba(var(--celeste-rgb), 0.1), 0 8px 24px rgba(var(--black-rgb), 0.3);
+  border-color: rgba(var(--celeste-rgb), 0.2);
 }
 
 .portfolio-item.is-reading {
-  border-color: rgba(42, 186, 243, 0.55);
-  box-shadow: 0 20px 50px rgba(42, 186, 243, 0.16), 0 10px 28px rgba(0, 0, 0, 0.35);
+  border-color: rgba(var(--celeste-rgb), 0.55);
+  box-shadow: 0 20px 50px rgba(var(--celeste-rgb), 0.16), 0 10px 28px rgba(var(--black-rgb), 0.35);
 }
 
 /* Portfolio Image */
 .portfolio-image {
   width: 100%;
   height: 220px;
-  background: #0a0a0a;
+  background: var(--color-surface);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -151,7 +151,7 @@
   left: 0;
   right: 0;
   height: 60px;
-  background: linear-gradient(to top, rgba(17, 17, 17, 1), transparent);
+  background: linear-gradient(to top, rgba(var(--surface-elevated-rgb), 1), transparent);
   z-index: 1;
   pointer-events: none;
 }
@@ -170,7 +170,7 @@
 
 /* Card Content */
 .portfolio-card-content {
-  background: #111111;
+  background: var(--color-surface-elevated);
   padding: 1.5rem 1.4rem 2.5rem 1.4rem;
   display: flex;
   flex-direction: column;
@@ -180,7 +180,7 @@
 
 .portfolio-title {
   font-family: 'Poppins', 'Inter', sans-serif;
-  color: #fff;
+  color: var(--color-white);
   font-size: 1.15rem;
   font-weight: 600;
   margin-bottom: 0.6rem;
@@ -193,7 +193,7 @@
 }
 
 .portfolio-desc {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(var(--white-rgb), 0.5);
   font-size: 0.9rem;
   margin-bottom: 1rem;
   line-height: 1.6;
@@ -208,20 +208,20 @@
 }
 
 .portfolio-tags span {
-  background: rgba(42, 186, 243, 0.08);
+  background: rgba(var(--celeste-rgb), 0.08);
   color: var(--color-celeste);
   padding: 0.25rem 0.8rem;
   border-radius: 20px;
   font-size: 0.78rem;
-  border: 1px solid rgba(42, 186, 243, 0.15);
+  border: 1px solid rgba(var(--celeste-rgb), 0.15);
   font-weight: 500;
   letter-spacing: 0.02em;
   transition: all 0.3s ease;
 }
 
 .portfolio-item:hover .portfolio-tags span {
-  border-color: rgba(42, 186, 243, 0.3);
-  background: rgba(42, 186, 243, 0.12);
+  border-color: rgba(var(--celeste-rgb), 0.3);
+  background: rgba(var(--celeste-rgb), 0.12);
 }
 
 /* Portfolio Link */
@@ -242,7 +242,7 @@
   transition: transform 0.3s ease;
 }
 .portfolio-link:hover {
-  color: #60d5fa;
+  color: var(--color-celeste-light);
 }
 .portfolio-link:hover .portfolio-link-arrow {
   transform: translateX(4px);
@@ -252,7 +252,7 @@
 .portfolio-nda {
   display: flex;
   align-items: center;
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(var(--white-rgb), 0.35);
   font-size: 0.85rem;
   margin-top: 0.5rem;
   gap: 0.5em;
@@ -261,19 +261,19 @@
 
 .nda-bottom {
   align-items: flex-end;
-  color: rgba(255, 255, 255, 0.35) !important;
+  color: rgba(var(--white-rgb), 0.35) !important;
   font-size: 0.85rem;
   margin-top: auto;
   margin-bottom: 1rem;
   padding-top: 1rem;
 }
 .nda-bottom .portfolio-nda-text {
-  color: rgba(255, 255, 255, 0.35) !important;
+  color: rgba(var(--white-rgb), 0.35) !important;
   font-style: italic;
   font-size: 0.85rem;
 }
 .nda-bottom svg {
-  stroke: rgba(255, 255, 255, 0.25) !important;
+  stroke: rgba(var(--white-rgb), 0.25) !important;
 }
 
 /* Portfolio subtitle margin */
@@ -290,7 +290,7 @@
 .cta-premium-section {
   position: relative;
   padding: 90px 0 160px 0;
-  background: radial-gradient(ellipse at center, #152945 0%, #0b1523 100%);
+  background: var(--bg-section-navy);
   overflow: hidden;
 }
 
@@ -300,8 +300,8 @@
   position: absolute;
   inset: 0;
   background-image: 
-    linear-gradient(rgba(42, 186, 243, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(42, 186, 243, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(var(--celeste-rgb), 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--celeste-rgb), 0.03) 1px, transparent 1px);
   background-size: 50px 50px;
   mask-image: radial-gradient(circle at 50% 50%, black, transparent 80%);
   z-index: 1;
@@ -333,7 +333,7 @@
 .orb-2 {
   width: 600px;
   height: 600px;
-  background: #1a6fd1;
+  background: var(--color-blue-deep);
   bottom: -250px;
   right: -250px;
   animation: orbFloat 30s infinite alternate-reverse ease-in-out;
@@ -348,18 +348,18 @@
 .cta-premium-card {
   position: relative;
   z-index: 5;
-  background: rgba(10, 10, 10, 0.4);
+  background: rgba(var(--surface-rgb), 0.4);
   backdrop-filter: blur(40px);
   -webkit-backdrop-filter: blur(40px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(var(--white-rgb), 0.08);
   border-radius: 40px;
   padding: 100px 40px;
   text-align: center;
   max-width: 1100px;
   margin: 0 auto;
   box-shadow: 
-    0 40px 100px rgba(0, 0, 0, 0.8),
-    inset 0 0 80px rgba(42, 186, 243, 0.02);
+    0 40px 100px rgba(var(--black-rgb), 0.8),
+    inset 0 0 80px rgba(var(--celeste-rgb), 0.02);
   overflow: hidden;
 }
 
@@ -370,7 +370,7 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(42, 186, 243, 0.3), transparent);
+  background: linear-gradient(90deg, transparent, rgba(var(--celeste-rgb), 0.3), transparent);
 }
 
 .cta-premium-content {
@@ -381,8 +381,8 @@
 .cta-badge {
   margin: 0 auto 3rem auto;
   width: fit-content;
-  border-color: rgba(42, 186, 243, 0.2);
-  background: rgba(42, 186, 243, 0.08);
+  border-color: rgba(var(--celeste-rgb), 0.2);
+  background: rgba(var(--celeste-rgb), 0.08);
   color: var(--color-celeste);
   padding: 8px 24px;
   border-radius: 100px;
@@ -395,7 +395,7 @@
 .cta-premium-title {
   font-size: clamp(2.5rem, 6vw, 4.5rem);
   font-weight: 700;
-  color: #fff;
+  color: var(--color-white);
   line-height: 1.1;
   margin-bottom: 2.5rem;
   font-family: 'Poppins', sans-serif;
@@ -410,7 +410,7 @@
 
 .cta-premium-subtitle {
   font-size: 1.35rem;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(var(--white-rgb), 0.6);
   max-width: 750px;
   margin: 0 auto 4rem auto;
   line-height: 1.6;
@@ -424,9 +424,9 @@
 }
 
 .btn-premium-cta {
-  background: linear-gradient(rgba(5, 5, 5, 0.8), rgba(5, 5, 5, 0.8)) padding-box,
+  background: linear-gradient(rgba(var(--section-dark-rgb), 0.8), rgba(var(--section-dark-rgb), 0.8)) padding-box,
               var(--gradient-primary) border-box;
-  color: #fff;
+  color: var(--color-white);
   padding: 1.4rem 3.5rem;
   border-radius: 100px;
   font-weight: 800;
@@ -436,7 +436,7 @@
   align-items: center;
   gap: 1rem;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  box-shadow: 0 0 40px rgba(42, 186, 243, 0.3);
+  box-shadow: 0 0 40px rgba(var(--celeste-rgb), 0.3);
   border: 3px solid transparent; /* El borde transparente deja ver el gradiente del border-box */
   position: relative;
   overflow: hidden;
@@ -453,7 +453,7 @@
   background: linear-gradient(
     45deg,
     transparent,
-    rgba(255, 255, 255, 0.4),
+    rgba(var(--white-rgb), 0.4),
     transparent
   );
   transform: rotate(45deg);
@@ -468,10 +468,10 @@
 
 .btn-premium-cta:hover {
   transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 20px 50px rgba(42, 186, 243, 0.5);
-  background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)) padding-box,
+  box-shadow: 0 20px 50px rgba(var(--celeste-rgb), 0.5);
+  background: linear-gradient(rgba(var(--white-rgb), 0.1), rgba(var(--white-rgb), 0.1)) padding-box,
               var(--gradient-primary) border-box;
-  color: #fff;
+  color: var(--color-white);
   border-color: transparent;
 }
 

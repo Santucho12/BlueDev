@@ -7,11 +7,11 @@
   top: 0;
   width: 100%;
   height: 80px;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(180deg, rgba(var(--black-rgb), 0.9) 0%, rgba(var(--black-rgb), 0) 100%);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   z-index: 1000;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(var(--white-rgb), 0.05);
   transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   display: flex;
   align-items: center;
@@ -20,10 +20,10 @@
 
 .navbar.scrolled {
   height: 70px;
-  background: rgba(5, 5, 5, 0.85);
+  background: rgba(var(--section-dark-rgb), 0.85);
   backdrop-filter: blur(20px) saturate(180%);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  border-bottom-color: rgba(42, 186, 243, 0.15);
+  box-shadow: 0 10px 30px rgba(var(--black-rgb), 0.5);
+  border-bottom-color: rgba(var(--celeste-rgb), 0.15);
 }
 
 .navbar .container {
@@ -64,7 +64,7 @@
   font-family: 'Inter', sans-serif;
   font-size: 1.45rem;
   font-weight: 700;
-  color: #FFFFFF; /* White */
+  color: var(--color-white); /* White */
   letter-spacing: 0.05em;
   line-height: 1;
 }
@@ -77,7 +77,7 @@
 
 .logo-subtitle {
   font-size: 0.55rem;
-  color: #94A3B8; /* Matching user reference */
+  color: var(--color-azul); /* Matching user reference */
   letter-spacing: 0.2em;
   font-weight: 600;
   margin-top: 2px;
@@ -97,7 +97,7 @@
 
 .nav-links a {
   text-decoration: none;
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(var(--white-rgb), 0.65);
   font-weight: 500;
   padding: 0.5rem 0;
   margin: 0 1rem;
@@ -112,7 +112,7 @@
 
 .nav-links a:hover,
 .nav-links a.active:not(.nav-link-contacto) {
-  color: #fff;
+  color: var(--color-white);
 }
 
 /* The requested Celeste Underline */
@@ -126,7 +126,7 @@
   background: var(--color-celeste);
   transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   border-radius: 2px;
-  box-shadow: 0 0 10px rgba(42, 186, 243, 0.5);
+  box-shadow: 0 0 10px rgba(var(--celeste-rgb), 0.5);
 }
 
 .nav-links a:hover::after,
@@ -184,7 +184,7 @@
   .menu-toggle span {
     width: 100%;
     height: 2px;
-    background: #fff;
+    background: var(--color-white);
     border-radius: 2px;
     transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   }
@@ -205,7 +205,7 @@
     right: -100%;
     width: 220px;
     height: 100vh;
-    background: rgba(10, 10, 10, 0.98);
+    background: rgba(var(--surface-rgb), 0.98);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
     flex-direction: column;
@@ -213,11 +213,11 @@
     align-items: center;
     gap: 2rem;
     transition: right 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.8);
+    box-shadow: -10px 0 30px rgba(var(--black-rgb), 0.8);
     margin: 0;
     padding: 0;
     z-index: 1005;
-    border-left: 1px solid rgba(255, 255, 255, 0.05);
+    border-left: 1px solid rgba(var(--white-rgb), 0.05);
   }
 
   .nav-links.active {

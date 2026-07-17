@@ -4,7 +4,7 @@
 .about {
   padding: 180px 0;
   /* Applying the identical Hero gradient as requested */
-  background: radial-gradient(ellipse at center, #152945 0%, #0b1523 100%);
+  background: var(--bg-section-navy);
   position: relative;
   overflow: hidden;
 }
@@ -28,8 +28,8 @@
 
 .about-badge {
   margin-bottom: 2rem;
-  background: rgba(42, 186, 243, 0.1);
-  border: 1px solid rgba(42, 186, 243, 0.2);
+  background: rgba(var(--celeste-rgb), 0.1);
+  border: 1px solid rgba(var(--celeste-rgb), 0.2);
   padding: 8px 16px;
   border-radius: 50px;
   display: inline-flex;
@@ -60,7 +60,7 @@
 .about-lead {
   font-family: 'Poppins', sans-serif;
   font-size: 1.65rem;
-  color: #fff;
+  color: var(--color-white);
   line-height: 1.4;
   margin-bottom: 2.5rem;
   font-weight: 300;
@@ -73,7 +73,7 @@
 
 .about-desc {
   font-size: 1rem;
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(var(--white-rgb), 0.65);
   line-height: 1.8;
   margin-bottom: 3rem; /* Increased spacing */
   font-family: 'Inter', sans-serif;
@@ -81,7 +81,7 @@
 }
 
 .about-desc strong {
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(var(--white-rgb), 0.9);
   font-weight: 500;
 }
 
@@ -99,7 +99,7 @@
   align-items: flex-start;
   gap: 0.8rem;
   font-size: 1rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(var(--white-rgb), 0.8);
   line-height: 1.5;
   text-transform: uppercase;
 }
@@ -110,7 +110,7 @@
   justify-content: center;
   width: 24px;
   height: 24px;
-  background: rgba(42, 186, 243, 0.1);
+  background: rgba(var(--celeste-rgb), 0.1);
   border-radius: 50%;
   color: var(--color-celeste);
   flex-shrink: 0;
@@ -144,10 +144,10 @@
 
 .about-stat-card {
   position: relative;
-  background: rgba(255, 255, 255, 0.03); /* More subtle bento feel */
+  background: rgba(var(--white-rgb), 0.03); /* More subtle bento feel */
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(var(--white-rgb), 0.08);
   border-radius: 30px;
   padding: 2.5rem;
   overflow: hidden;
@@ -190,17 +190,17 @@
 
 .about-stat-card:hover {
   transform: translateY(-10px) scale(1.02);
-  border-color: rgba(42, 186, 243, 0.4);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 
-              0 0 0 1px rgba(42, 186, 243, 0.1);
+  border-color: rgba(var(--celeste-rgb), 0.4);
+  box-shadow: 0 20px 40px rgba(var(--black-rgb), 0.4), 
+              0 0 0 1px rgba(var(--celeste-rgb), 0.1);
 }
 
 /* Icon & Label Styles */
 .stat-icon-wrapper {
   width: 50px;
   height: 50px;
-  background: linear-gradient(135deg, rgba(42, 186, 243, 0.1), transparent);
-  border: 1px solid rgba(42, 186, 243, 0.2);
+  background: linear-gradient(135deg, rgba(var(--celeste-rgb), 0.1), transparent);
+  border: 1px solid rgba(var(--celeste-rgb), 0.2);
   border-radius: 12px;
   display: flex;
   align-items: center;
@@ -223,8 +223,8 @@
 
 .about-stat-card:hover .stat-icon-wrapper {
   transform: scale(1.1);
-  background: rgba(42, 186, 243, 0.2);
-  box-shadow: 0 0 20px rgba(42, 186, 243, 0.3);
+  background: rgba(var(--celeste-rgb), 0.2);
+  box-shadow: 0 0 20px rgba(var(--celeste-rgb), 0.3);
 }
 
 .stat-content {
@@ -236,11 +236,11 @@
   font-family: 'Poppins', sans-serif;
   font-size: 3.8rem; /* Larger like hero stats */
   font-weight: 800;
-  color: #fff;
+  color: var(--color-white);
   line-height: 1;
   margin-bottom: 0.3rem;
   letter-spacing: -0.04em;
-  background: linear-gradient(180deg, #fff 40%, rgba(255, 255, 255, 0.6) 100%);
+  background: linear-gradient(180deg, var(--color-white) 40%, rgba(var(--white-rgb), 0.6) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -253,7 +253,7 @@
 
 .about-stat-label {
   font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(var(--white-rgb), 0.5);
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-weight: 600;
@@ -266,7 +266,7 @@
   left: var(--mouse-x, -50%);
   width: 300px;
   height: 300px;
-  background: radial-gradient(circle, rgba(42, 186, 243, 0.15) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(var(--celeste-rgb), 0.15) 0%, transparent 70%);
   transform: translate(-50%, -50%);
   pointer-events: none;
   z-index: 1;

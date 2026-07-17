@@ -3,6 +3,11 @@
  * Powered by Three.js
  */
 
+// Lee un color del theme system (style/global/themeSystem.css)
+function themeColor(name) {
+    return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+}
+
 class HolographicGlobe {
     constructor(containerId) {
         this.container = document.getElementById(containerId);
@@ -39,7 +44,7 @@ class HolographicGlobe {
         const sizes = new Float32Array(segments);
         let activeCount = 0;
 
-        const color = new THREE.Color(0x2abaf3);
+        const color = new THREE.Color(themeColor('--color-celeste'));
 
         const loader = new THREE.TextureLoader();
         loader.crossOrigin = 'anonymous';
@@ -105,7 +110,7 @@ class HolographicGlobe {
         // Inner glowing sphere
         const sphereGeom = new THREE.SphereGeometry(radius - 2, 32, 32);
         const sphereMat = new THREE.MeshBasicMaterial({
-            color: 0x2abaf3,
+            color: new THREE.Color(themeColor('--color-celeste')),
             transparent: true,
             opacity: 0.1,
             side: THREE.BackSide
@@ -116,7 +121,7 @@ class HolographicGlobe {
         // Atmosphere glow
         const atmoGeom = new THREE.SphereGeometry(radius * 1.15, 32, 32);
         const atmoMat = new THREE.MeshBasicMaterial({
-            color: 0x2abaf3,
+            color: new THREE.Color(themeColor('--color-celeste')),
             transparent: true,
             opacity: 0.03,
             side: THREE.BackSide
@@ -138,18 +143,18 @@ class HolographicGlobe {
             
             // Marker point
             const markerGeom = new THREE.SphereGeometry(1.5, 16, 16);
-            const markerMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
+            const markerMat = new THREE.MeshBasicMaterial({ color: new THREE.Color(themeColor('--color-white')) });
             const marker = new THREE.Mesh(markerGeom, markerMat);
             marker.position.copy(position);
             this.globeGroup.add(marker);
 
             // Glowing ring (ping effect)
             const ringGeom = new THREE.RingGeometry(2, 4, 32);
-            const ringMat = new THREE.MeshBasicMaterial({ 
-                color: 0x2abaf3, 
-                transparent: true, 
-                opacity: 0.8, 
-                side: THREE.DoubleSide 
+            const ringMat = new THREE.MeshBasicMaterial({
+                color: new THREE.Color(themeColor('--color-celeste')),
+                transparent: true,
+                opacity: 0.8,
+                side: THREE.DoubleSide
             });
             const ring = new THREE.Mesh(ringGeom, ringMat);
             ring.position.copy(position);
@@ -174,7 +179,7 @@ class HolographicGlobe {
         canvas.height = 64;
 
         ctx.font = 'Bold 24px Poppins, Arial';
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+        ctx.fillStyle = `rgba(${themeColor('--white-rgb')}, 0.9)`;
         ctx.textAlign = 'left';
         ctx.textBaseline = 'middle';
         

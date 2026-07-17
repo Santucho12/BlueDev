@@ -4,7 +4,7 @@
 
 .faq {
   padding: 80px 0 120px 0; /* Reduced from 100/160 */
-  background: radial-gradient(ellipse at center, #152945 0%, #0b1523 100%);
+  background: var(--bg-section-navy);
   position: relative;
   overflow: hidden;
 }
@@ -15,8 +15,8 @@
   position: absolute;
   inset: 0;
   background-image: 
-    linear-gradient(rgba(42, 186, 243, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(42, 186, 243, 0.02) 1px, transparent 1px);
+    linear-gradient(rgba(var(--celeste-rgb), 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--celeste-rgb), 0.02) 1px, transparent 1px);
   background-size: 50px 50px;
   mask-image: radial-gradient(circle at 50% 50%, black, transparent 90%);
   z-index: 1;
@@ -62,19 +62,19 @@
 }
 
 .faq-item {
-  background: rgba(10, 10, 10, 0.4);
+  background: rgba(var(--surface-rgb), 0.4);
   backdrop-filter: blur(40px);
   -webkit-backdrop-filter: blur(40px);
   border-radius: 20px; /* Reduced from 24px */
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 15px 35px rgba(var(--black-rgb), 0.3);
+  border: 1px solid rgba(var(--white-rgb), 0.08);
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .faq-item:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(42, 186, 243, 0.3);
+  background: rgba(var(--white-rgb), 0.05);
+  border-color: rgba(var(--celeste-rgb), 0.3);
   transform: translateY(-2px);
 }
 
@@ -94,7 +94,7 @@
 .faq-question span {
   font-size: 1.05rem; /* Reduced from 1.25rem (15% reduction) */
   font-weight: 600;
-  color: #fff;
+  color: var(--color-white);
   font-family: 'Poppins', sans-serif;
   transition: color 0.3s ease;
 }
@@ -102,7 +102,7 @@
 .faq-icon {
   width: 22px; /* Reduced from 26px */
   height: 22px;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(var(--white-rgb), 0.4);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -114,7 +114,7 @@
 
 .faq-answer-inner {
   padding: 0 30px 24px 30px; /* Reduced proportionally */
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(var(--white-rgb), 0.6);
   line-height: 1.6;
   font-size: 0.95rem; /* Reduced from 1.1rem */
   font-weight: 300;
@@ -122,9 +122,9 @@
 
 /* Active State */
 .faq-item.active {
-  background: rgba(255, 255, 255, 0.03);
-  border-color: rgba(42, 186, 243, 0.5);
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), 0 0 20px rgba(42, 186, 243, 0.05);
+  background: rgba(var(--white-rgb), 0.03);
+  border-color: rgba(var(--celeste-rgb), 0.5);
+  box-shadow: 0 25px 50px rgba(var(--black-rgb), 0.4), 0 0 20px rgba(var(--celeste-rgb), 0.05);
 }
 
 .faq-item.active .faq-question span {
