@@ -20,7 +20,7 @@
 
 .navbar.scrolled {
   height: 70px;
-  background: rgba(var(--section-dark-rgb), 0.85);
+  background: rgba(var(--black-rgb), 0.85);
   backdrop-filter: blur(20px) saturate(180%);
   box-shadow: 0 10px 30px rgba(var(--black-rgb), 0.5);
   border-bottom-color: rgba(var(--celeste-rgb), 0.15);
@@ -77,7 +77,7 @@
 
 .logo-subtitle {
   font-size: 0.55rem;
-  color: var(--color-azul); /* Matching user reference */
+  color: var(--color-white-2);
   letter-spacing: 0.2em;
   font-weight: 600;
   margin-top: 2px;
@@ -205,7 +205,7 @@
     right: -100%;
     width: 220px;
     height: 100vh;
-    background: rgba(var(--surface-rgb), 0.98);
+    background: rgba(var(--black-rgb), 0.98);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
     flex-direction: column;

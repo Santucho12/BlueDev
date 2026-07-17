@@ -151,7 +151,7 @@
   left: 0;
   right: 0;
   height: 60px;
-  background: linear-gradient(to top, rgba(var(--surface-elevated-rgb), 1), transparent);
+  background: linear-gradient(to top, rgba(var(--black-2-rgb), 1), transparent);
   z-index: 1;
   pointer-events: none;
 }
@@ -242,7 +242,7 @@
   transition: transform 0.3s ease;
 }
 .portfolio-link:hover {
-  color: var(--color-celeste-light);
+  color: var(--color-celeste-2);
 }
 .portfolio-link:hover .portfolio-link-arrow {
   transform: translateX(4px);
@@ -333,7 +333,7 @@
 .orb-2 {
   width: 600px;
   height: 600px;
-  background: var(--color-blue-deep);
+  background: var(--color-celeste-2);
   bottom: -250px;
   right: -250px;
   animation: orbFloat 30s infinite alternate-reverse ease-in-out;
@@ -348,7 +348,7 @@
 .cta-premium-card {
   position: relative;
   z-index: 5;
-  background: rgba(var(--surface-rgb), 0.4);
+  background: rgba(var(--black-rgb), 0.4);
   backdrop-filter: blur(40px);
   -webkit-backdrop-filter: blur(40px);
   border: 1px solid rgba(var(--white-rgb), 0.08);
@@ -424,7 +424,7 @@
 }
 
 .btn-premium-cta {
-  background: linear-gradient(rgba(var(--section-dark-rgb), 0.8), rgba(var(--section-dark-rgb), 0.8)) padding-box,
+  background: linear-gradient(rgba(var(--black-rgb), 0.8), rgba(var(--black-rgb), 0.8)) padding-box,
               var(--gradient-primary) border-box;
   color: var(--color-white);
   padding: 1.4rem 3.5rem;

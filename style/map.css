@@ -112,7 +112,7 @@
   width: 100%;
   max-width: 500px;
   height: 250px;
-  background: rgba(var(--navy-overlay-rgb), 0.4);
+  background: var(--bg-overlay-navy);
   backdrop-filter: blur(5px);
   border: 2px solid rgba(var(--celeste-rgb), 0.3);
   transform: rotateX(70deg) skewX(-5deg);

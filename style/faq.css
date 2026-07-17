@@ -62,7 +62,7 @@
 }
 
 .faq-item {
-  background: rgba(var(--surface-rgb), 0.4);
+  background: rgba(var(--black-rgb), 0.4);
   backdrop-filter: blur(40px);
   -webkit-backdrop-filter: blur(40px);
   border-radius: 20px; /* Reduced from 24px */
