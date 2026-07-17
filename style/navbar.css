@@ -61,6 +61,17 @@
   transform: scale(1.08);
 }
 
+/* Wordmark logo (imagen VESTRA con texto incluido) */
+.logo-wordmark {
+  height: 34px;
+  width: auto;
+  transition: transform 0.4s ease;
+}
+
+.logo:hover .logo-wordmark {
+  transform: scale(1.05);
+}
+
 .logo-text {
   font-family: 'Inter', sans-serif;
   font-size: 1.45rem;
@@ -70,10 +81,13 @@
   line-height: 1;
 }
 
-.logo-text .highlight {
-  color: var(--color-celeste); /* Celeste */
-  background: none;
-  -webkit-text-fill-color: initial;
+/* Wordmark bicolor — refleja la "V" del logo: mitad oscura + mitad clara */
+.logo-text .logo-dark {
+  color: var(--color-violet-dark); /* violeta oscuro */
+}
+
+.logo-text .logo-light {
+  color: var(--color-violet-light); /* violeta claro */
 }
 
 .logo-subtitle {

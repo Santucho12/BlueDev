@@ -50,8 +50,8 @@
     gap: 0.35rem;
 }
 
-.footer-modern-logo .highlight {
-    color: var(--color-celeste);
+.footer-logo-wordmark {
+    height: 30px;
 }
 
 .footer-modern-claim {

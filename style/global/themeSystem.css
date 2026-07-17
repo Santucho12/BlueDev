@@ -51,6 +51,17 @@
   --color-whatsapp-dark: #128c7e; /* hover del botón WA */
 
   /* ========================================
+     EXCEPCIÓN DE MARCA — Violeta del logo Vestra
+     El logotipo (logo-vestra.png) es una "V" bicolor violeta,
+     ajena a la paleta 4+4 a propósito. El wordmark la refleja:
+     una mitad oscura + una mitad clara, igual que el ícono.
+     ======================================== */
+  --violet-dark-rgb: 78, 16, 160;   /* violeta oscuro (mitad izq. del logo) */
+  --violet-light-rgb: 155, 55, 240; /* violeta claro  (mitad der. del logo) */
+  --color-violet-dark: rgb(var(--violet-dark-rgb));
+  --color-violet-light: rgb(var(--violet-light-rgb));
+
+  /* ========================================
      CAPA SEMÁNTICA — todo apunta a la paleta
      ======================================== */
 
