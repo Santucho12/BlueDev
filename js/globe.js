@@ -27,6 +27,8 @@ class HolographicGlobe {
         this.camera.position.z = 400;
 
         this.globeGroup = new THREE.Group();
+        // Ángulo inicial: el globo aparece más adelantado en su rotación
+        this.globeGroup.rotation.y = -1.2;
         this.scene.add(this.globeGroup);
 
         this.init();

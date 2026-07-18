@@ -12,13 +12,14 @@
     <link rel="stylesheet" href="style/global/themeSystem.css">
     <link rel="stylesheet" href="style/intro.css">
     <link rel="stylesheet" href="style/navbar.css">
-    <link rel="stylesheet" href="style/home.css?v=18">
+    <link rel="stylesheet" href="style/home.css?v=20">
     <link rel="stylesheet" href="style/hero-redesign.css">
-    <link rel="stylesheet" href="style/services.css">
+    <link rel="stylesheet" href="style/services.css?v=6">
     <link rel="stylesheet" href="style/portfolio.css">
     <link rel="stylesheet" href="style/faq.css">
     <link rel="stylesheet" href="style/clients.css">
     <link rel="stylesheet" href="style/map.css">
+    <link rel="stylesheet" href="style/about.css?v=1">
     <link rel="stylesheet" href="style/proceso.css">
     <link rel="stylesheet" href="style/reunion.css">
 
@@ -186,10 +187,10 @@
             <div class="about-content-left">
                 <div class="hero-badge about-badge" data-aos="fade-right" data-delay="0">
                     <span class="hero-badge-dot"></span>
-                    <span data-i18n="about.badge">CONOCENOS</span>
+                    <span data-i18n="about.badge">SOBRE NOSOTROS</span>
                 </div>
                 <h2 class="section-title text-left about-title-custom" data-aos="fade-right" data-delay="100"
-                    style="font-size: 2.6rem;" data-i18n="about.title">
+                    style="font-size: 2.86rem;" data-i18n="about.title">
                     POTENCIAMOS NEGOCIOS CON <span class="about-title-highlight">TECNOLOGÍA.</span>
                 </h2>
 
@@ -372,10 +373,8 @@
     <!-- Services Section -->
     <section id="servicios" class="services">
         <div class="container" data-aos="fade-up">
+            <span class="proceso-badge services-badge" data-aos="fade-up" data-i18n="services.badge">Elegí lo que buscás</span>
             <h2 class="section-title reveal" data-aos="fade-up" data-i18n="services.title">Nuestros Servicios</h2>
-            <p class="section-subtitle fade-up" data-aos="fade-up" data-delay="100" data-i18n="services.subtitle">
-                Soluciones de software de élite diseñadas
-                para escalar tu negocio.</p>
 
             <div class="services-grid">
                 <!-- Card 1: Webs -->
@@ -405,8 +404,8 @@
 
                 <!-- Card 2: Sistemas -->
                 <article class="service-card-new" data-aos="fade-up" data-aos-delay="100">
-                    <div class="service-tag" data-i18n="svc2.tag">02. SISTEMAS</div>
-                    <h3 data-i18n="svc2.t">Sistemas Internos</h3>
+                    <div class="service-tag"><span data-i18n="svc2.tag">02. SISTEMAS</span><span class="service-premium-star" aria-hidden="true">★</span></div>
+                    <h3 data-i18n="svc2.t" style="text-align: center;">Sistemas Internos</h3>
                     <p data-i18n="svc2.d">Desarrollamos sistemas internos personalizados para optimizar la gestión y
                         potenciar el
                         crecimiento de tu empresa.</p>
@@ -475,9 +474,9 @@
             <!-- Portfolio Section — todos los proyectos en una sola fila continua -->
             <section id="portfolio" class="portfolio h-section" style="width: 200vw; min-width: 200vw;">
                 <div style="width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: flex-start; padding: 88px 3rem 0;">
-                    <div style="margin-bottom: 0.75rem; width: 100vw; margin-left: -3rem; padding: 0 3rem; box-sizing: border-box;">
-                        <h2 class="section-title" style="margin-bottom: 0.5rem;">Nuestros Trabajos</h2>
-                        <p class="section-subtitle">Proyectos reales que generan impacto, eficiencia y crecimiento.</p>
+                    <div style="margin-bottom: 0.75rem; width: 100vw; margin-left: -3rem; padding: 0 3rem; box-sizing: border-box; text-align: center;">
+                        <span class="proceso-badge services-badge" data-i18n="portfolio.badge">NUESTRO TRABAJO</span>
+                        <h2 class="section-title" style="margin-bottom: 0.5rem;" data-i18n="portfolio.title">Nuestros <span class="title-accent">Trabajos</span></h2>
                     </div>
 
                     <div class="portfolio-row-grid">
@@ -612,9 +611,8 @@
             <section id="clientes" class="clients h-section">
                 <div class="container clients-container">
                     <div class="clients-header">
+                        <span class="proceso-badge services-badge" data-i18n="clients.badge">CONFÍAN EN NOSOTROS</span>
                         <h2 data-aos="fade-up" data-i18n="clients.title">Empresas que confían en nosotros</h2>
-                        <p data-aos="fade-up" data-delay="100" data-i18n="clients.subtitle">Más de 28 proyectos exitosos
-                            respaldan nuestra trayectoria.</p>
                     </div>
 
                     <div class="clients-grid">
@@ -670,7 +668,7 @@
                         <!-- Left Content: Text & Stats -->
                         <div class="map-text-content" data-aos="fade-right">
                             <div class="map-header">
-                                <div class="hero-badge about-badge" data-aos="fade-right" style="margin-bottom: 1rem;">
+                                <div class="hero-badge about-badge" data-aos="fade-right" style="margin: 0 auto 1rem;">
                                     <span class="hero-badge-dot"></span>
                                     <span data-i18n="reach.badge">PRESENCIA INTERNACIONAL</span>
                                 </div>
@@ -720,7 +718,7 @@
     <section id="faq" class="faq">
         <div class="container faq-container">
             <div class="faq-header">
-                <span class="section-tag" data-aos="fade-up" data-i18n="faq.tag">Preguntas Frecuentes</span>
+                <span class="proceso-badge services-badge" data-aos="fade-up" data-i18n="faq.tag">PREGUNTAS FRECUENTES</span>
                 <h2 data-aos="fade-up" data-delay="100" data-i18n="faq.title">Resolvemos tus dudas</h2>
             </div>
 
@@ -834,10 +832,6 @@
                     <h2 class="cta-premium-title" data-aos="fade-up" data-delay="200" data-i18n="cta.title">
                         Converti tu idea en <span class="text-gradient">software</span>
                     </h2>
-                    <p class="cta-premium-subtitle" data-aos="fade-up" data-delay="300" data-i18n="cta.subtitle">
-                        Desde sitios web increíbles hasta automatizaciones complejas.
-                        Estamos listos para construir la solución que tu negocio necesita.
-                    </p>
 
                     <!-- Widget del Calendario Simulado Integrado -->
                     <div class="reunion-widget-wrapper" data-aos="zoom-in" data-aos-delay="400" style="margin-top: 4rem;">

@@ -277,8 +277,9 @@
 
 /* ── CTA en la navbar (igual al hero) ── */
 .nav-cta {
-  padding: 0.6rem 1.4rem;
-  font-size: 0.78rem;
+  min-width: 207px;
+  height: 43px;
+  font-size: 0.71rem;
   font-family: 'Space Grotesk', sans-serif;
   letter-spacing: 0.06em;
   white-space: nowrap;

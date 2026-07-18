@@ -3,7 +3,7 @@
    ======================================== */
 
 .global-reach {
-  padding: 100px 0;
+  padding: 130px 0 80px 0;
   background: var(--bg-section-navy);
   position: relative;
   overflow: hidden;
@@ -44,6 +44,14 @@
 .map-header {
   text-align: left;
   margin-bottom: 50px;
+}
+
+/* Badge "Presencia Internacional" centrado (aunque el resto va a la izquierda) */
+.map-header .about-badge {
+  display: flex;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .map-header h2 {

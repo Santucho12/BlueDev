@@ -47,12 +47,13 @@
 }
 
 .faq-header h2 {
-  font-size: 2.8rem; /* Reduced from 3.5rem (~20% reduction for titles looks cleaner) */
+  font-size: 3.22rem; /* +15% */
   color: var(--color-white);
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.02em;
   font-family: 'Poppins', sans-serif;
+  text-transform: uppercase;
 }
 
 .faq-list {

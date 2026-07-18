@@ -144,27 +144,12 @@
     ensureRunning();
   });
 
-  const about = document.querySelector('#sobre-nosotros');
-
-  // Oscurecer suavemente el hero y la sección sobre nosotros en scroll
+  // Oscurecer suavemente solo el hero al scrollear
   window.addEventListener('scroll', function () {
     const scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
 
-    // 1. Hero fade
     const heroHeight = hero.offsetHeight || 800;
     const heroOpacity = Math.max(0, 1 - (scrollY / (heroHeight * 0.75)));
     hero.style.opacity = heroOpacity.toFixed(3);
-
-    // 2. Sobre Nosotros fade (se va oscureciendo a medida que se desplaza hacia arriba fuera de la pantalla)
-    if (about) {
-      const rect = about.getBoundingClientRect();
-      const aboutHeight = rect.height || 600;
-      if (rect.top < 0) {
-        const opacity = Math.max(0, 1 - (Math.abs(rect.top) / (aboutHeight * 0.75)));
-        about.style.opacity = opacity.toFixed(3);
-      } else {
-        about.style.opacity = '1.000';
-      }
-    }
   }, { passive: true });
 })();

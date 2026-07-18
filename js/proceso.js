@@ -10,8 +10,23 @@
   if (!timeline) return;
 
   const progress = document.getElementById('procesoLineProgress');
+  const line = timeline.querySelector('.proceso-line');
   const nodes = Array.from(timeline.querySelectorAll('.proceso-node'));
   const steps = Array.from(timeline.querySelectorAll('.proceso-step'));
+
+  // Ajusta la línea para que arranque en el centro del primer nodo
+  // y termine en el centro del último.
+  function positionLine() {
+    if (!line || nodes.length < 2) return;
+    const tRect = timeline.getBoundingClientRect();
+    const firstRect = nodes[0].getBoundingClientRect();
+    const lastRect = nodes[nodes.length - 1].getBoundingClientRect();
+    const startY = (firstRect.top + firstRect.height / 2) - tRect.top;
+    const endY = (lastRect.top + lastRect.height / 2) - tRect.top;
+    line.style.top = startY + 'px';
+    line.style.bottom = 'auto';
+    line.style.height = (endY - startY) + 'px';
+  }
 
   // Fade-in del contenido por paso
   const io = new IntersectionObserver(function (entries) {
@@ -42,14 +57,12 @@
     progress.style.transform = 'scaleY(' + p + ')';
 
     // Activar nodos cuya posición vertical ya fue alcanzada por el progreso
-    nodes.forEach(function (node) {
+    nodes.forEach(function (node, i) {
       const nodeRect = node.getBoundingClientRect();
       const nodeCenter = nodeRect.top + nodeRect.height / 2;
-      if (nodeCenter <= center + 4) {
-        node.classList.add('is-active');
-      } else {
-        node.classList.remove('is-active');
-      }
+      const active = nodeCenter <= center + 4;
+      node.classList.toggle('is-active', active);
+      if (steps[i]) steps[i].classList.toggle('is-reached', active);
     });
   }
 
@@ -60,7 +73,14 @@
     }
   }
 
+  function onResize() {
+    positionLine();
+    onScroll();
+  }
+
   window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll, { passive: true });
+  window.addEventListener('resize', onResize, { passive: true });
+  window.addEventListener('load', positionLine);
+  positionLine();
   update();
 })();

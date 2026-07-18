@@ -157,6 +157,12 @@
   transform: scale(1);
 }
 
+/* Cards del scroll horizontal: siempre visibles (la animación AOS no dispara bien ahí) */
+.portfolio-row-grid .portfolio-item {
+  opacity: 1;
+  transform: none;
+}
+
 .portfolio-item:hover {
   transform: translateY(-8px) scale(1.01);
   box-shadow: 0 24px 60px rgba(var(--celeste-rgb), 0.1), 0 8px 24px rgba(var(--black-rgb), 0.3);
@@ -440,13 +446,14 @@
 }
 
 .cta-premium-title {
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-size: clamp(2.13rem, 5.1vw, 3.83rem);
   font-weight: 700;
   color: var(--color-white);
   line-height: 1.1;
   margin-bottom: 2.5rem;
   font-family: 'Poppins', sans-serif;
   letter-spacing: -0.02em;
+  text-transform: uppercase;
 }
 
 .text-gradient {
@@ -518,8 +525,10 @@
 .btn-premium-cta:hover {
   transform: translateY(-8px) scale(1.03);
   box-shadow: 0 20px 50px rgba(var(--celeste-rgb), 0.5);
-  background: linear-gradient(rgba(var(--white-rgb), 0.1), rgba(var(--white-rgb), 0.1)) padding-box,
-              var(--gradient-primary) border-box;
+  background:
+    linear-gradient(180deg, rgba(var(--white-rgb), 0.14), rgba(var(--white-rgb), 0) 42%) padding-box,
+    linear-gradient(180deg, var(--color-violet-dark) 0%, rgb(60, 20, 140) 100%) padding-box,
+    var(--gradient-primary) border-box;
   color: var(--color-white);
   border-color: transparent;
 }

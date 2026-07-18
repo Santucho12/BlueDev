@@ -60,6 +60,74 @@
   box-shadow: 0 10px 30px rgba(var(--black-rgb), 0.03);
 }
 
+/* Card 02 destacada: fondo navy oscuro, título violeta, texto blanco, detalles gris */
+/* Estrella dorada premium al lado de "SISTEMAS" */
+.services-grid .service-card-new:nth-child(2) .service-tag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.service-premium-star {
+  display: inline-block;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+  font-size: 1.05rem;
+  line-height: 1;
+  background: linear-gradient(135deg, #ffe27a 0%, #ffb52e 50%, #e8951a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  filter: drop-shadow(0 0 8px rgba(255, 190, 60, 0.7));
+  animation: premiumStarPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes premiumStarPulse {
+  0%, 100% { filter: drop-shadow(0 0 6px rgba(255, 190, 60, 0.55)); }
+  50%      { filter: drop-shadow(0 0 12px rgba(255, 200, 80, 0.9)); }
+}
+
+.services-grid .service-card-new:nth-child(2) {
+  background: linear-gradient(160deg, rgb(28, 18, 46) 0%, rgb(20, 13, 33) 100%);
+  border-color: rgba(var(--celeste-rgb), 0.12);
+}
+
+.services-grid .service-card-new:nth-child(2) h3 {
+  color: var(--color-celeste);
+  text-align: center;
+  align-self: stretch;
+  display: block;
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.services-grid .service-card-new:nth-child(2) .service-feature-item {
+  color: var(--color-white);
+}
+
+.services-grid .service-card-new:nth-child(2) p {
+  color: rgba(var(--white-rgb), 0.55);
+}
+
+.services-grid .service-card-new:nth-child(2) .service-tag {
+  background: rgba(var(--celeste-rgb), 0.12);
+  border-color: rgba(var(--celeste-rgb), 0.3);
+  color: var(--color-celeste);
+}
+
+.services-grid .service-card-new:nth-child(2) .feature-dot {
+  background: rgba(var(--celeste-rgb), 0.14);
+  border-color: rgba(var(--celeste-rgb), 0.35);
+}
+
+.services-grid .service-card-new:nth-child(2) .feature-dot::after {
+  color: var(--color-celeste);
+}
+
 /* Top internal highlight */
 .service-card-new::before {
   content: '';

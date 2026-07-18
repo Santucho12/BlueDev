@@ -208,7 +208,7 @@
   flex-direction: column;
   gap: 0.5rem;
   overflow-y: auto;
-  max-height: 280px;
+  max-height: 480px;
   padding-right: 4px;
 }
 

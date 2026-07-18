@@ -38,14 +38,36 @@
 }
 
 .proceso-badge {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   color: var(--color-celeste);
   font-family: 'Space Grotesk', 'Poppins', sans-serif;
   font-weight: 700;
-  font-size: 0.72rem;
+  font-size: 0.82rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   margin-bottom: 0.9rem;
+}
+
+.proceso-badge::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-celeste);
+  box-shadow: 0 0 10px rgba(var(--celeste-rgb), 0.8);
+  flex-shrink: 0;
+}
+
+/* Badge de Servicios: centrado como su título */
+.services-badge {
+  display: inline-flex;
+  margin: 0 auto 0.9rem;
+}
+
+.services .container {
+  text-align: center;
 }
 
 .proceso-header .section-title {
@@ -82,7 +104,7 @@
   position: absolute;
   inset: 0;
   background: linear-gradient(to bottom,
-      var(--color-celeste) 0%,
+      var(--color-violet-dark) 0%,
       var(--color-celeste) 55%,
       var(--color-violet-light) 100%);
   border-radius: 3px;
@@ -200,6 +222,16 @@
   color: var(--color-white);
   margin: 0 0 0.7rem;
   line-height: 1.15;
+  transition: color 0.4s ease;
+}
+
+/* Al activarse el nodo, el título del paso toma el violeta */
+.proceso-step.is-reached .proceso-content h3 {
+  color: var(--color-celeste);
+}
+
+.proceso-step.is-reached .proceso-dash {
+  background: var(--color-celeste);
 }
 
 .proceso-content p {
@@ -215,6 +247,9 @@
 .proceso-cta {
   margin-top: 1.5rem;
   display: inline-flex;
+  min-width: 207px;
+  height: 43px;
+  font-size: 0.71rem;
 }
 
 /* Reveal por paso (fade-in-up con IntersectionObserver) */

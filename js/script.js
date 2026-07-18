@@ -415,24 +415,28 @@ document.addEventListener('DOMContentLoaded', function () {
       // Distancia real = ancho total del contenido menos una pantalla (soporta secciones de anchos distintos)
       const getScrollDistance = () => horizontalWrapper.scrollWidth - window.innerWidth;
 
-      // 100px de colchón inicial: la sección queda quieta y completa antes de desplazarse horizontalmente
-      const startDelay = 100;
+      // Colchones inicial y final: la sección queda quieta y completa antes/después
+      // del desplazamiento horizontal → la transición vertical↔lateral es muy suave.
+      const startDelay = 120;
+      const endDelay = 120;
 
       let tl = gsap.timeline({
         scrollTrigger: {
           trigger: horizontalContainer,
           pin: true,
-          scrub: 1,
+          scrub: 1.6,
+          anticipatePin: 1,
           invalidateOnRefresh: true,
           start: "top top",
-          end: () => "+=" + (getScrollDistance() * 0.45 + startDelay)
+          end: () => "+=" + (getScrollDistance() * 0.42 + startDelay + endDelay)
         }
       });
 
-      // Tramo inicial sin movimiento (colchón), luego el desplazamiento horizontal
-      const total = () => getScrollDistance() * 0.45 + startDelay;
+      // Colchón inicial (quieto) → desplazamiento horizontal con easing suave → colchón final (quieto)
+      const total = () => getScrollDistance() * 0.42 + startDelay + endDelay;
       tl.to(horizontalWrapper, { duration: startDelay / total(), x: 0, ease: "none" })
-        .to(horizontalWrapper, { duration: 1 - startDelay / total(), x: () => -getScrollDistance(), ease: "none" });
+        .to(horizontalWrapper, { duration: 1 - (startDelay + endDelay) / total(), x: () => -getScrollDistance(), ease: "power1.inOut" })
+        .to(horizontalWrapper, { duration: endDelay / total(), x: () => -getScrollDistance(), ease: "none" });
 
       // Handle AOS animations inside the horizontal sections
       hSections.forEach(section => {

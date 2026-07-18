@@ -9,11 +9,11 @@
       'nav.inicio': 'Inicio',
       'nav.sobre': 'Sobre Nosotros',
       'nav.servicios': 'Servicios',
-      'nav.portfolio': 'Portfolio',
+      'nav.portfolio': 'Portafolio',
       'nav.cta': 'Comenzar Proyecto',
       'hero.badge': 'Agencia de desarrollo de software',
-      'hero.title1': 'Convertí tu idea en ',
-      'hero.title2': 'software que tu negocio necesita.',
+      'hero.title1': 'Convertí tu idea en software que<br>',
+      'hero.title2': 'tu negocio necesita.',
       'hero.subtitle': 'Web, sistemas internos e IA. Construimos lo que tu negocio necesita para crecer.',
       'hero.card1.t': 'Páginas Web',
       'hero.card1.d': 'Convierte visitas en clientes',
@@ -28,9 +28,9 @@
       'feature.2': '100% CLIENTES SATISFECHOS',
       'feature.3': 'Soporte 24/7',
 
-      'about.badge': 'CONOCENOS',
+      'about.badge': 'SOBRE NOSOTROS',
       'about.title': 'POTENCIAMOS NEGOCIOS CON <span class="about-title-highlight">TECNOLOGÍA.</span>',
-      'about.desc': 'En <strong>Vestra</strong> desarrollamos webs, automatizaciones y sistemas a medida para empresas y emprendimientos. Con más de 3 años experiencia, combinamos conocimiento técnico y enfoque estratégico para crear productos alineados a los objetivos de cada cliente.',
+      'about.desc': 'En <strong class="text-vestra">Vestra</strong> desarrollamos webs, automatizaciones y sistemas a medida para empresas y emprendimientos. Con más de 3 años experiencia, combinamos conocimiento técnico y enfoque estratégico para crear productos alineados a los objetivos de cada cliente.',
       'about.li1': '<strong>Entrega en 3 a 6 semanas</strong> — cumplimos los tiempos acordados',
       'about.li2': '<strong>Código propio, sin dependencia de terceros</strong> — vos sos dueño de lo que construimos',
       'about.li3': '<strong>Soporte activo post-lanzamiento</strong> — seguimos acompañandote despues de la entrega',
@@ -40,7 +40,7 @@
       'about.stat3': 'Respondemos tu consulta',
 
       'proceso.badge': 'CÓMO TRABAJAMOS',
-      'proceso.title': 'Tu proyecto paso a paso',
+      'proceso.title': 'Tu proyecto <span class="title-accent">paso a paso</span>',
       'proceso.s1.label': 'PASO 1',
       'proceso.s1.t': 'Primera reunión',
       'proceso.s1.d': 'Entendemos tu idea, objetivos y necesidades sin compromiso. Escuchamos qué querés lograr.',
@@ -61,7 +61,8 @@
       'proceso.s6.d': 'Seguimos con vos después de la entrega: soporte, mejoras y nuevas ideas.',
       'proceso.cta': 'Comenzar proyecto',
 
-      'services.title': 'Nuestros Servicios',
+      'services.badge': 'Elegí lo que buscás',
+      'services.title': 'Nuestros <span class="title-accent">Servicios</span>',
       'services.subtitle': 'Soluciones de software de élite diseñadas para escalar tu negocio.',
       'svc1.tag': '01. WEBS',
       'svc1.t': 'Páginas Web',
@@ -69,6 +70,7 @@
       'svc1.f1': 'Navegación simple e intuitiva',
       'svc1.f2': 'Experiencia fluida en todos los dispositivos',
       'svc1.f3': 'Convertí visitas en clientes reales',
+      'svc2.best': '★ Recomendado',
       'svc2.tag': '02. SISTEMAS',
       'svc2.t': 'Sistemas Internos',
       'svc2.d': 'Desarrollamos sistemas internos personalizados para optimizar la gestión y potenciar el crecimiento de tu empresa.',
@@ -82,7 +84,8 @@
       'svc3.f2': 'Automatización de tareas repetitivas',
       'svc3.f3': 'Ahorro de tiempo en procesos diarios',
 
-      'portfolio.title': 'Nuestros Trabajos',
+      'portfolio.badge': 'PORTAFOLIO',
+      'portfolio.title': 'Nuestros <span class="title-accent">Trabajos</span>',
       'portfolio.subtitle': 'Proyectos reales que generan impacto, eficiencia y crecimiento.',
       'port1.t': 'Concesionaria Subaru',
       'port1.d': 'Sitio web institucional para concesionaria oficial Subaru y Suzuki. Catálogo de vehículos, consultas rápidas por WhatsApp y gestión de marcas premium.',
@@ -93,7 +96,8 @@
       'port3.t': 'Automatización de WhatsApp',
       'port3.d': 'Sistema de automatización para WhatsApp Business: respuestas automáticas, integración con catálogos y gestión de campañas promocionales.',
 
-      'clients.title': 'Empresas que confían en nosotros',
+      'clients.badge': '+28 PROYECTOS EXITOSOS',
+      'clients.title': 'Empresas que confían en <span class="title-accent">nosotros</span>',
       'clients.subtitle': 'Más de 28 proyectos exitosos respaldan nuestra trayectoria.',
 
       'reach.badge': 'PRESENCIA INTERNACIONAL',
@@ -105,7 +109,7 @@
       'reach.s4': 'Proyectos IT',
 
       'faq.tag': 'Preguntas Frecuentes',
-      'faq.title': 'Resolvemos tus dudas',
+      'faq.title': 'Resolvemos tus <span class="title-accent">dudas</span>',
       'faq.q1': '¿Cuánto tiempo toma desarrollar un software?',
       'faq.a1': 'El tiempo de desarrollo varía según la complejidad, pero la mayoría de nuestros proyectos (webs premium, sistemas internos o automatizaciones) se completan en un rango de <strong>3 a 6 semanas</strong>.',
       'faq.q2': '¿El código es de mi propiedad?',
@@ -118,7 +122,7 @@
       'faq.a5': 'Por supuesto. Nos especializamos en conectar tu software con herramientas de terceros como WhatsApp API, pasarelas de pago (Mercado Pago/Stripe), CRM o cualquier sistema interno que ya estés utilizando.',
 
       'cta.badge': '¿Listo para dar el siguiente paso?',
-      'cta.title': 'Converti tu idea en <span class="text-gradient">software</span>',
+      'cta.title': 'Convertí tu idea en <span class="text-gradient">software</span>',
       'cta.subtitle': 'Desde sitios web increibles hasta automatizaciones complejas. Estamos listos para construir la solución que tu negocio necesita.',
       'cta.btn': 'Comenzar proyecto',
 
@@ -141,8 +145,8 @@
       'nav.cta': 'Start Project',
 
       'hero.badge': 'Software development agency',
-      'hero.title1': 'Turn your idea into ',
-      'hero.title2': 'software your business needs.',
+      'hero.title1': 'Turn your idea into the software<br>',
+      'hero.title2': 'your business needs.',
       'hero.subtitle': 'Web, internal systems and AI. We build what your business needs to grow.',
       'hero.card1.t': 'Websites',
       'hero.card1.d': 'Turn visits into customers',
@@ -157,9 +161,9 @@
       'feature.2': '100% SATISFIED CLIENTS',
       'feature.3': '24/7 Support',
 
-      'about.badge': 'GET TO KNOW US',
+      'about.badge': 'ABOUT US',
       'about.title': 'WE EMPOWER BUSINESSES WITH <span class="about-title-highlight">TECHNOLOGY.</span>',
-      'about.desc': 'At <strong>Vestra</strong> we build custom websites, automations and systems for companies and ventures. With over 3 years of experience, we combine technical expertise and a strategic focus to create products aligned with each client\'s goals.',
+      'about.desc': 'At <strong class="text-vestra">Vestra</strong> we build custom websites, automations and systems for companies and ventures. With over 3 years of experience, we combine technical expertise and a strategic focus to create products aligned with each client\'s goals.',
       'about.li1': '<strong>Delivery in 3 to 6 weeks</strong> — we meet the agreed deadlines',
       'about.li2': '<strong>Your own code, no third-party lock-in</strong> — you own what we build',
       'about.li3': '<strong>Active post-launch support</strong> — we keep supporting you after delivery',
@@ -190,6 +194,7 @@
       'proceso.s6.d': 'We stay with you after delivery: support, improvements and new ideas.',
       'proceso.cta': 'Start project',
 
+      'services.badge': 'Choose what you need',
       'services.title': 'Our Services',
       'services.subtitle': 'Elite software solutions designed to scale your business.',
       'svc1.tag': '01. WEB',
@@ -198,6 +203,7 @@
       'svc1.f1': 'Simple, intuitive navigation',
       'svc1.f2': 'Smooth experience on every device',
       'svc1.f3': 'Turn visits into real customers',
+      'svc2.best': '★ Recommended',
       'svc2.tag': '02. SYSTEMS',
       'svc2.t': 'Internal Systems',
       'svc2.d': 'We develop custom internal systems to optimize management and drive your company\'s growth.',
@@ -211,6 +217,7 @@
       'svc3.f2': 'Automation of repetitive tasks',
       'svc3.f3': 'Time savings on daily processes',
 
+      'portfolio.badge': 'PORTFOLIO',
       'portfolio.title': 'Our Work',
       'portfolio.subtitle': 'Real projects that drive impact, efficiency and growth.',
       'port1.t': 'Subaru Dealership',
@@ -222,7 +229,8 @@
       'port3.t': 'WhatsApp Automation',
       'port3.d': 'Automation system for WhatsApp Business: automatic replies, catalog integration and promotional campaign management.',
 
-      'clients.title': 'Companies that trust us',
+      'clients.badge': '+28 SUCCESSFUL PROJECTS',
+      'clients.title': 'Companies that trust <span class="title-accent">us</span>',
       'clients.subtitle': 'Over 28 successful projects back our track record.',
 
       'reach.badge': 'INTERNATIONAL PRESENCE',
@@ -234,7 +242,7 @@
       'reach.s4': 'IT Projects',
 
       'faq.tag': 'Frequently Asked Questions',
-      'faq.title': 'We answer your questions',
+      'faq.title': 'We answer your <span class="title-accent">questions</span>',
       'faq.q1': 'How long does it take to develop software?',
       'faq.a1': 'Development time varies with complexity, but most of our projects (premium websites, internal systems or automations) are completed within <strong>3 to 6 weeks</strong>.',
       'faq.q2': 'Do I own the code?',

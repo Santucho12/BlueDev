@@ -101,15 +101,24 @@ body.no-scroll {
    ==================================== */
 .section-title {
   font-family: 'Poppins', 'Inter', sans-serif;
-  font-size: 3rem;
+  font-size: clamp(2.5rem, 5vw, 3.8rem);
   text-align: center;
   margin-top: 0;
   margin-bottom: 1rem;
   color: var(--color-white);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
   text-transform: uppercase;
+}
+
+/* Palabra/s destacadas en gradiente violeta — estética unificada de títulos */
+.title-accent {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 
 .section-subtitle {
@@ -177,25 +186,33 @@ section::after {
 }
 
 .btn-primary {
-  background: var(--gradient-primary);
+  /* Fondo con profundidad: violeta oscuro arriba → un poco más vivo abajo */
+  background:
+    linear-gradient(180deg, rgba(var(--white-rgb), 0.14), rgba(var(--white-rgb), 0) 42%),
+    linear-gradient(180deg, var(--color-violet-dark) 0%, rgb(60, 20, 140) 100%);
   color: var(--color-white);
-  border: none;
+  border: 1px solid rgba(var(--violet-light-rgb), 0.55);
+  padding-top: 1px;
+  padding-bottom: 1px;
+  letter-spacing: 0.02em;
   box-shadow:
-    0 8px 30px rgba(var(--celeste-rgb), 0.35),
-    0 0 28px rgba(var(--orange-rgb), 0.25);
+    0 0 22px rgba(var(--violet-dark-rgb), 0.35),
+    inset 0 1px 0 rgba(var(--white-rgb), 0.25);
   position: relative;
   z-index: 1;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-.btn-primary::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--gradient-accent);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  border-radius: inherit;
-  z-index: -1;
+.btn-primary:hover {
+  transform: translateY(-2px);
+  border-color: rgba(var(--violet-light-rgb), 0.85);
+  box-shadow:
+    0 0 28px rgba(var(--celeste-rgb), 0.32),
+    inset 0 1px 0 rgba(var(--white-rgb), 0.3);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
 }
 
 /* Shimmer sweep de izquierda a derecha */
@@ -220,18 +237,6 @@ section::after {
 
 .btn-primary:hover::after {
   left: 130%;
-}
-
-.btn-primary:hover {
-  color: var(--color-white);
-  box-shadow:
-    0 14px 45px rgba(var(--celeste-rgb), 0.5),
-    0 0 45px rgba(var(--orange-rgb), 0.35);
-  transform: translateY(-3px) scale(1.02);
-}
-
-.btn-primary:hover::before {
-  opacity: 1;
 }
 
 /* ====================================

@@ -145,7 +145,7 @@
   justify-content: center;
   overflow: hidden;
   pointer-events: none;
-  margin-top: -20px;
+  margin-top: -50px;
 }
 
 .hero-wordmark span {
@@ -195,7 +195,7 @@
 .hero-copy {
   text-align: center;
   max-width: 1150px;
-  margin: 60px auto 0;
+  margin: 30px auto 0;
 }
 
 /* Badge discreto (texto violeta, sin píldora) como la referencia */
@@ -207,7 +207,7 @@
   color: var(--color-celeste);
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
-  font-size: 0.82rem;
+  font-size: 0.9rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
 }
@@ -219,8 +219,7 @@
 
 .hero-split .hero-title {
   text-align: center;
-  text-transform: none;
-  /* sentence case, como la referencia */
+  text-transform: uppercase;
   margin: 0 0 5.5rem 0;
   font-size: clamp(2.5rem, 5.2vw, 4.4rem);
   /* -10% */

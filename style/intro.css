@@ -32,7 +32,7 @@
 }
 
 #cinematic-intro .intro-logo {
-  width: clamp(240px, 34vw, 460px);
+  width: clamp(312px, 44vw, 598px);
   height: auto;
   user-select: none;
   pointer-events: none;
@@ -166,7 +166,7 @@ html.intro-done .hero-trust {
 }
 
 html.intro-done .scroll-indicator {
-  animation: heroFadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 1.4s backwards;
+  animation: heroFadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 1.4s backwards, bounce 2.6s 2.2s infinite;
 }
 
 html.intro-done .hero-wordmark .hw-glow {
@@ -182,11 +182,11 @@ html.intro-done .hero-fx-lights {
 }
 
 html.intro-done .whatsapp-float {
-  animation: heroFadeIn 1.0s cubic-bezier(0.22, 1, 0.36, 1) 1.6s backwards, pulse-whatsapp 2s infinite 2.6s;
+  animation: heroFadeIn 1.0s cubic-bezier(0.22, 1, 0.36, 1) 2.6s backwards, pulse-whatsapp 2s infinite 3.6s;
 }
 
 html.intro-done .whatsapp-tooltip {
-  animation: tooltipFadeIn 2.2s cubic-bezier(0.16, 1, 0.3, 1) 2.6s forwards;
+  animation: tooltipFadeIn 2.2s cubic-bezier(0.16, 1, 0.3, 1) 4.6s forwards;
 }
 
 @keyframes tooltipFadeIn {
