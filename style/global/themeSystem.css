@@ -1,13 +1,16 @@
 /**
- * THEME SYSTEM - Software Factory Landing Page
- * Premium Design System with glassmorphism, mesh gradients, and glow effects
+ * THEME SYSTEM - Vestra Landing Page
+ * Premium Design System — PALETA SYNTHWAVE / NEÓN
  *
- * ÚNICA FUENTE DE VERDAD DE COLOR — PALETA 4+4
- * El sitio usa exactamente 4 colores base + 4 secundarios (hover/efecto):
- *   CELESTE  --color-celeste  /  --color-celeste-2 (hover)
- *   NAVY     --color-navy     /  --color-navy-2    (profundidad de fondo)
+ * ÚNICA FUENTE DE VERDAD DE COLOR
+ * Estética cyberpunk: magenta neón + cyan + violeta profundo sobre negro violáceo.
+ * NOTA: por compatibilidad se conservan los NOMBRES de variables heredados
+ * (--color-celeste, --color-navy) aunque ahora contienen otros pigmentos:
+ *   MAGENTA  --color-celeste  /  --color-celeste-2 (hover)   ← acento principal
+ *   CYAN     --color-cyan                                     ← acento secundario
+ *   VIOLETA  --color-navy     /  --color-navy-2    (fondos profundos)
  *   BLANCO   --color-white    /  --color-white-2   (texto secundario, 65%)
- *   NEGRO    --color-black    /  --color-black-2   (superficie elevada)
+ *   NEGRO    --color-black    /  --color-black-2   (superficie, negro violáceo)
  * Única excepción: verde WhatsApp (marca de tercero, bloque propio).
  * Toda transparencia se deriva de los canales: rgba(var(--x-rgb), alfa).
  * Ningún otro archivo del proyecto debe contener valores de color crudos.
@@ -21,19 +24,23 @@
      PALETA 4+4 — CANALES RGB
      Únicos pigmentos del sitio. Cambiarlos re-tiñe toda la web.
      ======================================== */
-  --celeste-rgb: 42, 186, 243;    /* CELESTE base    #2abaf3 */
-  --celeste-2-rgb: 26, 159, 212;  /* celeste hover   #1a9fd4 */
-  --navy-rgb: 21, 41, 69;         /* NAVY base       #152945 */
-  --navy-2-rgb: 11, 21, 35;       /* navy profundo   #0b1523 */
-  --white-rgb: 255, 255, 255;     /* BLANCO          #ffffff */
-  --black-rgb: 10, 10, 10;        /* NEGRO base      #0a0a0a */
-  --black-2-rgb: 17, 17, 17;      /* negro elevado   #111111 */
+  --celeste-rgb: 139, 61, 255;    /* VIOLETA brillante #8b3dff (acento principal, del logo) */
+  --celeste-2-rgb: 168, 97, 255;  /* violeta claro    #a861ff (hover) */
+  --orange-rgb: 82, 22, 201;      /* VIOLETA profundo #5216c9 (inicio del degradé, del logo) */
+  --cyan-rgb: 124, 58, 237;       /* violeta medio    #7c3aed (uso puntual) */
+  --navy-rgb: 21, 14, 38;         /* VIOLETA-negro profundo #150e26 */
+  --navy-2-rgb: 13, 8, 25;        /* casi negro       #0d0819 */
+  --white-rgb: 255, 255, 255;     /* BLANCO           #ffffff */
+  --black-rgb: 14, 10, 24;        /* NEGRO violáceo   #0e0a18 */
+  --black-2-rgb: 26, 18, 48;      /* superficie elev. #1a1230 */
 
   /* ========================================
-     PALETA 4+4 — COLORES
+     PALETA — COLORES
      ======================================== */
-  --color-celeste: rgb(var(--celeste-rgb));
+  --color-celeste: rgb(var(--celeste-rgb));   /* rosa/magenta (nombre heredado) */
   --color-celeste-2: rgb(var(--celeste-2-rgb));
+  --color-orange: rgb(var(--orange-rgb));     /* naranja (inicio del degradé) */
+  --color-cyan: rgb(var(--cyan-rgb));         /* cyan secundario */
   --color-navy: rgb(var(--navy-rgb));
   --color-navy-2: rgb(var(--navy-2-rgb));
   --color-white: rgb(var(--white-rgb));
@@ -56,8 +63,13 @@
      ajena a la paleta 4+4 a propósito. El wordmark la refleja:
      una mitad oscura + una mitad clara, igual que el ícono.
      ======================================== */
-  --violet-dark-rgb: 78, 16, 160;   /* violeta oscuro (mitad izq. del logo) */
-  --violet-light-rgb: 155, 55, 240; /* violeta claro  (mitad der. del logo) */
+  --violet-dark-rgb: 82, 22, 201;   /* violeta profundo #5216c9 (mitad izq. del logo) */
+  --violet-light-rgb: 176, 97, 255; /* violeta neón claro #b061ff (glow / fin del degradé) */
+  /* Spotlight bicolor del hero — MISMO violeta que el texto (rápido) + celeste (lento) */
+  --glow-fast-rgb: var(--orange-rgb);    /* violeta profundo #5216c9 (orbe rápido, núcleo oscuro) */
+  --glow-fast2-rgb: var(--celeste-rgb);  /* violeta brillante #8b3dff (borde, más luminoso) */
+  --glow-slow-rgb: 0, 229, 255;          /* CELESTE #00e5ff — orbe lento (núcleo) */
+  --glow-slow2-rgb: 0, 180, 255;         /* azul-cyan #00b4ff — orbe lento (borde) */
   --color-violet-dark: rgb(var(--violet-dark-rgb));
   --color-violet-light: rgb(var(--violet-light-rgb));
 
@@ -95,11 +107,11 @@
   --glass-border: rgba(var(--white-rgb), 0.08);
   --glass-blur: blur(20px);
 
-  /* Acentos celeste */
-  --color-cyan-glow: rgba(var(--celeste-rgb), 0.15);
-  --color-cyan-soft: rgba(var(--celeste-rgb), 0.08);
+  /* Acentos (magenta principal + cyan real en los glows cyan) */
+  --color-cyan-glow: rgba(var(--cyan-rgb), 0.18);
+  --color-cyan-soft: rgba(var(--cyan-rgb), 0.10);
   --color-border-subtle: rgba(var(--white-rgb), 0.06);
-  --color-border-hover: rgba(var(--celeste-rgb), 0.4);
+  --color-border-hover: rgba(var(--celeste-rgb), 0.5);
 
   /* Textos */
   --text-primary: var(--color-black);
@@ -116,20 +128,23 @@
   --shadow-sm: 0 5px 20px rgba(var(--black-rgb), 0.2);
   --shadow-md: 0 10px 40px rgba(var(--black-rgb), 0.3);
   --shadow-lg: 0 20px 60px rgba(var(--black-rgb), 0.4);
-  --shadow-celeste: 0 0 30px rgba(var(--celeste-rgb), 0.15);
-  --shadow-glow: 0 0 40px rgba(var(--celeste-rgb), 0.2), 0 0 80px rgba(var(--celeste-rgb), 0.05);
+  --shadow-celeste: 0 0 30px rgba(var(--celeste-rgb), 0.25);
+  --shadow-glow: 0 0 40px rgba(var(--celeste-rgb), 0.28), 0 0 90px rgba(var(--orange-rgb), 0.12);
 
-  /* Gradientes */
-  --gradient-primary: linear-gradient(135deg, var(--color-celeste) 0%, var(--color-celeste-2) 100%);
-  --gradient-accent: linear-gradient(135deg, var(--color-celeste-2) 0%, var(--color-celeste) 100%);
-  --gradient-shine: linear-gradient(135deg, var(--color-celeste) 0%, var(--color-white) 50%, var(--color-celeste) 100%);
+  /* Gradiente de MARCA — violeta profundo → brillante → neón (como el logo) */
+  --gradient-brand: linear-gradient(100deg, var(--color-orange) 0%, var(--color-celeste) 55%, var(--color-violet-light) 100%);
+
+  /* Gradientes — todos derivan del degradé de la marca */
+  --gradient-primary: linear-gradient(100deg, var(--color-orange) 0%, var(--color-celeste) 55%, var(--color-violet-light) 100%);
+  --gradient-accent: linear-gradient(100deg, var(--color-orange) 0%, var(--color-celeste) 100%);
+  --gradient-shine: linear-gradient(100deg, var(--color-celeste) 0%, var(--color-white) 50%, var(--color-orange) 100%);
   --gradient-whatsapp: linear-gradient(135deg, var(--color-whatsapp) 0%, var(--color-whatsapp-dark) 100%);
-  --gradient-soft: linear-gradient(180deg, var(--color-surface) 0%, rgba(var(--celeste-rgb), 0.04) 100%);
-  --gradient-mesh: radial-gradient(ellipse at 20% 50%, rgba(var(--celeste-rgb), 0.06) 0%, transparent 50%),
-                   radial-gradient(ellipse at 80% 20%, rgba(var(--celeste-2-rgb), 0.04) 0%, transparent 50%),
-                   radial-gradient(ellipse at 50% 80%, rgba(var(--celeste-rgb), 0.03) 0%, transparent 50%);
-  --gradient-section-divider: linear-gradient(90deg, transparent, rgba(var(--celeste-rgb), 0.2), transparent);
-  --gradient-text: linear-gradient(135deg, var(--color-white) 0%, var(--color-celeste) 100%);
+  --gradient-soft: linear-gradient(180deg, var(--color-surface) 0%, rgba(var(--celeste-rgb), 0.05) 100%);
+  --gradient-mesh: radial-gradient(ellipse at 16% 48%, rgba(var(--orange-rgb), 0.09) 0%, transparent 52%),
+                   radial-gradient(ellipse at 84% 24%, rgba(var(--celeste-rgb), 0.09) 0%, transparent 52%),
+                   radial-gradient(ellipse at 55% 82%, rgba(var(--violet-light-rgb), 0.08) 0%, transparent 55%);
+  --gradient-section-divider: linear-gradient(90deg, transparent, rgba(var(--orange-rgb), 0.25), rgba(var(--celeste-rgb), 0.35), rgba(var(--violet-light-rgb), 0.25), transparent);
+  --gradient-text: linear-gradient(100deg, var(--color-orange) 0%, var(--color-celeste) 50%, var(--color-violet-light) 100%);
 
   /* ========================================
      ESPACIADO Y TAMAÑOS

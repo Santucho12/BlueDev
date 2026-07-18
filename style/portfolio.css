@@ -4,7 +4,7 @@
 
 /* Portfolio Section */
 .portfolio {
-  padding: 100px 0 90px 0;
+  padding: 0;
   background: var(--bg-section-navy);
   position: relative;
   overflow: hidden;
@@ -31,6 +31,43 @@
   justify-items: center;
   position: relative;
   z-index: 1;
+}
+
+/* Fila única de 6 proyectos para el scroll horizontal de 200vw */
+.portfolio-row-grid {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  flex-wrap: nowrap;
+  align-items: stretch;
+}
+
+.portfolio-row-grid .portfolio-item {
+  flex: 0 0 calc((200vw - 6rem - 7.5rem) / 6 * 0.9);
+  min-width: 0;
+  max-width: none;
+  height: calc((100vh - 88px - 6.25rem - 1.5rem) * 0.9);
+  min-height: 0;
+}
+
+.portfolio-row-grid .portfolio-image {
+  height: 45%;
+  flex-shrink: 0;
+}
+
+.portfolio-row-grid .portfolio-card-content {
+  flex: 1;
+  overflow: hidden;
+  padding: 1.1rem 1rem 1.3rem;
+}
+
+.portfolio-row-grid .portfolio-title {
+  font-size: 1.05rem;
+}
+
+.portfolio-row-grid .portfolio-desc {
+  font-size: 0.82rem;
+  line-height: 1.45;
 }
 
 @media (max-width: 1024px) {
@@ -156,6 +193,11 @@
   pointer-events: none;
 }
 
+.portfolio-image img[alt="BitFlow Exchange"],
+.portfolio-image img[alt="Dashboard SaaS Analytics"] {
+  transform: scale(1.12);
+}
+
 .portfolio-image img {
   width: 100%;
   height: 100%;
@@ -166,6 +208,11 @@
 
 .portfolio-item:hover .portfolio-image img {
   transform: scale(1.08);
+}
+
+.portfolio-item:hover .portfolio-image img[alt="BitFlow Exchange"],
+.portfolio-item:hover .portfolio-image img[alt="Dashboard SaaS Analytics"] {
+  transform: scale(1.2);
 }
 
 /* Card Content */
@@ -353,7 +400,7 @@
   -webkit-backdrop-filter: blur(40px);
   border: 1px solid rgba(var(--white-rgb), 0.08);
   border-radius: 40px;
-  padding: 100px 40px;
+  padding: 60px 40px;
   text-align: center;
   max-width: 1100px;
   margin: 0 auto;
@@ -403,9 +450,11 @@
 }
 
 .text-gradient {
-  color: var(--color-celeste);
-  -webkit-text-fill-color: initial;
-  background: none;
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 
 .cta-premium-subtitle {

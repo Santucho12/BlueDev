@@ -1,0 +1,230 @@
+/* ========================================
+   PROCESO / TIMELINE — "Tu proyecto paso a paso"
+   Timeline vertical zigzag con línea de progreso animada por scroll.
+   Estética: fondo navy + acento violeta (themeSystem.css).
+   ======================================== */
+
+.proceso {
+  padding: 110px 0 120px;
+  background: var(--bg-section-navy);
+  position: relative;
+  overflow: hidden;
+}
+
+.proceso::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(var(--celeste-rgb), 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--celeste-rgb), 0.02) 1px, transparent 1px);
+  background-size: 50px 50px;
+  mask-image: radial-gradient(circle at 50% 40%, black, transparent 80%);
+  -webkit-mask-image: radial-gradient(circle at 50% 40%, black, transparent 80%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.proceso .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Header centrado */
+.proceso-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 4rem;
+}
+
+.proceso-badge {
+  display: inline-block;
+  color: var(--color-celeste);
+  font-family: 'Space Grotesk', 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 0.9rem;
+}
+
+.proceso-header .section-title {
+  margin: 0;
+}
+
+/* ── Timeline ── */
+.proceso-timeline {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Línea central (fondo + progreso) */
+.proceso-line {
+  position: absolute;
+  left: 24px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.proceso-line-bg {
+  position: absolute;
+  inset: 0;
+  background: rgba(var(--white-rgb), 0.08);
+  border-radius: 3px;
+}
+
+/* Progreso: se revela de arriba hacia abajo con scaleY (controlado por JS) */
+.proceso-line-progress {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+      var(--color-celeste) 0%,
+      var(--color-celeste) 55%,
+      var(--color-violet-light) 100%);
+  border-radius: 3px;
+  transform-origin: top;
+  transform: scaleY(0);
+  box-shadow: 0 0 16px rgba(var(--celeste-rgb), 0.5);
+}
+
+/* ── Pasos ── */
+.proceso-step {
+  position: relative;
+  min-height: 60px;
+  padding: 34px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+/* Nodo circular */
+.proceso-node {
+  position: absolute;
+  left: 24px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-navy-2, rgb(13, 8, 25));
+  border: 3px solid rgba(var(--white-rgb), 0.14);
+  color: rgba(var(--white-rgb), 0.45);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  font-size: 1.2rem;
+  transition: background 0.4s ease, border-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.proceso-node svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Estado activo (lo agrega el JS cuando la línea de progreso lo alcanza) */
+.proceso-node.is-active {
+  background: var(--color-celeste);
+  border-color: var(--color-celeste);
+  color: #fff;
+  box-shadow: 0 0 0 6px rgba(var(--celeste-rgb), 0.14), 0 8px 28px rgba(var(--celeste-rgb), 0.4);
+}
+
+/* ── Contenido (zigzag) ── */
+.proceso-content {
+  padding-left: 70px;
+}
+
+/* Desktop: alterna izquierda / derecha */
+@media (min-width: 861px) {
+  .proceso-line { left: 50%; }
+  .proceso-node { left: 50%; }
+
+  .proceso-step[data-side="left"] .proceso-content {
+    grid-column: 1;
+    text-align: right;
+    padding-left: 0;
+    padding-right: 70px;
+  }
+
+  .proceso-step[data-side="left"] .proceso-step-label { justify-content: flex-end; }
+
+  .proceso-step[data-side="right"] .proceso-content {
+    grid-column: 2;
+    text-align: left;
+    padding-left: 70px;
+  }
+}
+
+/* Mobile: todo a la derecha de la línea (que va a la izquierda) */
+@media (max-width: 860px) {
+  .proceso-step {
+    grid-template-columns: 1fr;
+  }
+  .proceso-content {
+    text-align: left;
+    padding-left: 70px;
+  }
+}
+
+.proceso-step-label {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+  font-family: 'Space Grotesk', 'Poppins', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(var(--white-rgb), 0.35);
+}
+
+.proceso-dash {
+  width: 24px;
+  height: 2px;
+  background: rgba(var(--celeste-rgb), 0.4);
+  flex-shrink: 0;
+}
+
+.proceso-content h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: var(--color-white);
+  margin: 0 0 0.7rem;
+  line-height: 1.15;
+}
+
+.proceso-content p {
+  font-size: 1.02rem;
+  line-height: 1.6;
+  color: rgba(var(--white-rgb), 0.6);
+  margin: 0;
+  max-width: 420px;
+}
+
+.proceso-step[data-side="left"] .proceso-content p { margin-left: auto; }
+
+.proceso-cta {
+  margin-top: 1.5rem;
+  display: inline-flex;
+}
+
+/* Reveal por paso (fade-in-up con IntersectionObserver) */
+.proceso-step .proceso-content {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.proceso-step.is-visible .proceso-content {
+  opacity: 1;
+  transform: translateY(0);
+}

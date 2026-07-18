@@ -1,0 +1,278 @@
+/* ============================================================
+   SECCIÓN REUNIÓN (Calendario de Agendamiento Simulado)
+   ============================================================ */
+.reunion-section {
+  padding: 120px 0;
+  background: rgb(var(--navy-2-rgb));
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(var(--white-rgb), 0.05);
+}
+
+.reunion-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 3.5rem;
+}
+
+.reunion-header .section-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.2rem;
+  color: var(--color-white);
+  text-transform: uppercase;
+}
+
+.reunion-header .section-subtitle {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: rgba(var(--white-rgb), 0.65);
+}
+
+/* Contenedor principal del widget */
+.reunion-widget-wrapper {
+  max-width: 1060px;
+  margin: 0 auto;
+  background: #09060f;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: var(--radius-lg);
+  box-shadow: 
+    0 30px 80px rgba(0, 0, 0, 0.6),
+    0 0 50px rgba(var(--celeste-rgb), 0.03);
+  backdrop-filter: blur(14px);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 280px 1fr 240px;
+  min-height: 480px;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Columna 1: Info */
+.reunion-info {
+  padding: 1.5rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.07);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.reunion-info h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--color-white);
+}
+
+.reunion-meta-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.82rem;
+}
+
+.reunion-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.reunion-meta-item svg {
+  width: 16px;
+  height: 16px;
+  color: rgba(255, 255, 255, 0.4);
+  flex-shrink: 0;
+}
+
+.reunion-desc {
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 0.5rem;
+}
+
+/* Columna 2: Calendario */
+.reunion-calendar {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.reunion-calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.reunion-month-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-white);
+}
+
+.reunion-nav-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: var(--color-white);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.reunion-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.reunion-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.reunion-days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  row-gap: 0.3rem;
+  column-gap: 0.2rem;
+}
+
+.reunion-day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.25);
+  cursor: default;
+  user-select: none;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Días activos/agendables */
+.reunion-day.active {
+  color: var(--color-celeste);
+  font-weight: 600;
+  cursor: pointer;
+  background: rgba(var(--celeste-rgb), 0.05);
+}
+
+.reunion-day.active:hover {
+  background: rgba(var(--celeste-rgb), 0.15);
+  color: var(--color-celeste-2);
+}
+
+/* Día seleccionado */
+.reunion-day.selected {
+  background: var(--color-celeste) !important;
+  color: var(--color-white) !important;
+  box-shadow: 0 0 15px rgba(var(--celeste-rgb), 0.4);
+}
+
+/* Columna 3: Horarios */
+.reunion-slots {
+  padding: 1.2rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.07);
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  background: rgba(255, 255, 255, 0.01);
+}
+
+.reunion-slots-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-white);
+}
+
+.reunion-slots-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow-y: auto;
+  max-height: 280px;
+  padding-right: 4px;
+}
+
+/* Custom scrollbar para horarios */
+.reunion-slots-container::-webkit-scrollbar {
+  width: 4px;
+}
+.reunion-slots-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+.reunion-slots-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+}
+
+.reunion-slot-btn {
+  background: rgba(var(--celeste-rgb), 0.03);
+  border: 1px solid rgba(var(--celeste-rgb), 0.15);
+  color: var(--color-celeste);
+  padding: 0.55rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reunion-slot-btn:hover {
+  background: rgba(var(--celeste-rgb), 0.09);
+  border-color: var(--color-celeste);
+  transform: translateY(-1px);
+}
+
+/* Horas ocupadas/desactivadas */
+.reunion-slot-btn.disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+  border-color: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* Mobile responsive layout */
+@media (max-width: 960px) {
+  .reunion-widget-wrapper {
+    grid-template-columns: 1fr;
+  }
+  
+  .reunion-info {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  }
+  
+  .reunion-slots {
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+  }
+}
+
+@media (max-width: 480px) {
+  .reunion-section {
+    padding: 80px 0;
+  }
+  .reunion-info, .reunion-calendar, .reunion-slots {
+    padding: 1.5rem;
+  }
+}

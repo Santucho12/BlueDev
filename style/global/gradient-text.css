@@ -1,0 +1,99 @@
+/* ============================================================
+   DEGRADÉ DE MARCA EN LOS TEXTOS  (naranja → rosa → violeta)
+   Se carga al final para tener prioridad sobre los colores previos.
+   Usa background-image (no el shorthand) para no pisar fondos.
+   ============================================================ */
+
+h1, h2, h3, h4, h5, h6,
+p,
+li,
+blockquote,
+figcaption,
+.section-title,
+.section-subtitle,
+.section-tag,
+.hero-subtitle,
+.hero-title,
+.about-desc,
+.about-lead,
+.about-stat-number,
+.about-stat-label,
+.about-list-modern li span:not(.about-icon-check),
+.service-tag,
+.service-card-new h3,
+.service-card-new p,
+.service-feature-item span:not(.feature-dot),
+.portfolio-title,
+.portfolio-desc,
+.portfolio-link,
+.portfolio-nda-text,
+.portfolio-tags span,
+.clients-header h2,
+.clients-header p,
+.map-header h2,
+.map-header p,
+.map-stats .stat-item h4,
+.map-stats .stat-item p,
+.faq-question span,
+.faq-answer-inner,
+.cta-badge,
+.cta-premium-title,
+.cta-premium-subtitle,
+.feature-bar span[data-i18n],
+.hero-badge span[data-i18n],
+.footer-modern-claim,
+.footer-modern-links h4,
+.footer-modern-social h4,
+.footer-modern-links ul li a,
+.footer-modern-contact-item span,
+.footer-modern-bottom-content,
+.footer-modern-legal a {
+  background-image: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  text-shadow: none;
+}
+
+/* ============================================================
+   EXCEPCIONES — texto que va SOBRE un relleno con degradé.
+   Si le aplicáramos el degradé quedaría invisible: va en blanco.
+   ============================================================ */
+.btn,
+.btn *,
+.btn-primary,
+.btn-primary *,
+.btn-secondary,
+.btn-secondary *,
+.nav-cta,
+.nav-cta *,
+.btn-premium-cta,
+.btn-premium-cta *,
+.hero-service-card h4,
+.hero-service-card p,
+.whatsapp-float,
+.whatsapp-float *,
+.hero-split .hero-subtitle {
+  background-image: none;
+  -webkit-text-fill-color: var(--color-white);
+  color: var(--color-white);
+  text-shadow: none;
+}
+
+/* Elementos decorativos: conservan su color de fondo (puntos, íconos) */
+.feature-dot,
+.hero-badge-dot,
+.about-icon-check,
+.separator,
+.portfolio-link-arrow,
+.lang-flag {
+  background-image: revert;
+  -webkit-text-fill-color: revert;
+  color: revert;
+}
+
+/* Sin sombras ni brillos en ningún texto */
+* {
+  text-shadow: none !important;
+}

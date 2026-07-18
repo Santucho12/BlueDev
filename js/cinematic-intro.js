@@ -47,20 +47,25 @@
   // Fade-out del overlay
   const tExit = setTimeout(function () {
     overlay.classList.add('exiting');
-  }, 2560);
+  }, 2100);
 
-  // Fin: quitar overlay, liberar scroll, revelar el contenido del hero
+  // Fin de la intro visual: quitar overlay y revelar el contenido del hero
   const tDone = setTimeout(function () {
     overlay.classList.add('done');
+    document.documentElement.classList.add('intro-done'); // dispara la entrada del hero
+  }, 2600);
+
+  // Bloqueo de scroll: se mantiene 1,3 s DESPUÉS de terminar la intro cinematográfica
+  const tUnlock = setTimeout(function () {
     window.removeEventListener('scroll', forceTop, { passive: false });
     document.documentElement.classList.remove('intro-active');
     document.body.classList.remove('intro-active');
-    document.documentElement.classList.add('intro-done'); // dispara la entrada del hero
     startLenis();
-  }, 3120);
+  }, 2600 + 1300);
 
   window.addEventListener('pagehide', function () {
     clearTimeout(tExit);
     clearTimeout(tDone);
+    clearTimeout(tUnlock);
   });
 })();

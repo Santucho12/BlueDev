@@ -1,7 +1,8 @@
 /* ============================================================
-   INTRO CINEMATOGRÁFICA — wipe del logo (estilo MENDO / ConsurWhite)
-   Overlay a pantalla completa con blur; el logo se revela con un
-   clip-path de izquierda a derecha + leve scale, luego fade-out.
+   INTRO CINEMATOGRÁFICA — solo blur de fondo
+   Overlay a pantalla completa con backdrop-filter blur.
+   El VESTRA del hero se ve a través del desenfoque.
+   Sin logo, sin glow extra — solo el efecto de desenfoque.
    ============================================================ */
 
 #cinematic-intro {
@@ -11,16 +12,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(var(--black-rgb), 0.55);
-  backdrop-filter: blur(22px) saturate(150%);
-  -webkit-backdrop-filter: blur(22px) saturate(150%);
+  background: rgba(var(--black-rgb), 0.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   opacity: 1;
-  transition: opacity 0.7s cubic-bezier(0.4, 0, 1, 1);
-  will-change: opacity;
+  transition: opacity 0.9s ease, backdrop-filter 0.9s ease, -webkit-backdrop-filter 0.9s ease;
+  will-change: opacity, backdrop-filter;
 }
 
 #cinematic-intro.exiting {
   opacity: 0;
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
   pointer-events: none;
 }
 
@@ -36,9 +39,9 @@
   /* Estado inicial: oculto (recorte total desde la derecha) + leve zoom */
   clip-path: inset(0 100% 0 0);
   transform: scale(1.12);
-  filter: drop-shadow(0 6px 32px rgba(0, 0, 0, 0.7));
+  filter: drop-shadow(0 6px 32px rgba(var(--black-rgb), 0.7));
   will-change: clip-path, transform;
-  /* Transición en el estado base: garantiza el wipe al agregar .revealed */
+  /* Transición en el estado base */
   transition:
     clip-path 1.6s cubic-bezier(0.76, 0, 0.24, 1),
     transform 1.8s cubic-bezier(0.22, 1, 0.36, 1);
@@ -60,21 +63,151 @@ body.intro-active {
 
 /* ============================================================
    CONTENIDO DEL HERO DIFERIDO
-   Durante la intro solo se ve el fondo/foto del hero. Todo lo demás
-   (badge, título, subtítulo, tarjetas, botones, feature-bar, scroll)
-   entra recién cuando la intro termina.
+   El VESTRA (hero-wordmark base) se ve a través del blur.
+   Todo lo demás queda invisible hasta que termina la intro.
    ============================================================ */
 
-/* Transición de entrada para todos los hijos del hero salvo el fondo */
-.hero > *:not(.hero-background) {
-  transition:
-    opacity 1s cubic-bezier(0.22, 1, 0.36, 1) 0.1s,
-    transform 1s cubic-bezier(0.22, 1, 0.36, 1) 0.1s;
+/* Mientras la intro no esté completada, ocultar todo excepto el wordmark VESTRA y el fondo */
+html:not(.intro-done) .hero-badge,
+html:not(.intro-done) .hero-title,
+html:not(.intro-done) .hero-subtitle,
+html:not(.intro-done) .hero-buttons,
+html:not(.intro-done) .hero-trust,
+html:not(.intro-done) .scroll-indicator,
+html:not(.intro-done) .hero-wordmark .hw-glow,
+html:not(.intro-done) .light-dust,
+html:not(.intro-done) .hero-fx-lights,
+html:not(.intro-done) .navbar,
+html:not(.intro-done) .whatsapp-float {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transition: none !important;
 }
 
-/* Oculto mientras la intro corre (la clase la pone el <head> al instante) */
-html.intro-active .hero > *:not(.hero-background) {
-  opacity: 0;
-  transform: translateY(32px);
-  transition: none;
+/* Los elementos de contenido inician desplazados verticalmente */
+html:not(.intro-done) .hero-badge,
+html:not(.intro-done) .hero-title,
+html:not(.intro-done) .hero-subtitle,
+html:not(.intro-done) .hero-buttons,
+html:not(.intro-done) .hero-trust,
+html:not(.intro-done) .scroll-indicator,
+html:not(.intro-done) .hero-wordmark .hw-glow,
+html:not(.intro-done) .light-dust {
+  transform: translateY(30px) !important;
+}
+
+/* Restaurar visibility al terminar (para navegadores antiguos) */
+html.intro-done .hero > *:not(.hero-background):not(.hero-wordmark),
+html.intro-done .hero-wordmark .hw-glow,
+html.intro-done .hero-copy,
+html.intro-done .hero-trust,
+html.intro-done .scroll-indicator,
+html.intro-done .hero-fx-lights,
+html.intro-done .light-dust,
+html.intro-done .navbar,
+html.intro-done .whatsapp-float {
+  visibility: visible;
+}
+
+/* Animaciones de entrada por keyframes */
+@keyframes heroFadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+    visibility: hidden;
+  }
+  1% {
+    visibility: visible;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+  }
+}
+
+@keyframes heroFadeIn {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  1% {
+    visibility: visible;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+/* Entradas escalonadas al terminar la intro usando Keyframes */
+html.intro-done .navbar {
+  animation: heroFadeIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.8s backwards;
+}
+
+html.intro-done .hero-badge {
+  animation: heroFadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.9s backwards;
+}
+
+html.intro-done .hero-title {
+  animation: heroFadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 1.0s backwards;
+}
+
+html.intro-done .hero-subtitle {
+  animation: heroFadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 1.1s backwards;
+}
+
+html.intro-done .hero-buttons {
+  animation: heroFadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 1.2s backwards;
+}
+
+html.intro-done .hero-trust {
+  animation: heroFadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 1.3s backwards;
+}
+
+html.intro-done .scroll-indicator {
+  animation: heroFadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 1.4s backwards;
+}
+
+html.intro-done .hero-wordmark .hw-glow {
+  animation: heroFadeInUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) 1.1s backwards;
+}
+
+html.intro-done .light-dust {
+  animation: heroFadeInUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) 1.2s backwards;
+}
+
+html.intro-done .hero-fx-lights {
+  animation: heroFadeIn 1.2s cubic-bezier(0.22, 1, 0.36, 1) 1.1s backwards;
+}
+
+html.intro-done .whatsapp-float {
+  animation: heroFadeIn 1.0s cubic-bezier(0.22, 1, 0.36, 1) 1.6s backwards, pulse-whatsapp 2s infinite 2.6s;
+}
+
+html.intro-done .whatsapp-tooltip {
+  animation: tooltipFadeIn 2.2s cubic-bezier(0.16, 1, 0.3, 1) 2.6s forwards;
+}
+
+@keyframes tooltipFadeIn {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(4px);
+  }
+  1% {
+    visibility: visible;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
+html.intro-done .hero-copy {
+  opacity: 1;
+  transform: translateY(0);
+  /* Contenedor transparente; las animaciones las manejan sus hijos */
+  transition: opacity 0.01s linear 0s, transform 0.01s linear 0s;
 }

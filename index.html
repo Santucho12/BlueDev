@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="intro-active">
 
 <head>
     <meta charset="UTF-8">
@@ -13,12 +13,14 @@
     <link rel="stylesheet" href="style/intro.css">
     <link rel="stylesheet" href="style/navbar.css">
     <link rel="stylesheet" href="style/home.css?v=18">
+    <link rel="stylesheet" href="style/hero-redesign.css">
     <link rel="stylesheet" href="style/services.css">
     <link rel="stylesheet" href="style/portfolio.css">
     <link rel="stylesheet" href="style/faq.css">
     <link rel="stylesheet" href="style/clients.css">
     <link rel="stylesheet" href="style/map.css">
-    <link rel="stylesheet" href="style/map.css">
+    <link rel="stylesheet" href="style/proceso.css">
+    <link rel="stylesheet" href="style/reunion.css">
 
     <style>
         html,
@@ -54,7 +56,10 @@
     <nav class="navbar">
         <div class="container">
             <div class="logo">
-                <img src="images/logo-vestra-wordmark.png" alt="Vestra" class="logo-wordmark">
+                <a href="#inicio" aria-label="Volver al inicio"
+                    style="display: flex; align-items: center; text-decoration: none;">
+                    <img src="images/logo-vestra-wordmark.png" alt="Vestra" class="logo-wordmark">
+                </a>
             </div>
             <button class="menu-toggle" aria-label="Toggle menu">
                 <span></span>
@@ -76,7 +81,8 @@
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="12" cy="12" r="10" />
                             <path d="M2 12h20" />
-                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                            <path
+                                d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
                         </svg>
                         <span class="lang-current">ES</span>
                         <svg class="lang-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none"
@@ -86,23 +92,23 @@
                     </button>
                     <ul class="lang-menu" role="menu">
                         <li><button class="lang-option" data-lang="es" role="menuitem">
-                            <svg class="lang-flag" width="20" height="14" viewBox="0 0 20 14" aria-hidden="true">
-                                <rect width="20" height="14" rx="2" fill="#74acdf" />
-                                <rect y="4.66" width="20" height="4.66" fill="#fff" />
-                                <circle cx="10" cy="7" r="1.5" fill="#f6b40e" />
-                            </svg>
-                            <span>ES</span>
-                        </button></li>
+                                <svg class="lang-flag" width="20" height="14" viewBox="0 0 20 14" aria-hidden="true">
+                                    <rect width="20" height="14" rx="2" fill="#74acdf" />
+                                    <rect y="4.66" width="20" height="4.66" fill="#fff" />
+                                    <circle cx="10" cy="7" r="1.5" fill="#f6b40e" />
+                                </svg>
+                                <span>ES</span>
+                            </button></li>
                         <li><button class="lang-option" data-lang="en" role="menuitem">
-                            <svg class="lang-flag" width="20" height="14" viewBox="0 0 20 14" aria-hidden="true">
-                                <rect width="20" height="14" rx="2" fill="#012169" />
-                                <path d="M0 0l20 14M20 0L0 14" stroke="#fff" stroke-width="2.4" />
-                                <path d="M0 0l20 14M20 0L0 14" stroke="#c8102e" stroke-width="1.2" />
-                                <path d="M10 0v14M0 7h20" stroke="#fff" stroke-width="3.4" />
-                                <path d="M10 0v14M0 7h20" stroke="#c8102e" stroke-width="2" />
-                            </svg>
-                            <span>EN</span>
-                        </button></li>
+                                <svg class="lang-flag" width="20" height="14" viewBox="0 0 20 14" aria-hidden="true">
+                                    <rect width="20" height="14" rx="2" fill="#012169" />
+                                    <path d="M0 0l20 14M20 0L0 14" stroke="#fff" stroke-width="2.4" />
+                                    <path d="M0 0l20 14M20 0L0 14" stroke="#c8102e" stroke-width="1.2" />
+                                    <path d="M10 0v14M0 7h20" stroke="#fff" stroke-width="3.4" />
+                                    <path d="M10 0v14M0 7h20" stroke="#c8102e" stroke-width="2" />
+                                </svg>
+                                <span>EN</span>
+                            </button></li>
                     </ul>
                 </div>
 
@@ -112,190 +118,65 @@
     </nav>
 
 
-    <!-- Hero Section -->
-    <section id="inicio" class="hero">
-        <div class="hero-background">
-            <div class="hero-image-bg parallax" data-speed="0.14"></div>
-            <canvas id="hero-canvas" class="hero-canvas-bg"></canvas>
-        </div>
-        <div class="container hero-content">
-
-            <!-- Premium Conversion Badge -->
-            <div class="hero-badge reveal fade-up" data-aos="fade-down" data-delay="0">
-                <span class="hero-badge-dot"></span>
-                <span data-i18n="hero.badge">AGENCIA DE DESARROLLO DE SOFTWARE</span>
+    <!-- Hero Section (rediseño split) -->
+    <section id="inicio" class="hero hero-split">
+        <!-- Fondo sobrio (glow violeta sutil arriba-izquierda) -->
+        <div class="hero-background hero-fx" aria-hidden="true">
+            <div class="hero-fx-glow"></div>
+            <!-- Partículas flotantes cinematográficas -->
+            <div class="light-dust">
+                <span class="dust-particle"></span>
+                <span class="dust-particle"></span>
+                <span class="dust-particle"></span>
+                <span class="dust-particle"></span>
+                <span class="dust-particle"></span>
+                <span class="dust-particle"></span>
+                <span class="dust-particle"></span>
             </div>
+        </div>
 
-            <h1 class="hero-title reveal" style="margin-bottom: 0.5em;">
-                <span class="title-line" data-i18n="hero.title1">CONVERTI TU IDEA EN </span>
-                <span class="title-line highlight-large" data-text="SOFTWARE." data-i18n="hero.title2">SOFTWARE QUE VENDE.</span>
-            </h1>
+        <!-- Wordmark gigante detrás + spotlight que sigue al mouse -->
+        <div class="hero-wordmark" aria-hidden="true">
+            <span class="hw-base">VESTRA</span>
+            <span class="hw-glow">VESTRA</span>
+        </div>
 
-            <p class="hero-subtitle fade-up" data-i18n="hero.subtitle"
-                style="margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto;">
-                Web, sistemas internos e IA. Construimos lo que tu negocio necesita para crecer.
-            </p>
-
-            <!-- Services Cards in Hero -->
-            <div class="hero-services-cards">
-                <div class="hero-service-card" data-aos="zoom-in" data-delay="100">
-                    <div class="hero-service-icon">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-celeste)"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                            <line x1="8" y1="21" x2="16" y2="21"></line>
-                            <line x1="12" y1="17" x2="12" y2="21"></line>
-                        </svg>
-                    </div>
-                    <h4 data-i18n="hero.card1.t">Páginas Web</h4>
-                    <p data-i18n="hero.card1.d">Convierte visitas en clientes</p>
+        <div class="container hero-content hero-grid">
+            <!-- Columna izquierda: copy -->
+            <div class="hero-copy">
+                <div class="hero-badge">
+                    <span class="hero-badge-dot"></span>
+                    <span data-i18n="hero.badge">AGENCIA DE DESARROLLO DE SOFTWARE</span>
                 </div>
-                <div class="hero-service-card" data-aos="zoom-in" data-delay="200">
-                    <div class="hero-service-icon">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-celeste)"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path
-                                d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
-                            </path>
-                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                            <line x1="12" y1="22.08" x2="12" y2="12"></line>
-                        </svg>
-                    </div>
-                    <h4 data-i18n="hero.card2.t">Sistemas Internos</h4>
-                    <p data-i18n="hero.card2.d">Optimización y gestión de tu empresa</p>
-                </div>
-                <div class="hero-service-card" data-aos="zoom-in" data-delay="300">
-                    <div class="hero-service-icon">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-celeste)"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="3" y="11" width="18" height="10" rx="2" ry="2"></rect>
-                            <circle cx="12" cy="5" r="2"></circle>
-                            <path d="M12 7v4"></path>
-                            <line x1="8" y1="16" x2="8" y2="16"></line>
-                            <line x1="16" y1="16" x2="16" y2="16"></line>
-                        </svg>
-                    </div>
-                    <h4 data-i18n="hero.card3.t">IA & Automatización</h4>
-                    <p data-i18n="hero.card3.d">ELIMINÁ TAREAS REPETITIVAS Y OPTIMIZA TU TIEMPO</p>
+
+                <h1 class="hero-title">
+                    <span class="title-line" data-i18n="hero.title1">CONVERTI TU IDEA EN </span>
+                    <span class="title-line highlight-large" data-text="SOFTWARE." data-i18n="hero.title2">software que
+                        tu negocio necesita.</span>
+                </h1>
+
+
+
+                <div class="hero-buttons">
+                    <a href="contacto.html" class="btn btn-primary" data-i18n="hero.btn1">COMENZAR PROYECTO</a>
+                    <a href="#servicios" class="btn btn-secondary" data-i18n="hero.btn2">VER SERVICIOS</a>
                 </div>
             </div>
 
-            <div class="hero-buttons">
-                <a href="contacto.html" class="btn btn-primary" data-aos="zoom-in" data-delay="400" data-i18n="hero.btn1">COMENZAR PROYECTO</a>
-                <a href="#servicios" class="btn btn-secondary" data-aos="zoom-in" data-delay="500" data-i18n="hero.btn2">VER SERVICIOS</a>
-            </div>
-
-            <script>
-                // Image Sequence Scrubbing (3D effect) logic
-                document.addEventListener('DOMContentLoaded', function () {
-                    const canvas = document.getElementById('hero-canvas');
-                    const context = canvas.getContext('2d');
-                    const imageContainer = document.querySelector('.hero-image-bg');
-
-                    const frameCount = 192;
-                    const images = [];
-                    const sequence = { frame: 0 };
-
-                    // Function to get image path
-                    const getImagePath = (index) => `videos/videos auto/${index.toString().padStart(5, '0')}.png`;
-
-                    // Preload first image and setup canvas size
-                    const firstImage = new Image();
-                    firstImage.src = getImagePath(1);
-                    firstImage.onload = () => {
-                        updateCanvasSize();
-                        renderFrame(0);
-                    };
-
-                    // Load all images
-                    for (let i = 1; i <= frameCount; i++) {
-                        const img = new Image();
-                        img.src = getImagePath(i);
-                        images.push(img);
-                    }
-
-                    function updateCanvasSize() {
-                        const dpr = window.devicePixelRatio || 1;
-                        canvas.width = window.innerWidth * dpr;
-                        canvas.height = window.innerHeight * dpr;
-                        canvas.style.width = window.innerWidth + 'px';
-                        canvas.style.height = window.innerHeight + 'px';
-                        context.scale(dpr, dpr);
-                        renderFrame(sequence.frame);
-                    }
-
-                    function renderFrame(index) {
-                        const img = images[index];
-                        if (img && img.complete) {
-                            const w = window.innerWidth;
-                            const h = window.innerHeight;
-                            const canvasRatio = w / h;
-                            const imgRatio = img.width / img.height;
-
-                            let drawW, drawH, x, y;
-
-                            if (canvasRatio > imgRatio) {
-                                drawW = w;
-                                drawH = w / imgRatio;
-                                x = 0;
-                                y = (h - drawH) / 2;
-                            } else {
-                                drawW = h * imgRatio;
-                                drawH = h;
-                                x = (w - drawW) / 2;
-                                y = 0;
-                            }
-
-                            context.clearRect(0, 0, w, h);
-                            context.drawImage(img, x, y, drawW, drawH);
-                        }
-                    }
-
-                    window.addEventListener('resize', updateCanvasSize);
-
-                    const scrollRange = 1000; // Pixels to complete the full sequence
-
-                    function onScroll() {
-                        const scrollTop = window.scrollY;
-                        const fraction = Math.min(Math.max(scrollTop / scrollRange, 0), 1);
-                        const frameIndex = Math.min(
-                            frameCount - 1,
-                            Math.floor(fraction * (frameCount - 1))
-                        );
-
-                        if (sequence.frame !== frameIndex) {
-                            sequence.frame = frameIndex;
-                            renderFrame(frameIndex);
-                        }
-
-                        // Smoother transition between static background and sequence
-                        if (fraction > 0) {
-                            imageContainer.style.opacity = Math.max(1 - (fraction * 15), 0);
-                            canvas.style.opacity = Math.min(fraction * 15, 1);
-                        } else {
-                            imageContainer.style.opacity = 1;
-                            canvas.style.opacity = 0;
-                        }
-                    }
-
-                    window.addEventListener('scroll', () => {
-                        requestAnimationFrame(onScroll);
-                    });
-                });
-            </script>
         </div>
-        <div class="feature-bar">
-            <span><span class="feature-dot" style="background: var(--color-whatsapp);"></span><span data-i18n="feature.1">+28 Proyectos Completados</span></span>
-            <span><span class="feature-dot" style="background: var(--color-celeste);"></span><span data-i18n="feature.2">100% CLIENTES SATISFECHOS</span></span>
-            <span><span class="feature-dot" style="background: var(--color-celeste);"></span><span data-i18n="feature.3">Soporte 24/7</span></span>
+
+        <!-- Franja de confianza anclada abajo a la izquierda -->
+        <div class="hero-trust">
+            <span><span class="feature-dot"></span><span data-i18n="feature.1">+28 Proyectos Completados</span></span>
+            <span><span class="feature-dot"></span><span data-i18n="feature.2">100% CLIENTES SATISFECHOS</span></span>
+            <span><span class="feature-dot"></span><span data-i18n="feature.3">Soporte 24/7</span></span>
         </div>
+
         <div class="scroll-indicator">
             <div class="mouse">
                 <div class="wheel"></div>
             </div>
         </div>
-
-
     </section>
 
     <!-- Sobre Nosotros Section -->
@@ -325,7 +206,8 @@
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
                         </span>
-                        <span data-i18n="about.li1"><strong>Entrega en 3 a 6 semanas</strong> — cumplimos los tiempos acordados</span>
+                        <span data-i18n="about.li1"><strong>Entrega en 3 a 6 semanas</strong> — cumplimos los tiempos
+                            acordados</span>
                     </li>
                     <li>
                         <span class="about-icon-check">
@@ -333,7 +215,8 @@
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
                         </span>
-                        <span data-i18n="about.li2"><strong>Código propio, sin dependencia de terceros</strong> — vos sos dueño de lo que
+                        <span data-i18n="about.li2"><strong>Código propio, sin dependencia de terceros</strong> — vos
+                            sos dueño de lo que
                             construimos</span>
                     </li>
                     <li>
@@ -342,7 +225,8 @@
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
                         </span>
-                        <span data-i18n="about.li3"><strong>Soporte activo post-lanzamiento</strong> — seguimos acompañandote despues de la
+                        <span data-i18n="about.li3"><strong>Soporte activo post-lanzamiento</strong> — seguimos
+                            acompañandote despues de la
                             entrega</span>
                     </li>
                 </ul>
@@ -404,11 +288,93 @@
         </div>
     </section>
 
+    <!-- Proceso / Timeline Section -->
+    <section id="proceso" class="proceso">
+        <div class="container">
+            <div class="proceso-header">
+                <span class="proceso-badge" data-i18n="proceso.badge">CÓMO TRABAJAMOS</span>
+                <h2 class="section-title" data-i18n="proceso.title">Tu proyecto paso a paso</h2>
+            </div>
+
+            <div class="proceso-timeline" id="procesoTimeline">
+                <!-- Línea de fondo + progreso -->
+                <div class="proceso-line">
+                    <div class="proceso-line-bg"></div>
+                    <div class="proceso-line-progress" id="procesoLineProgress"></div>
+                </div>
+
+                <!-- Paso 1 -->
+                <div class="proceso-step" data-side="left">
+                    <div class="proceso-node" data-index="0"><span>1</span></div>
+                    <div class="proceso-content">
+                        <div class="proceso-step-label"><span class="proceso-dash"></span><span data-i18n="proceso.s1.label">PASO 1</span></div>
+                        <h3 data-i18n="proceso.s1.t">Primera reunión</h3>
+                        <p data-i18n="proceso.s1.d">Entendemos tu idea, objetivos y necesidades sin compromiso. Escuchamos qué querés lograr.</p>
+                    </div>
+                </div>
+
+                <!-- Paso 2 -->
+                <div class="proceso-step" data-side="right">
+                    <div class="proceso-node" data-index="1"><span>2</span></div>
+                    <div class="proceso-content">
+                        <div class="proceso-step-label"><span class="proceso-dash"></span><span data-i18n="proceso.s2.label">PASO 2</span></div>
+                        <h3 data-i18n="proceso.s2.t">Propuesta y cotización</h3>
+                        <p data-i18n="proceso.s2.d">Alcance claro, tiempos y precio cerrado. Sin sorpresas ni costos ocultos.</p>
+                    </div>
+                </div>
+
+                <!-- Paso 3 -->
+                <div class="proceso-step" data-side="left">
+                    <div class="proceso-node" data-index="2"><span>3</span></div>
+                    <div class="proceso-content">
+                        <div class="proceso-step-label"><span class="proceso-dash"></span><span data-i18n="proceso.s3.label">PASO 3</span></div>
+                        <h3 data-i18n="proceso.s3.t">Diseño y aprobación</h3>
+                        <p data-i18n="proceso.s3.d">Te mostramos el diseño antes de programar. Ajustamos hasta que te encante.</p>
+                    </div>
+                </div>
+
+                <!-- Paso 4 -->
+                <div class="proceso-step" data-side="right">
+                    <div class="proceso-node" data-index="3"><span>4</span></div>
+                    <div class="proceso-content">
+                        <div class="proceso-step-label"><span class="proceso-dash"></span><span data-i18n="proceso.s4.label">PASO 4</span></div>
+                        <h3 data-i18n="proceso.s4.t">Desarrollo con avances</h3>
+                        <p data-i18n="proceso.s4.d">Construimos tu proyecto con entregas y feedback semanal. Siempre sabés en qué vamos.</p>
+                    </div>
+                </div>
+
+                <!-- Paso 5 -->
+                <div class="proceso-step" data-side="left">
+                    <div class="proceso-node" data-index="4"><span>5</span></div>
+                    <div class="proceso-content">
+                        <div class="proceso-step-label"><span class="proceso-dash"></span><span data-i18n="proceso.s5.label">PASO 5</span></div>
+                        <h3 data-i18n="proceso.s5.t">Lanzamiento</h3>
+                        <p data-i18n="proceso.s5.d">Ponemos todo en producción, optimizado y listo para usar desde el primer día.</p>
+                    </div>
+                </div>
+
+                <!-- Paso 6 -->
+                <div class="proceso-step" data-side="right">
+                    <div class="proceso-node proceso-node-last" data-index="5">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
+                    <div class="proceso-content">
+                        <div class="proceso-step-label"><span class="proceso-dash"></span><span data-i18n="proceso.s6.label">PASO 6</span></div>
+                        <h3 data-i18n="proceso.s6.t">Acompañamiento</h3>
+                        <p data-i18n="proceso.s6.d">Seguimos con vos después de la entrega: soporte, mejoras y nuevas ideas.</p>
+                        <a href="#contacto" class="btn btn-primary proceso-cta" data-i18n="proceso.cta">Comenzar proyecto</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Services Section -->
     <section id="servicios" class="services">
         <div class="container" data-aos="fade-up">
             <h2 class="section-title reveal" data-aos="fade-up" data-i18n="services.title">Nuestros Servicios</h2>
-            <p class="section-subtitle fade-up" data-aos="fade-up" data-delay="100" data-i18n="services.subtitle">Soluciones de software de élite diseñadas
+            <p class="section-subtitle fade-up" data-aos="fade-up" data-delay="100" data-i18n="services.subtitle">
+                Soluciones de software de élite diseñadas
                 para escalar tu negocio.</p>
 
             <div class="services-grid">
@@ -416,16 +382,20 @@
                 <article class="service-card-new" data-aos="fade-up">
                     <div class="service-tag" data-i18n="svc1.tag">01. WEBS</div>
                     <h3 data-i18n="svc1.t">Páginas Web</h3>
-                    <p data-i18n="svc1.d">Creamos sitios web rápidos, pensados para brindar una excelente experiencia de usuario y
+                    <p data-i18n="svc1.d">Creamos sitios web rápidos, pensados para brindar una excelente experiencia de
+                        usuario y
                         convertir visitas
                         en clientes.</p>
                     <ul class="service-features-new">
-                        <li class="service-feature-item"><span class="feature-dot"></span> <span data-i18n="svc1.f1">Navegación simple e intuitiva</span>
+                        <li class="service-feature-item"><span class="feature-dot"></span> <span
+                                data-i18n="svc1.f1">Navegación simple e intuitiva</span>
                         </li>
-                        <li class="service-feature-item"><span class="feature-dot"></span> <span data-i18n="svc1.f2">Experiencia fluida en todos
-                            los dispositivos</span></li>
-                        <li class="service-feature-item"><span class="feature-dot"></span> <span data-i18n="svc1.f3">Convertí visitas en clientes
-                            reales</span></li>
+                        <li class="service-feature-item"><span class="feature-dot"></span> <span
+                                data-i18n="svc1.f2">Experiencia fluida en todos
+                                los dispositivos</span></li>
+                        <li class="service-feature-item"><span class="feature-dot"></span> <span
+                                data-i18n="svc1.f3">Convertí visitas en clientes
+                                reales</span></li>
                     </ul>
                     <div class="service-image-stage">
                         <img src="images/Gemini_Generated_Image_mx4o96mx4o96mx4o.png" alt="Web Design Excellence"
@@ -437,15 +407,19 @@
                 <article class="service-card-new" data-aos="fade-up" data-aos-delay="100">
                     <div class="service-tag" data-i18n="svc2.tag">02. SISTEMAS</div>
                     <h3 data-i18n="svc2.t">Sistemas Internos</h3>
-                    <p data-i18n="svc2.d">Desarrollamos sistemas internos personalizados para optimizar la gestión y potenciar el
+                    <p data-i18n="svc2.d">Desarrollamos sistemas internos personalizados para optimizar la gestión y
+                        potenciar el
                         crecimiento de tu empresa.</p>
                     <ul class="service-features-new">
-                        <li class="service-feature-item"><span class="feature-dot"></span> <span data-i18n="svc2.f1">Control total de stock,
-                            ventas e ingresos</span></li>
-                        <li class="service-feature-item"><span class="feature-dot"></span> <span data-i18n="svc2.f2">Panel de gestión para
-                            empleados y administradores</span></li>
-                        <li class="service-feature-item"><span class="feature-dot"></span> <span data-i18n="svc2.f3">Información segura y
-                            centralizada en todo momento</span></li>
+                        <li class="service-feature-item"><span class="feature-dot"></span> <span
+                                data-i18n="svc2.f1">Control total de stock,
+                                ventas e ingresos</span></li>
+                        <li class="service-feature-item"><span class="feature-dot"></span> <span
+                                data-i18n="svc2.f2">Panel de gestión para
+                                empleados y administradores</span></li>
+                        <li class="service-feature-item"><span class="feature-dot"></span> <span
+                                data-i18n="svc2.f3">Información segura y
+                                centralizada en todo momento</span></li>
                     </ul>
                     <div class="service-image-stage">
                         <img src="images/Gemini_Generated_Image_301ln7301ln7301l.png" alt="Custom Software Systems"
@@ -457,15 +431,19 @@
                 <article class="service-card-new" data-aos="fade-up" data-aos-delay="200">
                     <div class="service-tag" data-i18n="svc3.tag">03. IA & AUTO</div>
                     <h3 data-i18n="svc3.t">Automatizaciones</h3>
-                    <p data-i18n="svc3.d">Automatizá tareas repetitivas y dejá que sistemas inteligentes trabajen por vos, ahorrando tiempo
+                    <p data-i18n="svc3.d">Automatizá tareas repetitivas y dejá que sistemas inteligentes trabajen por
+                        vos, ahorrando tiempo
                         y recursos.</p>
                     <ul class="service-features-new">
-                        <li class="service-feature-item"><span class="feature-dot"></span> <span data-i18n="svc3.f1">Respuestas automáticas 24/7</span>
+                        <li class="service-feature-item"><span class="feature-dot"></span> <span
+                                data-i18n="svc3.f1">Respuestas automáticas 24/7</span>
                         </li>
-                        <li class="service-feature-item"><span class="feature-dot"></span> <span data-i18n="svc3.f2">Automatización de tareas
-                            repetitivas</span></li>
-                        <li class="service-feature-item"><span class="feature-dot"></span> <span data-i18n="svc3.f3">Ahorro de tiempo en procesos
-                            diarios</span></li>
+                        <li class="service-feature-item"><span class="feature-dot"></span> <span
+                                data-i18n="svc3.f2">Automatización de tareas
+                                repetitivas</span></li>
+                        <li class="service-feature-item"><span class="feature-dot"></span> <span
+                                data-i18n="svc3.f3">Ahorro de tiempo en procesos
+                                diarios</span></li>
                     </ul>
                     <div class="service-image-stage">
                         <img src="images/Gemini_Generated_Image_ynjupeynjupeynju.png" alt="Digital Automation & AI"
@@ -492,177 +470,248 @@
 
     <!-- Horizontal Scroll Section -->
     <div id="horizontal-scroll-container" style="overflow: hidden;">
-        <div id="horizontal-scroll-wrapper" style="display: flex; width: 300vw; height: 100vh;">
-            
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="portfolio h-section">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up" data-delay="0" data-i18n="portfolio.title">Nuestros Trabajos</h2>
-            <p class="section-subtitle" data-aos="fade-up" data-delay="200" data-i18n="portfolio.subtitle">Proyectos reales que generan impacto,
-                eficiencia y crecimiento.</p>
+        <div id="horizontal-scroll-wrapper" style="display: flex; width: 400vw; height: 100vh;">
 
-            <div class="portfolio-grid">
-                <div class="portfolio-item" data-aos="zoom-in" data-delay="0">
-                    <div class="portfolio-image">
-                        <img src="images/Captura de pantalla 2026-01-15 010835.png" alt="Concesionaria Subaru">
+            <!-- Portfolio Section — todos los proyectos en una sola fila continua -->
+            <section id="portfolio" class="portfolio h-section" style="width: 200vw; min-width: 200vw;">
+                <div style="width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: flex-start; padding: 88px 3rem 0;">
+                    <div style="margin-bottom: 0.75rem; width: 100vw; margin-left: -3rem; padding: 0 3rem; box-sizing: border-box;">
+                        <h2 class="section-title" style="margin-bottom: 0.5rem;">Nuestros Trabajos</h2>
+                        <p class="section-subtitle">Proyectos reales que generan impacto, eficiencia y crecimiento.</p>
                     </div>
-                    <div class="portfolio-card-content">
-                        <h3 class="portfolio-title" data-i18n="port1.t">Concesionaria Subaru</h3>
-                        <p class="portfolio-desc" data-i18n="port1.d">Sitio web institucional para concesionaria oficial Subaru y Suzuki.
-                            Catálogo de vehículos, consultas rápidas por WhatsApp y gestión de marcas premium.</p>
-                        <div class="portfolio-tags">
-                            <span data-aos="fade-up" data-delay="400">Next.js</span>
-                            <span data-aos="fade-up" data-delay="500">React</span>
-                            <span data-aos="fade-up" data-delay="600">Node.js</span>
+
+                    <div class="portfolio-row-grid">
+                        <!-- Proyecto 1: Concesionaria Subaru -->
+                        <div class="portfolio-item" data-aos="zoom-in" data-delay="0">
+                            <div class="portfolio-image">
+                                <img src="images/Captura de pantalla 2026-01-15 010835.png" alt="Concesionaria Subaru">
+                            </div>
+                            <div class="portfolio-card-content">
+                                <h3 class="portfolio-title" data-i18n="port1.t">Concesionaria Subaru</h3>
+                                <p class="portfolio-desc" data-i18n="port1.d">Sitio web institucional para concesionaria oficial Subaru y Suzuki. Catálogo de vehículos, consultas rápidas por WhatsApp y gestión de marcas premium.</p>
+                                <div class="portfolio-tags">
+                                    <span>Next.js</span>
+                                    <span>React</span>
+                                    <span>Node.js</span>
+                                </div>
+                                <div style="flex:1"></div>
+                                <a class="portfolio-link" href="#" target="_blank" style="margin-top:2rem;"><span data-i18n="port.link">Ver proyecto</span> <span class="portfolio-link-arrow">↗</span></a>
+                            </div>
                         </div>
-                        <div style="flex:1"></div>
-                        <a class="portfolio-link" href="#" target="_blank" style="margin-top:2.2rem;"><span data-i18n="port.link">Ver proyecto</span> <span
-                                class="portfolio-link-arrow">↗</span></a>
+
+                        <!-- Proyecto 2: BitFlow Exchange -->
+                        <div class="portfolio-item" data-aos="zoom-in" data-delay="100">
+                            <div class="portfolio-image">
+                                <img src="images/Captura de pantalla 2026-01-15 010927.png" alt="BitFlow Exchange">
+                            </div>
+                            <div class="portfolio-card-content">
+                                <h3 class="portfolio-title" data-i18n="port2.t">BitFlow Exchange</h3>
+                                <p class="portfolio-desc" data-i18n="port2.d">Plataforma de exchange de criptomonedas con trading, wallet, swap y monitoreo de mercados en tiempo real.</p>
+                                <div class="portfolio-tags">
+                                    <span>React</span>
+                                    <span>Node.js</span>
+                                    <span>WebSocket</span>
+                                </div>
+                                <div style="flex:1"></div>
+                                <div class="portfolio-nda nda-bottom">
+                                    <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" style="stroke: rgba(var(--white-rgb), 0.5); margin-right:7px;"><rect x="4" y="10" width="16" height="10" rx="2" /><path d="M8 10V7a4 4 0 0 1 8 0v3" /></svg>
+                                    <span class="portfolio-nda-text" data-i18n="port.nda">Proyecto bajo acuerdo de confidencialidad</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Proyecto 3: Automatización WhatsApp -->
+                        <div class="portfolio-item" data-aos="zoom-in" data-delay="200">
+                            <div class="portfolio-image">
+                                <img src="images/Captura de pantalla 2026-01-15 011126.png" alt="Automatización de WhatsApp">
+                            </div>
+                            <div class="portfolio-card-content">
+                                <h3 class="portfolio-title" data-i18n="port3.t">Automatización de WhatsApp</h3>
+                                <p class="portfolio-desc" data-i18n="port3.d">Sistema de automatización para WhatsApp Business: respuestas automáticas, integración con catálogos y gestión de campañas promocionales.</p>
+                                <div class="portfolio-tags">
+                                    <span>Node.js</span>
+                                    <span>WhatsApp API</span>
+                                    <span>Cloud Functions</span>
+                                </div>
+                                <div style="flex:1"></div>
+                                <div class="portfolio-nda nda-bottom">
+                                    <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" style="stroke: rgba(var(--white-rgb), 0.5); margin-right:7px;"><rect x="4" y="10" width="16" height="10" rx="2" /><path d="M8 10V7a4 4 0 0 1 8 0v3" /></svg>
+                                    <span class="portfolio-nda-text" data-i18n="port.nda">Proyecto bajo acuerdo de confidencialidad</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Proyecto 4: E-Commerce Premium -->
+                        <div class="portfolio-item" data-aos="zoom-in" data-delay="300">
+                            <div class="portfolio-image">
+                                <img src="images/Captura de pantalla 2026-01-15 010835.png" alt="E-Commerce Premium">
+                            </div>
+                            <div class="portfolio-card-content">
+                                <h3 class="portfolio-title">E-Commerce Premium</h3>
+                                <p class="portfolio-desc">Tienda online de alto rendimiento con pasarela de pago integrada, gestión de inventario en tiempo real, panel de administración y experiencia mobile-first optimizada.</p>
+                                <div class="portfolio-tags">
+                                    <span>Next.js</span>
+                                    <span>Stripe</span>
+                                    <span>PostgreSQL</span>
+                                </div>
+                                <div style="flex:1"></div>
+                                <div class="portfolio-nda nda-bottom">
+                                    <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" style="stroke: rgba(var(--white-rgb), 0.5); margin-right:7px;"><rect x="4" y="10" width="16" height="10" rx="2" /><path d="M8 10V7a4 4 0 0 1 8 0v3" /></svg>
+                                    <span class="portfolio-nda-text">Proyecto bajo acuerdo de confidencialidad</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Proyecto 5: Dashboard SaaS -->
+                        <div class="portfolio-item" data-aos="zoom-in" data-delay="400">
+                            <div class="portfolio-image">
+                                <img src="images/Captura de pantalla 2026-01-15 010927.png" alt="Dashboard SaaS Analytics">
+                            </div>
+                            <div class="portfolio-card-content">
+                                <h3 class="portfolio-title">Dashboard SaaS Analytics</h3>
+                                <p class="portfolio-desc">Plataforma SaaS de analítica de datos con visualizaciones avanzadas, reportes automáticos, multi-tenant y sistema de roles y permisos granulares por organización.</p>
+                                <div class="portfolio-tags">
+                                    <span>React</span>
+                                    <span>Python</span>
+                                    <span>AWS</span>
+                                </div>
+                                <div style="flex:1"></div>
+                                <div class="portfolio-nda nda-bottom">
+                                    <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" style="stroke: rgba(var(--white-rgb), 0.5); margin-right:7px;"><rect x="4" y="10" width="16" height="10" rx="2" /><path d="M8 10V7a4 4 0 0 1 8 0v3" /></svg>
+                                    <span class="portfolio-nda-text">Proyecto bajo acuerdo de confidencialidad</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Proyecto 6: App Mobile -->
+                        <div class="portfolio-item" data-aos="zoom-in" data-delay="500">
+                            <div class="portfolio-image">
+                                <img src="images/Captura de pantalla 2026-01-15 011126.png" alt="App Mobile de Gestión">
+                            </div>
+                            <div class="portfolio-card-content">
+                                <h3 class="portfolio-title">App Mobile de Gestión</h3>
+                                <p class="portfolio-desc">Aplicación móvil cross-platform para gestión de equipos: asignación de tareas, tracking en tiempo real, notificaciones push y reportes de productividad.</p>
+                                <div class="portfolio-tags">
+                                    <span>React Native</span>
+                                    <span>Firebase</span>
+                                    <span>Node.js</span>
+                                </div>
+                                <div style="flex:1"></div>
+                                <div class="portfolio-nda nda-bottom">
+                                    <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" style="stroke: rgba(var(--white-rgb), 0.5); margin-right:7px;"><rect x="4" y="10" width="16" height="10" rx="2" /><path d="M8 10V7a4 4 0 0 1 8 0v3" /></svg>
+                                    <span class="portfolio-nda-text">Proyecto bajo acuerdo de confidencialidad</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="portfolio-item" data-aos="zoom-in" data-delay="100">
-                    <div class="portfolio-image">
-                        <img src="images/Captura de pantalla 2026-01-15 010927.png" alt="BitFlow Exchange">
-                    </div>
-                    <div class="portfolio-card-content">
-                        <h3 class="portfolio-title" data-i18n="port2.t">BitFlow Exchange</h3>
-                        <p class="portfolio-desc" data-i18n="port2.d">Plataforma de exchange de criptomonedas con trading, wallet, swap y
-                            monitoreo de mercados en tiempo real.</p>
-                        <div class="portfolio-tags">
-                            <span data-aos="fade-up" data-delay="400">React</span>
-                            <span data-aos="fade-up" data-delay="500">Node.js</span>
-                            <span data-aos="fade-up" data-delay="600">WebSocket</span>
-                        </div>
-                        <div style="flex:1"></div>
-                        <div class="portfolio-nda nda-bottom">
-                            <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24"
-                                style="stroke: rgba(var(--white-rgb), 0.5); margin-right:7px;">
-                                <rect x="4" y="10" width="16" height="10" rx="2" />
-                                <path d="M8 10V7a4 4 0 0 1 8 0v3" />
-                            </svg>
-                            <span class="portfolio-nda-text" data-i18n="port.nda">Proyecto bajo acuerdo de confidencialidad</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-aos="zoom-in" data-delay="200">
-                    <div class="portfolio-image">
-                        <img src="images/Captura de pantalla 2026-01-15 011126.png" alt="Automatización de WhatsApp">
-                    </div>
-                    <div class="portfolio-card-content">
-                        <h3 class="portfolio-title" data-i18n="port3.t">Automatización de WhatsApp</h3>
-                        <p class="portfolio-desc" data-i18n="port3.d">Sistema de automatización para WhatsApp Business: respuestas
-                            automáticas, integración con catálogos y gestión de campañas promocionales.</p>
-                        <div class="portfolio-tags">
-                            <span data-aos="fade-up" data-delay="400">Node.js</span>
-                            <span data-aos="fade-up" data-delay="500">WhatsApp API</span>
-                            <span data-aos="fade-up" data-delay="600">Cloud Functions</span>
-                        </div>
-                        <div style="flex:1"></div>
-                        <div class="portfolio-nda nda-bottom">
-                            <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24"
-                                style="stroke: rgba(var(--white-rgb), 0.5); margin-right:7px;">
-                                <rect x="4" y="10" width="16" height="10" rx="2" />
-                                <path d="M8 10V7a4 4 0 0 1 8 0v3" />
-                            </svg>
-                            <span class="portfolio-nda-text" data-i18n="port.nda">Proyecto bajo acuerdo de confidencialidad</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+            </section>
+
 
             <!-- Clients Section -->
             <section id="clientes" class="clients h-section">
-        <div class="container clients-container">
-            <div class="clients-header">
-                <h2 data-aos="fade-up" data-i18n="clients.title">Empresas que confían en nosotros</h2>
-                <p data-aos="fade-up" data-delay="100" data-i18n="clients.subtitle">Más de 28 proyectos exitosos respaldan nuestra trayectoria.</p>
-            </div>
-
-            <div class="clients-grid">
-                <!-- Fila 1 -->
-                <div class="client-logo-box" data-aos="zoom-in" data-delay="100">
-                    <img src="https://cdn.simpleicons.org/google/ffffff" alt="Google" style="height: 40px; width: auto; object-fit: contain;">
-                </div>
-                <div class="client-logo-box" data-aos="zoom-in" data-delay="150">
-                    <img src="https://cdn.simpleicons.org/apple/ffffff" alt="Apple" style="height: 45px; width: auto; object-fit: contain;">
-                </div>
-                <div class="client-logo-box" data-aos="zoom-in" data-delay="200">
-                    <img src="https://cdn.simpleicons.org/netflix/ffffff" alt="Netflix" style="height: 35px; width: auto; object-fit: contain;">
-                </div>
-                
-                <!-- Fila 2 -->
-                <div class="client-logo-box" data-aos="zoom-in" data-delay="300">
-                    <img src="https://cdn.simpleicons.org/spotify/ffffff" alt="Spotify" style="height: 45px; width: auto; object-fit: contain;">
-                </div>
-                <div class="client-logo-box" data-aos="zoom-in" data-delay="350">
-                    <img src="https://cdn.simpleicons.org/nike/ffffff" alt="Nike" style="height: 40px; width: auto; object-fit: contain;">
-                </div>
-                <div class="client-logo-box" data-aos="zoom-in" data-delay="400">
-                    <img src="https://cdn.simpleicons.org/tesla/ffffff" alt="Tesla" style="height: 40px; width: auto; object-fit: contain;">
-                </div>
-                
-                <!-- Fila 3 -->
-                <div class="client-logo-box" data-aos="zoom-in" data-delay="500">
-                    <img src="https://cdn.simpleicons.org/audi/ffffff" alt="Audi" style="height: 45px; width: auto; object-fit: contain;">
-                </div>
-                <div class="client-logo-box" data-aos="zoom-in" data-delay="550">
-                    <img src="https://cdn.simpleicons.org/stripe/ffffff" alt="Stripe" style="height: 40px; width: auto; object-fit: contain;">
-                </div>
-                <div class="client-logo-box" data-aos="zoom-in" data-delay="600">
-                    <img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub" style="height: 45px; width: auto; object-fit: contain;">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Global Reach Section -->
-    <section id="alcance" class="global-reach h-section">
-        <div class="map-container">
-            <div class="map-content-wrapper">
-                <!-- Left Content: Text & Stats -->
-                <div class="map-text-content" data-aos="fade-right">
-                    <div class="map-header">
-                        <div class="hero-badge about-badge" data-aos="fade-right" style="margin-bottom: 1rem;">
-                            <span class="hero-badge-dot"></span>
-                            <span data-i18n="reach.badge">PRESENCIA INTERNACIONAL</span>
-                        </div>
-                        <h2 data-aos="fade-right" data-delay="100" data-i18n="reach.title">Alcance <span class="text-gradient">Global</span></h2>
-                        <p data-aos="fade-right" data-delay="200" data-i18n="reach.desc">Soluciones de software sin fronteras, con presencia estratégica en mercados clave de Iberoamérica y Europa.</p>
+                <div class="container clients-container">
+                    <div class="clients-header">
+                        <h2 data-aos="fade-up" data-i18n="clients.title">Empresas que confían en nosotros</h2>
+                        <p data-aos="fade-up" data-delay="100" data-i18n="clients.subtitle">Más de 28 proyectos exitosos
+                            respaldan nuestra trayectoria.</p>
                     </div>
 
-                    <!-- Stats Box Inside Left Content -->
-                    <div class="map-stats">
-                        <div class="stat-item">
-                            <h4>4</h4>
-                            <p data-i18n="reach.s1">Países</p>
+                    <div class="clients-grid">
+                        <!-- Fila 1 -->
+                        <div class="client-logo-box" data-aos="zoom-in" data-delay="100">
+                            <img src="https://cdn.simpleicons.org/google/ffffff" alt="Google"
+                                style="height: 40px; width: auto; object-fit: contain;">
                         </div>
-                        <div class="stat-item">
-                            <h4>2</h4>
-                            <p data-i18n="reach.s2">Continentes</p>
+                        <div class="client-logo-box" data-aos="zoom-in" data-delay="150">
+                            <img src="https://cdn.simpleicons.org/apple/ffffff" alt="Apple"
+                                style="height: 45px; width: auto; object-fit: contain;">
                         </div>
-                        <div class="stat-item">
-                            <h4>24/7</h4>
-                            <p data-i18n="reach.s3">Soporte Global</p>
+                        <div class="client-logo-box" data-aos="zoom-in" data-delay="200">
+                            <img src="https://cdn.simpleicons.org/netflix/ffffff" alt="Netflix"
+                                style="height: 35px; width: auto; object-fit: contain;">
                         </div>
-                        <div class="stat-item">
-                            <h4>28+</h4>
-                            <p data-i18n="reach.s4">Proyectos IT</p>
+
+                        <!-- Fila 2 -->
+                        <div class="client-logo-box" data-aos="zoom-in" data-delay="300">
+                            <img src="https://cdn.simpleicons.org/spotify/ffffff" alt="Spotify"
+                                style="height: 45px; width: auto; object-fit: contain;">
+                        </div>
+                        <div class="client-logo-box" data-aos="zoom-in" data-delay="350">
+                            <img src="https://cdn.simpleicons.org/nike/ffffff" alt="Nike"
+                                style="height: 40px; width: auto; object-fit: contain;">
+                        </div>
+                        <div class="client-logo-box" data-aos="zoom-in" data-delay="400">
+                            <img src="https://cdn.simpleicons.org/tesla/ffffff" alt="Tesla"
+                                style="height: 40px; width: auto; object-fit: contain;">
+                        </div>
+
+                        <!-- Fila 3 -->
+                        <div class="client-logo-box" data-aos="zoom-in" data-delay="500">
+                            <img src="https://cdn.simpleicons.org/audi/ffffff" alt="Audi"
+                                style="height: 45px; width: auto; object-fit: contain;">
+                        </div>
+                        <div class="client-logo-box" data-aos="zoom-in" data-delay="550">
+                            <img src="https://cdn.simpleicons.org/stripe/ffffff" alt="Stripe"
+                                style="height: 40px; width: auto; object-fit: contain;">
+                        </div>
+                        <div class="client-logo-box" data-aos="zoom-in" data-delay="600">
+                            <img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub"
+                                style="height: 45px; width: auto; object-fit: contain;">
                         </div>
                     </div>
                 </div>
+            </section>
 
-                <!-- Right Content: 3D Globe -->
-                <div class="map-visual-content" data-aos="fade-left">
-                    <div class="globe-container">
-                        <div id="globe-3d-container"></div>
-                        <div class="globe-overlay"></div>
+            <!-- Global Reach Section -->
+            <section id="alcance" class="global-reach h-section">
+                <div class="map-container">
+                    <div class="map-content-wrapper">
+                        <!-- Left Content: Text & Stats -->
+                        <div class="map-text-content" data-aos="fade-right">
+                            <div class="map-header">
+                                <div class="hero-badge about-badge" data-aos="fade-right" style="margin-bottom: 1rem;">
+                                    <span class="hero-badge-dot"></span>
+                                    <span data-i18n="reach.badge">PRESENCIA INTERNACIONAL</span>
+                                </div>
+                                <h2 data-aos="fade-right" data-delay="100" data-i18n="reach.title">Alcance <span
+                                        class="text-gradient">Global</span></h2>
+                                <p data-aos="fade-right" data-delay="200" data-i18n="reach.desc">Soluciones de software
+                                    sin fronteras, con presencia estratégica en mercados clave de Iberoamérica y Europa.
+                                </p>
+                            </div>
+
+                            <!-- Stats Box Inside Left Content -->
+                            <div class="map-stats">
+                                <div class="stat-item">
+                                    <h4>4</h4>
+                                    <p data-i18n="reach.s1">Países</p>
+                                </div>
+                                <div class="stat-item">
+                                    <h4>2</h4>
+                                    <p data-i18n="reach.s2">Continentes</p>
+                                </div>
+                                <div class="stat-item">
+                                    <h4>24/7</h4>
+                                    <p data-i18n="reach.s3">Soporte Global</p>
+                                </div>
+                                <div class="stat-item">
+                                    <h4>28+</h4>
+                                    <p data-i18n="reach.s4">Proyectos IT</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Content: 3D Globe -->
+                        <div class="map-visual-content" data-aos="fade-left">
+                            <div class="globe-container">
+                                <div id="globe-3d-container"></div>
+                                <div class="globe-overlay"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
         </div>
     </div>
@@ -687,7 +736,9 @@
                     </button>
                     <div class="faq-answer">
                         <div class="faq-answer-inner" data-i18n="faq.a1">
-                            El tiempo de desarrollo varía según la complejidad, pero la mayoría de nuestros proyectos (webs premium, sistemas internos o automatizaciones) se completan en un rango de <strong>3 a 6 semanas</strong>.
+                            El tiempo de desarrollo varía según la complejidad, pero la mayoría de nuestros proyectos
+                            (webs premium, sistemas internos o automatizaciones) se completan en un rango de <strong>3 a
+                                6 semanas</strong>.
                         </div>
                     </div>
                 </div>
@@ -703,7 +754,9 @@
                     </button>
                     <div class="faq-answer">
                         <div class="faq-answer-inner" data-i18n="faq.a2">
-                            Absolutamente. Al finalizar el proyecto y completar el pago, entregamos la propiedad total del código fuente y toda la documentación técnica necesaria. En Vestra construimos activos para tu negocio, no dependencias.
+                            Absolutamente. Al finalizar el proyecto y completar el pago, entregamos la propiedad total
+                            del código fuente y toda la documentación técnica necesaria. En Vestra construimos activos
+                            para tu negocio, no dependencias.
                         </div>
                     </div>
                 </div>
@@ -719,7 +772,8 @@
                     </button>
                     <div class="faq-answer">
                         <div class="faq-answer-inner" data-i18n="faq.a3">
-                            Sí. Ofrecemos planes de soporte y mantenimiento post-lanzamiento para asegurar que tu software se mantenga actualizado, seguro y funcionando al 100% de su capacidad.
+                            Sí. Ofrecemos planes de soporte y mantenimiento post-lanzamiento para asegurar que tu
+                            software se mantenga actualizado, seguro y funcionando al 100% de su capacidad.
                         </div>
                     </div>
                 </div>
@@ -735,7 +789,9 @@
                     </button>
                     <div class="faq-answer">
                         <div class="faq-answer-inner" data-i18n="faq.a4">
-                            Utilizamos un stack tecnológico moderno y escalable, incluyendo <strong>React, Next.js, Node.js y servicios en la nube (AWS/Google Cloud)</strong>. Elegimos la herramienta que mejor se adapte a los objetivos de tu negocio.
+                            Utilizamos un stack tecnológico moderno y escalable, incluyendo <strong>React, Next.js,
+                                Node.js y servicios en la nube (AWS/Google Cloud)</strong>. Elegimos la herramienta que
+                            mejor se adapte a los objetivos de tu negocio.
                         </div>
                     </div>
                 </div>
@@ -751,7 +807,9 @@
                     </button>
                     <div class="faq-answer">
                         <div class="faq-answer-inner" data-i18n="faq.a5">
-                            Por supuesto. Nos especializamos en conectar tu software con herramientas de terceros como WhatsApp API, pasarelas de pago (Mercado Pago/Stripe), CRM o cualquier sistema interno que ya estés utilizando.
+                            Por supuesto. Nos especializamos en conectar tu software con herramientas de terceros como
+                            WhatsApp API, pasarelas de pago (Mercado Pago/Stripe), CRM o cualquier sistema interno que
+                            ya estés utilizando.
                         </div>
                     </div>
                 </div>
@@ -777,10 +835,112 @@
                         Converti tu idea en <span class="text-gradient">software</span>
                     </h2>
                     <p class="cta-premium-subtitle" data-aos="fade-up" data-delay="300" data-i18n="cta.subtitle">
-                        Desde sitios web increibles hasta automatizaciones complejas.
+                        Desde sitios web increíbles hasta automatizaciones complejas.
                         Estamos listos para construir la solución que tu negocio necesita.
                     </p>
-                    <div class="cta-premium-actions" data-aos="zoom-in" data-aos-delay="400">
+
+                    <!-- Widget del Calendario Simulado Integrado -->
+                    <div class="reunion-widget-wrapper" data-aos="zoom-in" data-aos-delay="400" style="margin-top: 4rem;">
+                        <!-- Columna 1: Info -->
+                        <div class="reunion-info" style="text-align: left;">
+                            <h3 data-i18n="reunion.title">Asesorate en una videollamada Gratuita con Vestra</h3>
+                            <div class="reunion-meta-list">
+                                <div class="reunion-meta-item">
+                                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <polyline points="12 6 12 12 16 14"></polyline>
+                                    </svg>
+                                    <span>40 min</span>
+                                </div>
+                                <div class="reunion-meta-item">
+                                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                                    </svg>
+                                    <span id="selected-date-display">Lun., 20 de Jul. de 2026</span>
+                                </div>
+                                <div class="reunion-meta-item">
+                                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                        <path d="M12 2a10 10 0 1 0 10 10H12V2z"></path>
+                                        <path d="M12 2a10 10 0 0 1 10 10H12V2z"></path>
+                                    </svg>
+                                    <span>America/Buenos_Aires (GMT-3)</span>
+                                </div>
+                            </div>
+                            <p class="reunion-desc" data-i18n="reunion.desc">
+                                En esta sesión rápida y personalizada de 40 minutos vamos a analizar la idea de tu producto digital, definir su alcance operativo y plantear la mejor estrategia técnica para hacerlo realidad.
+                            </p>
+                        </div>
+
+                        <!-- Columna 2: Calendario -->
+                        <div class="reunion-calendar">
+                            <div class="reunion-calendar-header">
+                                <span class="reunion-month-title">Julio 2026</span>
+                                <div style="display: flex; gap: 0.5rem;">
+                                    <button class="reunion-nav-btn" aria-label="Mes anterior">
+                                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                            <polyline points="15 18 9 12 15 6"></polyline>
+                                        </svg>
+                                    </button>
+                                    <button class="reunion-nav-btn" aria-label="Siguiente mes">
+                                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                            <polyline points="9 18 15 12 9 6"></polyline>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="reunion-weekdays">
+                                <span>Dom</span><span>Lun</span><span>Mar</span><span>Mié</span><span>Jue</span><span>Vie</span><span>Sáb</span>
+                            </div>
+                            
+                            <div class="reunion-days-grid" id="calendar-days">
+                                <span class="reunion-day"></span>
+                                <span class="reunion-day"></span>
+                                <span class="reunion-day"></span>
+                                
+                                <button class="reunion-day">1</button><button class="reunion-day">2</button><button class="reunion-day">3</button><button class="reunion-day">4</button>
+                                <button class="reunion-day">5</button><button class="reunion-day">6</button><button class="reunion-day">7</button><button class="reunion-day">8</button>
+                                <button class="reunion-day">9</button><button class="reunion-day">10</button><button class="reunion-day">11</button><button class="reunion-day">12</button>
+                                <button class="reunion-day">13</button><button class="reunion-day">14</button><button class="reunion-day">15</button><button class="reunion-day">16</button>
+                                <button class="reunion-day">17</button><button class="reunion-day">18</button><button class="reunion-day">19</button>
+                                
+                                <button class="reunion-day active selected" data-day="20" data-weekday="Lun.">20</button>
+                                <button class="reunion-day active" data-day="21" data-weekday="Mar.">21</button>
+                                <button class="reunion-day active" data-day="22" data-weekday="Mié.">22</button>
+                                <button class="reunion-day active" data-day="23" data-weekday="Jue.">23</button>
+                                <button class="reunion-day active" data-day="24" data-weekday="Vie.">24</button>
+                                
+                                <button class="reunion-day">25</button><button class="reunion-day">26</button>
+                                
+                                <button class="reunion-day active" data-day="27" data-weekday="Lun.">27</button>
+                                <button class="reunion-day active" data-day="28" data-weekday="Mar.">28</button>
+                                <button class="reunion-day active" data-day="29" data-weekday="Mié.">29</button>
+                                <button class="reunion-day active" data-day="30" data-weekday="Jue.">30</button>
+                                <button class="reunion-day active" data-day="31" data-weekday="Vie.">31</button>
+                            </div>
+                        </div>
+
+                        <!-- Columna 3: Horas -->
+                        <div class="reunion-slots" style="text-align: left;">
+                            <span class="reunion-slots-title" data-i18n="reunion.slots">Seleccioná la Hora</span>
+                            <div class="reunion-slots-container" id="slots-container">
+                                <button class="reunion-slot-btn" data-time="08:00 AM">08:00 AM</button>
+                                <button class="reunion-slot-btn" data-time="08:30 AM">08:30 AM</button>
+                                <button class="reunion-slot-btn" data-time="10:00 AM">10:00 AM</button>
+                                <button class="reunion-slot-btn" data-time="10:30 AM">10:30 AM</button>
+                                <button class="reunion-slot-btn" data-time="11:00 AM">11:00 AM</button>
+                                <button class="reunion-slot-btn" data-time="11:30 AM">11:30 AM</button>
+                                <button class="reunion-slot-btn" data-time="02:00 PM">02:00 PM</button>
+                                <button class="reunion-slot-btn" data-time="02:30 PM">02:30 PM</button>
+                                <button class="reunion-slot-btn" data-time="03:00 PM">03:00 PM</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cta-premium-actions" data-aos="zoom-in" data-aos-delay="500" style="margin-top: 3rem;">
                         <a href="contacto.html" class="btn-premium-cta">
                             <span data-i18n="cta.btn">Comenzar proyecto</span>
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -794,6 +954,64 @@
             </div>
         </div>
     </section>
+
+    <script>
+        // Lógica interactiva del Calendario Simulado
+        document.addEventListener('DOMContentLoaded', function () {
+            const calendarDays = document.getElementById('calendar-days');
+            const dateDisplay = document.getElementById('selected-date-display');
+            const slotsContainer = document.getElementById('slots-container');
+
+            if (!calendarDays || !dateDisplay || !slotsContainer) return;
+
+            let selectedDay = "20";
+            let selectedWeekday = "Lun.";
+
+            // Cambiar día seleccionado
+            calendarDays.addEventListener('click', function (e) {
+                const button = e.target.closest('.reunion-day.active');
+                if (!button) return;
+
+                // Remover clase seleccionada anterior
+                calendarDays.querySelectorAll('.reunion-day.active').forEach(btn => {
+                    btn.classList.remove('selected');
+                });
+
+                // Añadir clase seleccionada al clickeado
+                button.classList.add('selected');
+                
+                selectedDay = button.getAttribute('data-day');
+                selectedWeekday = button.getAttribute('data-weekday');
+                
+                // Actualizar la fecha mostrada en la columna 1
+                dateDisplay.innerText = `${selectedWeekday}, ${selectedDay} de Jul. de 2026`;
+
+                // Mezclar horarios simulados para que se note dinámico al cambiar de día
+                const buttons = Array.from(slotsContainer.children);
+                buttons.forEach((btn, idx) => {
+                    // Simular aleatoriedad de slots ocupados (ej: deshabilitar algunos de forma aleatoria)
+                    const isOcupado = (parseInt(selectedDay) + idx) % 3 === 0;
+                    if (isOcupado) {
+                        btn.classList.add('disabled');
+                    } else {
+                        btn.classList.remove('disabled');
+                    }
+                });
+            });
+
+            // Acción al hacer click en un horario
+            slotsContainer.addEventListener('click', function (e) {
+                const button = e.target.closest('.reunion-slot-btn');
+                if (!button || button.classList.contains('disabled')) return;
+
+                const time = button.getAttribute('data-time');
+                const message = `Hola Vestra! Quiero agendar la videollamada para mi proyecto el día ${selectedWeekday} ${selectedDay} de Julio a las ${time}.`;
+                
+                // Redirigir a WhatsApp precompletado
+                window.open(`https://wa.me/5492914405674?text=${encodeURIComponent(message)}`, '_blank');
+            });
+        });
+    </script>
 
     <!-- Contact Section ocultada -->
     <!--
@@ -854,9 +1072,11 @@
             <div class="footer-modern-main">
                 <div class="footer-modern-brand" data-aos="fade-up" data-aos-delay="0">
                     <div class="footer-modern-logo">
-                        <img src="images/logo-vestra-wordmark.png" alt="Vestra" class="logo-wordmark footer-logo-wordmark">
+                        <img src="images/logo-vestra-wordmark.png" alt="Vestra"
+                            class="logo-wordmark footer-logo-wordmark">
                     </div>
-                    <p class="footer-modern-claim" data-i18n="footer.claim">Desarrollamos webs, automatizaciones y sistemas a medida para
+                    <p class="footer-modern-claim" data-i18n="footer.claim">Desarrollamos webs, automatizaciones y
+                        sistemas a medida para
                         empresas y emprendimientos.
                     <div class="footer-modern-contact">
                         <a href="mailto:contacto@vestra.com" class="footer-modern-contact-item">
@@ -923,7 +1143,8 @@
             </div>
             <div class="footer-modern-bottom">
                 <div class="footer-modern-bottom-content">
-                    <span id="footer-year">&copy; 2025</span> <span data-i18n="footer.rights">Vestra. Todos los derechos reservados.</span>
+                    <span id="footer-year">&copy; 2025</span> <span data-i18n="footer.rights">Vestra. Todos los derechos
+                        reservados.</span>
                     <span class="footer-modern-legal">
                         <a href="#" data-i18n="footer.privacy">Privacidad</a>
                         <span class="separator">/</span>
@@ -944,13 +1165,19 @@
     </script>
 
     <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/5492914405674?text=Hola%2C%20quiero%20hablar%20sobre%20un%20proyecto" target="_blank"
-        rel="noopener" class="whatsapp-float" aria-label="Contactar por WhatsApp">
-        <svg viewBox="0 0 32 32" fill="currentColor">
-            <path
-                d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.737 5.607 2.137 8.048l-2.137 7.952 7.933-2.127c2.42 1.37 5.173 2.127 8.067 2.127 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.467c-2.482 0-4.908-0.646-7.07-1.87l-0.507-0.292-4.713 1.262 1.262-4.669-0.292-0.508c-1.207-2.100-1.847-4.507-1.847-6.978 0-7.51 6.11-13.62 13.62-13.62s13.62 6.11 13.62 13.62-6.11 13.62-13.62 13.62zM21.305 19.26c-0.346-0.174-2.049-1.007-2.366-1.123-0.317-0.117-0.548-0.174-0.779 0.174s-0.895 1.123-1.098 1.355c-0.202 0.231-0.405 0.26-0.751 0.087s-1.462-0.539-2.785-1.722c-1.030-0.919-1.726-2.054-1.929-2.400s-0.022-0.535 0.152-0.709c0.156-0.155 0.346-0.405 0.52-0.607s0.231-0.347 0.347-0.578c0.116-0.231 0.058-0.434-0.029-0.607s-0.779-1.875-1.066-2.567c-0.28-0.673-0.565-0.580-0.779-0.591-0.202-0.010-0.433-0.012-0.663-0.012s-0.607 0.087-0.924 0.434c-0.317 0.347-1.213 1.18-1.213 2.873s1.242 3.332 1.415 3.564c0.174 0.231 2.371 3.768 5.909 5.163 3.539 1.394 3.539 0.929 4.176 0.871 0.637-0.058 2.049-0.839 2.337-1.649s0.289-1.504 0.202-1.649c-0.087-0.145-0.318-0.231-0.663-0.405z" />
-        </svg>
-    </a>
+    <div class="whatsapp-container">
+        <span class="whatsapp-tooltip">
+            <span class="whatsapp-tooltip-dot"></span>
+            ¿Cómo podemos ayudarte?
+        </span>
+        <a href="https://wa.me/5492914405674?text=Hola%2C%20quiero%20hablar%20sobre%20un%20proyecto" target="_blank"
+            rel="noopener" class="whatsapp-float" aria-label="Contactar por WhatsApp">
+            <svg viewBox="0 0 32 32" fill="currentColor">
+                <path
+                    d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.737 5.607 2.137 8.048l-2.137 7.952 7.933-2.127c2.42 1.37 5.173 2.127 8.067 2.127 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.467c-2.482 0-4.908-0.646-7.07-1.87l-0.507-0.292-4.713 1.262 1.262-4.669-0.292-0.508c-1.207-2.100-1.847-4.507-1.847-6.978 0-7.51 6.11-13.62 13.62-13.62s13.62 6.11 13.62 13.62-6.11 13.62-13.62 13.62zM21.305 19.26c-0.346-0.174-2.049-1.007-2.366-1.123-0.317-0.117-0.548-0.174-0.779 0.174s-0.895 1.123-1.098 1.355c-0.202 0.231-0.405 0.26-0.751 0.087s-1.462-0.539-2.785-1.722c-1.030-0.919-1.726-2.054-1.929-2.400s-0.022-0.535 0.152-0.709c0.156-0.155 0.346-0.405 0.52-0.607s0.231-0.347 0.347-0.578c0.116-0.231 0.058-0.434-0.029-0.607s-0.779-1.875-1.066-2.567c-0.28-0.673-0.565-0.580-0.779-0.591-0.202-0.010-0.433-0.012-0.663-0.012s-0.607 0.087-0.924 0.434c-0.317 0.347-1.213 1.18-1.213 2.873s1.242 3.332 1.415 3.564c0.174 0.231 2.371 3.768 5.909 5.163 3.539 1.394 3.539 0.929 4.176 0.871 0.637-0.058 2.049-0.839 2.337-1.649s0.289-1.504 0.202-1.649c-0.087-0.145-0.318-0.231-0.663-0.405z" />
+            </svg>
+        </a>
+    </div>
 
     <script src="https://unpkg.com/lenis@1.1.16/dist/lenis.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -960,7 +1187,10 @@
     <script src="js/globe.js"></script>
     <script src="js/i18n.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/hero-spotlight.js"></script>
     <script src="js/cinematic-intro.js"></script>
+    <script src="js/swipe-btn.js"></script>
+    <script src="js/proceso.js"></script>
 </body>
 
 </html>

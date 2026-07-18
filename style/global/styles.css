@@ -29,6 +29,7 @@
 html {
   scroll-behavior: auto;
   font-size: 90%;
+  scrollbar-gutter: stable;
 }
 
 html.lenis,
@@ -63,7 +64,7 @@ html.lenis body {
 
 body {
   font-family: "Inter", "Poppins", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  background-color: var(--color-black);
+  background-color: rgb(var(--navy-2-rgb));
   color: var(--text-white);
   overflow-x: hidden;
   line-height: 1.6;
@@ -176,12 +177,12 @@ section::after {
 }
 
 .btn-primary {
-  background: linear-gradient(rgba(var(--black-rgb), 0.2), rgba(var(--black-rgb), 0.2)) padding-box,
-    var(--gradient-primary) border-box;
-  color: var(--text-white);
-  border: 2px solid transparent;
-  /* El borde ahora proviene del gradiente del border-box */
-  box-shadow: 0 10px 30px rgba(var(--celeste-rgb), 0.2);
+  background: var(--gradient-primary);
+  color: var(--color-white);
+  border: none;
+  box-shadow:
+    0 8px 30px rgba(var(--celeste-rgb), 0.35),
+    0 0 28px rgba(var(--orange-rgb), 0.25);
   position: relative;
   z-index: 1;
 }
@@ -197,11 +198,35 @@ section::after {
   z-index: -1;
 }
 
+/* Shimmer sweep de izquierda a derecha */
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.28) 50%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  transition: left 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.btn-primary:hover::after {
+  left: 130%;
+}
+
 .btn-primary:hover {
-  background: linear-gradient(rgba(var(--white-rgb), 0.1), rgba(var(--white-rgb), 0.1)) padding-box,
-    var(--gradient-primary) border-box;
   color: var(--color-white);
-  box-shadow: 0 15px 45px rgba(var(--celeste-rgb), 0.4);
+  box-shadow:
+    0 14px 45px rgba(var(--celeste-rgb), 0.5),
+    0 0 45px rgba(var(--orange-rgb), 0.35);
   transform: translateY(-3px) scale(1.02);
 }
 
@@ -209,18 +234,90 @@ section::after {
   opacity: 1;
 }
 
-.btn-secondary {
-  background: rgba(var(--white-rgb), 0.04);
+/* ====================================
+   SWIPE BUTTON (Slide-to-Unlock)
+   ==================================== */
+.swipe-btn {
+  position: relative;
+  width: 320px;
+  max-width: 100%;
+  height: 56px;
+  background: rgba(13, 8, 25, 0.8);
+  border-radius: 28px;
+  border: 1.5px solid rgba(var(--celeste-rgb), 0.8);
+  box-shadow: 0 0 15px rgba(var(--celeste-rgb), 0.3), inset 0 0 10px rgba(var(--celeste-rgb), 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  user-select: none;
+  touch-action: none;
+}
+
+.swipe-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0px; /* Initially 0, JS will set it */
+  background: var(--gradient-primary);
+  border-radius: 28px;
+  pointer-events: none;
+}
+
+.swipe-text {
+  position: relative;
+  z-index: 2;
   color: var(--color-white);
-  border: 1.5px solid rgba(var(--white-rgb), 0.15);
+  font-weight: 600;
+  font-size: 15px;
+  pointer-events: none;
+  margin-left: 30px;
+}
+
+.swipe-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-white);
+  z-index: 3;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  cursor: grab;
+}
+
+.swipe-thumb:active {
+  cursor: grabbing;
+}
+
+.swipe-thumb svg {
+  width: 24px;
+  height: 24px;
+}
+
+.swipe-btn.success {
+  border-color: var(--color-celeste);
+  box-shadow: 0 0 25px rgba(var(--celeste-rgb), 0.6);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-celeste);
+  border: 1.5px solid rgba(var(--white-rgb), 0.12);
   backdrop-filter: blur(10px);
 }
 
 .btn-secondary:hover {
   transform: translateY(-3px);
-  background: rgba(var(--white-rgb), 0.08);
-  border-color: rgba(var(--celeste-rgb), 0.5);
-  box-shadow: 0 16px 48px rgba(var(--celeste-rgb), 0.15);
+  background: rgba(0, 0, 0, 0.45);
+  border-color: rgba(var(--celeste-rgb), 0.4);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
 }
 
 .btn-full {
@@ -230,10 +327,17 @@ section::after {
 /* ====================================
    WHATSAPP FLOATING BUTTON
    ==================================== */
-.whatsapp-float {
+.whatsapp-container {
   position: fixed;
   bottom: 25px;
   right: 25px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.whatsapp-float {
   width: 60px;
   height: 60px;
   background: var(--gradient-whatsapp);
@@ -243,7 +347,6 @@ section::after {
   justify-content: center;
   color: var(--color-white);
   box-shadow: 0 4px 20px rgba(var(--whatsapp-rgb), 0.4);
-  z-index: 1000;
   transition: all 0.3s ease;
   text-decoration: none;
   animation: pulse-whatsapp 2s infinite;
@@ -255,8 +358,61 @@ section::after {
 }
 
 .whatsapp-float:hover {
-  transform: scale(1.1) translateY(-3px);
+  transform: scale(1.1);
   box-shadow: 0 8px 30px rgba(var(--whatsapp-rgb), 0.6);
+}
+
+.whatsapp-tooltip {
+  position: absolute;
+  bottom: calc(100% + 15px);
+  right: -5px;
+  transform: translateY(20px);
+  background: var(--color-white);
+  color: #4a4a4a;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.whatsapp-tooltip-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-whatsapp, #25D366);
+  border-radius: 50%;
+  display: inline-block;
+  animation: pulse-dot 1.5s infinite;
+}
+
+@keyframes pulse-dot {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
+.whatsapp-tooltip::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  right: 28px;
+  border-width: 5px 5px 0 5px;
+  border-style: solid;
+  border-color: var(--color-white) transparent transparent transparent;
 }
 
 @keyframes pulse-whatsapp {
@@ -295,11 +451,14 @@ section::after {
     padding: 0 16px;
   }
 
+  .whatsapp-container {
+    right: 14px;
+    bottom: calc(14px + env(safe-area-inset-bottom)) !important;
+  }
+
   .whatsapp-float {
     width: 56px;
     height: 56px;
-    right: 14px;
-    bottom: calc(14px + env(safe-area-inset-bottom)) !important;
   }
 
   .whatsapp-float svg {

@@ -1,0 +1,695 @@
+/* ============================================================
+   HERO REDISEÑO — Split (texto izq + visual der) + fondo animado
+   Todos los colores derivan de themeSystem.css (tokens).
+   ============================================================ */
+
+.hero-split {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 96px 0 40px;
+  background: rgb(var(--navy-2-rgb));
+}
+
+
+/* ── Fondo animado ── */
+.hero-fx {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Luz bicolor que sigue al cursor — FIJA para seguir en todas las secciones */
+.hero-fx-lights {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.hero-fx-lights .orb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  will-change: transform;
+  transition: filter 1.5s ease, opacity 1.5s ease;
+}
+
+/* Orbe rápido (violeta) — 420px, blur 64px — siempre encima */
+.hero-fx-lights .orb-fast {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle,
+      rgba(var(--glow-fast-rgb), 0.95) 0%,
+      rgba(var(--glow-fast2-rgb), 0.57) 30%,
+      transparent 65%);
+  filter: blur(64px);
+  z-index: 2;
+  transform: translate(var(--mx, -999px), var(--my, -999px)) translate(-50%, -50%);
+}
+
+/* Orbe lento (celeste) — 370px, blur 74px — debajo del violeta */
+.hero-fx-lights .orb-slow {
+  width: 370px;
+  height: 370px;
+  background: radial-gradient(circle,
+      rgba(var(--glow-slow-rgb), 0.61) 0%,
+      rgba(var(--glow-slow2-rgb), 0.30) 40%,
+      transparent 70%);
+  filter: blur(74px);
+  z-index: 1;
+  transform: translate(calc(var(--mx2, -999px) + 28px), calc(var(--my2, -999px) - 28px)) translate(-50%, -50%);
+}
+
+/* Pulsación de respiración cuando el mouse no se mueve (idle) */
+.hero-split.lights-idle .orb-fast {
+  animation: orbFastBreath 8s ease-in-out infinite;
+}
+
+.hero-split.lights-idle .orb-slow {
+  animation: orbSlowBreath 8s ease-in-out infinite;
+}
+
+@keyframes orbFastBreath {
+
+  0%,
+  100% {
+    opacity: 0.9;
+    filter: blur(65px);
+  }
+
+  50% {
+    opacity: 0.75;
+    filter: blur(78px);
+  }
+}
+
+@keyframes orbSlowBreath {
+
+  0%,
+  100% {
+    opacity: 1;
+    filter: blur(76px);
+  }
+
+  50% {
+    opacity: 0.8;
+    filter: blur(88px);
+  }
+}
+
+/* Glow violeta sutil arriba-izquierda (estética sobria) */
+.hero-fx-glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 55% 45% at 22% 8%, rgba(var(--celeste-rgb), 0.20) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 85% 100%, rgba(var(--celeste-rgb), 0.07) 0%, transparent 60%);
+}
+
+/* ── Patrón de puntos — se ilumina SOLO alrededor del cursor (como RAVEL) ── */
+
+/* Capa base: puntos tenues en todo el hero, con titileo */
+.hero-fx::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(var(--celeste-rgb), 0.9) 1.15px, transparent 1.15px);
+  background-size: 38px 38px;
+  opacity: 0.11;
+  animation: dotsTwinkle 4s ease-in-out infinite;
+}
+
+/* Capa spotlight: puntos brillantes revelados en un círculo que sigue al mouse */
+.hero-fx::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(var(--celeste-rgb), 0.95) 1.15px, transparent 1.15px);
+  background-size: 38px 38px;
+  -webkit-mask-image: radial-gradient(378px at var(--mx, -999px) var(--my, -999px), #000 0%, transparent 80%);
+  mask-image: radial-gradient(378px at var(--mx, -999px) var(--my, -999px), #000 0%, transparent 80%);
+}
+
+/* ── Wordmark gigante detrás + spotlight ── */
+.hero-wordmark {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  pointer-events: none;
+  margin-top: -20px;
+}
+
+.hero-wordmark span {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  font-size: clamp(6.05rem, 19.8vw, 17.6rem);
+  letter-spacing: 0.04em;
+  line-height: 1;
+  white-space: nowrap;
+  user-select: none;
+}
+
+/* Capa base: violeta sólido muy tenue (sin contorno), pasa desapercibido */
+.hw-base {
+  color: rgba(var(--celeste-rgb), 0.03);
+  -webkit-text-stroke: 0;
+}
+
+/* Capa brillante: degradé de marca revelado por el spotlight del cursor */
+.hw-glow {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  filter: drop-shadow(0 0 35px rgba(var(--celeste-rgb), 0.5));
+  /* Usa --mxi/--myi: cursor RAW sin ease → reacción instantánea al pasar el mouse */
+  -webkit-mask-image: radial-gradient(circle 220px at var(--mxi, -999px) var(--myi, -999px), #000 0%, #000 25%, rgba(0, 0, 0, 0.2) 65%, transparent 100%);
+  mask-image: radial-gradient(circle 220px at var(--mxi, -999px) var(--myi, -999px), #000 0%, #000 25%, rgba(0, 0, 0, 0.2) 65%, transparent 100%);
+}
+
+/* ── Contenido centrado ── */
+.hero-grid {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.hero-copy {
+  text-align: center;
+  max-width: 1150px;
+  margin: 60px auto 0;
+}
+
+/* Badge discreto (texto violeta, sin píldora) como la referencia */
+.hero-split .hero-badge {
+  margin: 0 auto 4.5rem;
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--color-celeste);
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.hero-split .hero-badge .hero-badge-dot {
+  background: var(--color-celeste);
+  box-shadow: 0 0 10px rgba(var(--celeste-rgb), 0.8);
+}
+
+.hero-split .hero-title {
+  text-align: center;
+  text-transform: none;
+  /* sentence case, como la referencia */
+  margin: 0 0 5.5rem 0;
+  font-size: clamp(2.5rem, 5.2vw, 4.4rem);
+  /* -10% */
+  line-height: 1.12;
+  /* un poco más de aire entre líneas */
+  letter-spacing: -0.02em;
+  font-weight: 800;
+}
+
+.hero-split .hero-title .title-line {
+  display: inline;
+}
+
+.hero-split .hero-subtitle {
+  text-align: center;
+  text-transform: none;
+  margin: 0 auto 4.5rem;
+  max-width: 620px;
+  font-size: 1.47rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.68) !important;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.68) !important;
+  background-image: none !important;
+  opacity: 1 !important;
+  animation: none !important;
+  margin-bottom: 4.5rem !important;
+}
+
+.hero-split .hero-buttons {
+  justify-content: center;
+  margin: 0;
+  gap: 1.1rem;
+}
+
+/* Botones del hero +10% */
+.hero-split .hero-buttons .btn {
+  min-width: 286px;
+  height: 60px;
+  font-size: 0.98rem;
+}
+
+/* Cartel del botón de WhatsApp: aparece a los 7s */
+.hero-split .hero-buttons .btn[href*="wa.me"],
+.hero-split .hero-buttons .btn[href*="whatsapp"],
+.hero-split .hero-buttons .btn.wpp,
+.hero-split .hero-buttons .btn.btn-wpp,
+.hero-split .hero-buttons .btn.whatsapp-btn,
+.hero-split .hero-buttons .btn.hero-wpp-btn {
+  position: relative;
+}
+
+.hero-split .hero-buttons .btn[href*="wa.me"]::after,
+.hero-split .hero-buttons .btn[href*="whatsapp"]::after,
+.hero-split .hero-buttons .btn.wpp::after,
+.hero-split .hero-buttons .btn.btn-wpp::after,
+.hero-split .hero-buttons .btn.whatsapp-btn::after,
+.hero-split .hero-buttons .btn.hero-wpp-btn::after {
+  content: "¿En qué podemos ayudarte?";
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 14px);
+  transform: translateX(-50%) translateY(8px);
+  white-space: nowrap;
+  padding: 0.7rem 0.95rem;
+  border-radius: 999px;
+  background: rgba(var(--black-2-rgb), 0.94);
+  border: 1px solid rgba(var(--white-rgb), 0.14);
+  color: var(--color-white);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  box-shadow: 0 14px 34px rgba(var(--black-rgb), 0.35);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 3;
+  animation: wppTooltipShow 0.01s linear 7s forwards;
+}
+
+.hero-split .hero-buttons .btn[href*="wa.me"]::before,
+.hero-split .hero-buttons .btn[href*="whatsapp"]::before,
+.hero-split .hero-buttons .btn.wpp::before,
+.hero-split .hero-buttons .btn.btn-wpp::before,
+.hero-split .hero-buttons .btn.whatsapp-btn::before,
+.hero-split .hero-buttons .btn.hero-wpp-btn::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 6px);
+  width: 12px;
+  height: 12px;
+  background: rgba(var(--black-2-rgb), 0.94);
+  border-right: 1px solid rgba(var(--white-rgb), 0.14);
+  border-bottom: 1px solid rgba(var(--white-rgb), 0.14);
+  transform: translateX(-50%) rotate(45deg);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 3;
+  animation: wppTooltipShow 0.01s linear 7s forwards;
+}
+
+@keyframes wppTooltipShow {
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* Franja de confianza — anclada a la esquina inferior izquierda del hero */
+.hero-trust {
+  position: absolute;
+  left: max(4vw, 24px);
+  bottom: 34px;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.8rem;
+}
+
+.hero-trust>span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(var(--white-rgb), 0.7);
+}
+
+.hero-trust .feature-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-celeste);
+  box-shadow: 0 0 10px rgba(var(--celeste-rgb), 0.7);
+  flex-shrink: 0;
+}
+
+/* ── Columna derecha: visual glass ── */
+.hero-visual {
+  position: relative;
+  height: 460px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hv-glow {
+  position: absolute;
+  width: 78%;
+  height: 78%;
+  border-radius: 50%;
+  background: var(--gradient-brand);
+  filter: blur(90px);
+  opacity: 0.45;
+  animation: hvGlow 8s ease-in-out infinite;
+}
+
+@keyframes hvGlow {
+
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.55;
+    transform: scale(1.08);
+  }
+}
+
+/* Panel principal (mock dashboard) */
+.hv-panel {
+  position: relative;
+  z-index: 2;
+  width: min(420px, 90%);
+  border-radius: 20px;
+  background: rgba(var(--white-rgb), 0.055);
+  border: 1px solid rgba(var(--white-rgb), 0.14);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  box-shadow:
+    0 40px 90px rgba(var(--black-rgb), 0.6),
+    0 1px 0 rgba(var(--white-rgb), 0.08) inset;
+  overflow: hidden;
+  --rx: 4deg;
+  /* Inclinación base en X */
+  --ry: -9deg;
+  /* Inclinación base en Y */
+  transform: perspective(1200px) rotateY(var(--ry)) rotateX(var(--rx));
+  transition: transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  animation: floatPanel 7s ease-in-out infinite;
+}
+
+@keyframes floatPanel {
+
+  0%,
+  100% {
+    transform: perspective(1200px) rotateY(var(--ry)) rotateX(var(--rx)) translateY(0);
+  }
+
+  50% {
+    transform: perspective(1200px) rotateY(var(--ry)) rotateX(var(--rx)) translateY(-14px);
+  }
+}
+
+.hv-panel-bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 13px 16px;
+  background: rgba(var(--white-rgb), 0.04);
+  border-bottom: 1px solid rgba(var(--white-rgb), 0.08);
+}
+
+.hv-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: rgba(var(--white-rgb), 0.22);
+}
+
+.hv-dot:nth-child(1) {
+  background: rgb(var(--orange-rgb));
+  opacity: 0.85;
+}
+
+.hv-dot:nth-child(2) {
+  background: rgb(var(--celeste-2-rgb));
+  opacity: 0.85;
+}
+
+.hv-dot:nth-child(3) {
+  background: rgb(var(--celeste-rgb));
+  opacity: 0.85;
+}
+
+.hv-panel-title {
+  margin-left: auto;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: rgba(var(--white-rgb), 0.55);
+}
+
+.hv-panel-body {
+  padding: 24px 22px 26px;
+}
+
+.hv-line {
+  height: 11px;
+  border-radius: 6px;
+  background: rgba(var(--white-rgb), 0.1);
+  margin-bottom: 13px;
+}
+
+.hv-line.w70 {
+  width: 70%;
+  background: var(--gradient-brand);
+  opacity: 0.9;
+}
+
+.hv-line.w90 {
+  width: 90%;
+}
+
+.hv-line.w50 {
+  width: 50%;
+}
+
+.hv-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  height: 130px;
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(var(--white-rgb), 0.08);
+}
+
+.hv-bar {
+  flex: 1;
+  height: var(--h);
+  border-radius: 6px 6px 3px 3px;
+  background: var(--gradient-brand);
+  opacity: 0.85;
+  transform-origin: bottom;
+  animation: barPulse 2.88s ease-in-out infinite;
+}
+
+.hv-bar:nth-child(odd) {
+  animation-delay: 0.36s;
+  opacity: 0.6;
+}
+
+.hv-bar:nth-child(3n) {
+  animation-delay: 0.72s;
+}
+
+@keyframes barPulse {
+
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+
+  50% {
+    transform: scaleY(1.08);
+  }
+}
+
+/* Tarjetas flotantes */
+.hv-card {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.75rem 1rem;
+  border-radius: 14px;
+  background: rgba(var(--black-2-rgb), 0.75);
+  border: 1px solid rgba(var(--white-rgb), 0.14);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 20px 50px rgba(var(--black-rgb), 0.5);
+}
+
+.hv-card-ico {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  color: var(--color-white);
+  background: var(--gradient-brand);
+  flex-shrink: 0;
+}
+
+.hv-card-txt {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.hv-card-txt strong {
+  font-size: 1.05rem;
+  color: var(--color-white);
+  font-weight: 800;
+}
+
+.hv-card-txt small {
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(var(--white-rgb), 0.55);
+}
+
+.hv-card-1 {
+  left: -4%;
+  top: 12%;
+  animation: floatCard 6s ease-in-out infinite;
+}
+
+.hv-card-2 {
+  right: -3%;
+  bottom: 14%;
+  animation: floatCard 6s ease-in-out infinite 1.5s;
+}
+
+@keyframes floatCard {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-16px);
+  }
+}
+
+/* ── Responsive ── */
+@media (max-width: 960px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    text-align: center;
+  }
+
+  .hero-copy {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .hero-split .hero-title,
+  .hero-split .hero-subtitle {
+    text-align: center;
+  }
+
+  .hero-split .hero-subtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-split .hero-buttons {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* En mobile: la franja vuelve al flujo, centrada, sin quedar absoluta encima */
+  .hero-trust {
+    position: static;
+    justify-content: center;
+    margin: 2.4rem auto 0;
+    padding-top: 1.6rem;
+    border-top: 1px solid rgba(var(--white-rgb), 0.08);
+    max-width: 560px;
+  }
+
+  .hero-fx-veil {
+    background: linear-gradient(0deg, rgb(var(--navy-2-rgb)) 4%, rgba(var(--navy-2-rgb), 0.55) 60%, rgba(var(--navy-2-rgb), 0.3) 100%);
+  }
+
+  .hero-visual {
+    height: 400px;
+    order: -1;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero-visual {
+    height: 340px;
+  }
+
+  .hv-panel {
+    width: 88%;
+  }
+
+  .hv-card-1 {
+    left: 0;
+  }
+
+  .hv-card-2 {
+    right: 0;
+  }
+}
+
+/* ── Titileo de puntos de fondo ── */
+@keyframes dotsTwinkle {
+  0% {
+    opacity: 0.11;
+  }
+
+  30% {
+    opacity: 0.06;
+  }
+
+  50% {
+    opacity: 0.14;
+  }
+
+  70% {
+    opacity: 0.05;
+  }
+
+  100% {
+    opacity: 0.11;
+  }
+}

@@ -82,8 +82,8 @@
   clip-path: inset(0);
   width: 100%;
   padding-top: 73px;
-  /* Premium dark blue gradient matching reference */
-  background: var(--bg-section-navy);
+  /* Fondo plano (sin degradé) */
+  background: rgb(var(--navy-2-rgb));
 }
 
 .hero-canvas-bg {
@@ -128,19 +128,23 @@
 }
 
 .hero-service-card {
-  background: rgba(var(--white-rgb), 0.03);
-  border: 1px solid rgba(var(--white-rgb), 0.08);
+  /* Fondo relleno con el degradé de marca, igual que los botones */
+  background: var(--gradient-brand);
+  border: none;
   border-radius: 16px;
   padding: 1.5rem;
   text-align: center;
-  backdrop-filter: blur(12px);
-  transition: all 0.3s ease;
+  box-shadow:
+    0 8px 30px rgba(var(--celeste-rgb), 0.35),
+    0 0 28px rgba(var(--orange-rgb), 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .hero-service-card:hover {
-  background: rgba(var(--white-rgb), 0.06);
   transform: translateY(-5px);
-  border-color: var(--color-celeste);
+  box-shadow:
+    0 12px 40px rgba(var(--celeste-rgb), 0.28),
+    0 0 30px rgba(var(--orange-rgb), 0.18);
 }
 
 .hero-service-icon {
@@ -345,9 +349,9 @@
   }
 }
 
-/* Highlight Large - Gradient text */
+/* Highlight Large - Gradient text (naranja → rosa → violeta) */
 .highlight-large {
-  background: var(--gradient-shine);
+  background: var(--gradient-brand);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -357,19 +361,9 @@
   font-size: 1em;
 }
 
-/* Text glow behind (Aura) */
+/* Aura/glow detrás del título: eliminada a pedido */
 .highlight-large::after {
-  content: attr(data-text);
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: -1;
-  background: var(--gradient-shine);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  filter: blur(24px) opacity(0.85);
-  animation: pulseAura 3s infinite alternate;
+  content: none;
 }
 
 @keyframes pulseAura {
@@ -420,23 +414,8 @@
 }
 
 .hero-buttons .btn-primary {
-  box-shadow: 0 0 25px rgba(var(--celeste-rgb), 0.4);
-  animation: buttonPulse 2s infinite ease-in-out, fadeInUp 0.8s ease-out 1s both;
-}
-
-@keyframes buttonPulse {
-  0% {
-    box-shadow: 0 0 15px rgba(var(--celeste-rgb), 0.4);
-    transform: scale(1);
-  }
-  50% {
-    box-shadow: 0 0 35px rgba(var(--celeste-rgb), 0.7);
-    transform: scale(1.03);
-  }
-  100% {
-    box-shadow: 0 0 15px rgba(var(--celeste-rgb), 0.4);
-    transform: scale(1);
-  }
+  box-shadow: none;
+  animation: fadeInUp 0.8s ease-out 1s both;
 }
 
 /* Scroll Indicator */

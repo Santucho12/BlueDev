@@ -156,6 +156,27 @@
   box-shadow: 0 0 8px rgba(var(--celeste-rgb), 0.5);
 }
 
+/* Badge con tilde para los items de servicios (reemplaza el puntito) */
+.service-feature-item .feature-dot {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(var(--celeste-rgb), 0.14);
+  box-shadow: none;
+  border: 1px solid rgba(var(--celeste-rgb), 0.35);
+}
+
+.service-feature-item .feature-dot::after {
+  content: "✓";
+  font-size: 0.72rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--color-celeste);
+}
+
 /* Image Stage */
 .service-image-stage {
   width: calc(100% + 6rem);

@@ -3,8 +3,7 @@
    ======================================== */
 .about {
   padding: 180px 0;
-  /* Applying the identical Hero gradient as requested */
-  background: var(--bg-section-navy);
+  background: transparent;
   position: relative;
   overflow: hidden;
 }
@@ -13,7 +12,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
-  align-items: center;
+  align-items: stretch;
   position: relative;
   z-index: 1;
 }
@@ -53,7 +52,11 @@
 
 .about-title-highlight {
   display: inline;
-  color: var(--color-celeste);
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
   position: relative;
 }
 
@@ -128,7 +131,9 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
+  /* Alinear con el título (no con el badge): compensar alto del badge + su margin */
+  margin-top: 63px;
 }
 
 
@@ -149,7 +154,7 @@
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(var(--white-rgb), 0.08);
   border-radius: 30px;
-  padding: 2.5rem;
+  padding: 1.8rem;
   overflow: hidden;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
@@ -161,7 +166,7 @@
 .stat-proyectos {
   grid-column: 1 / 2;
   grid-row: 1 / 2;
-  min-height: 220px;
+  min-height: 112px;
 }
 
 .stat-tiempo {
@@ -175,7 +180,7 @@
   flex-direction: row !important;
   align-items: center;
   gap: 2rem;
-  padding: 2rem 3rem;
+  padding: 1.5rem 2.4rem;
 }
 
 .stat-card-inner {
