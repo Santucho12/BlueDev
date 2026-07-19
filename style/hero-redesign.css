@@ -261,6 +261,10 @@
   font-size: 0.98rem;
 }
 
+/* El CTA del hero hereda el hover de .btn-primary (idéntico al de la navbar).
+   Se le quitó la `animation: fadeInUp` propia en home.css, que fijaba un transform
+   (fill-mode: both) y bloqueaba la elevación del :hover. */
+
 /* Cartel del botón de WhatsApp: aparece a los 7s */
 .hero-split .hero-buttons .btn[href*="wa.me"],
 .hero-split .hero-buttons .btn[href*="whatsapp"],
@@ -277,7 +281,7 @@
 .hero-split .hero-buttons .btn.btn-wpp::after,
 .hero-split .hero-buttons .btn.whatsapp-btn::after,
 .hero-split .hero-buttons .btn.hero-wpp-btn::after {
-  content: "¿En qué podemos ayudarte?";
+  content: var(--wpp-hero-tooltip, "¿En qué podemos ayudarte?");
   position: absolute;
   left: 50%;
   bottom: calc(100% + 14px);

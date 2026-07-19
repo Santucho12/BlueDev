@@ -32,7 +32,7 @@
 }
 
 #cinematic-intro .intro-logo {
-  width: clamp(312px, 44vw, 598px);
+  width: clamp(390px, 55vw, 748px);
   height: auto;
   user-select: none;
   pointer-events: none;

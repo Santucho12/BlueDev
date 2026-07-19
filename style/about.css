@@ -120,6 +120,23 @@
   text-transform: uppercase;
 }
 
+/* Aparición suave en cascada (badge, título, descripción y cada check).
+   La clase .is-in la agrega el JS de a uno, con un pequeño delay entre elementos. */
+.about-reveal,
+.about-list-modern li {
+  opacity: 0;
+  transform: translateX(24px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.about-reveal.is-in,
+.about-list-modern li.is-in {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 .about-icon-check {
   display: flex;
   align-items: center;

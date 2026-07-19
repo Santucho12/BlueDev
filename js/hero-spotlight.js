@@ -12,7 +12,7 @@
 
   const OFF = -9999;
   const EASE_FAST = 0.025;  // violeta (rápido)
-  const EASE_SLOW = 0.038; // celeste (lento)
+  const EASE_SLOW = 0.02; // celeste (apenas más lento que el violeta)
   const EASE_TILT = 0.05; // suavidad inclinación 3D
 
   let tX = OFF, tY = OFF;   // objetivo (cursor real)

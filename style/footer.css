@@ -139,7 +139,7 @@
 }
 
 .footer-modern-links ul li a:hover {
-    color: var(--color-white);
+    color: var(--color-violet-light);
     transform: translateX(5px);
 }
 

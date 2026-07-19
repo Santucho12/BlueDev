@@ -95,6 +95,12 @@
       'port.nda': 'Proyecto bajo acuerdo de confidencialidad',
       'port3.t': 'Automatización de WhatsApp',
       'port3.d': 'Sistema de automatización para WhatsApp Business: respuestas automáticas, integración con catálogos y gestión de campañas promocionales.',
+      'port4.t': 'E-Commerce Premium',
+      'port4.d': 'Tienda online de alto rendimiento con pasarela de pago integrada, gestión de inventario en tiempo real, panel de administración y experiencia mobile-first optimizada.',
+      'port5.t': 'Dashboard SaaS Analytics',
+      'port5.d': 'Plataforma SaaS de analítica de datos con visualizaciones avanzadas, reportes automáticos, multi-tenant y sistema de roles y permisos granulares por organización.',
+      'port6.t': 'App Mobile de Gestión',
+      'port6.d': 'Aplicación móvil cross-platform para gestión de equipos: asignación de tareas, tracking en tiempo real, notificaciones push y reportes de productividad.',
 
       'clients.badge': '+28 PROYECTOS EXITOSOS',
       'clients.title': 'Empresas que confían en <span class="title-accent">nosotros</span>',
@@ -125,6 +131,9 @@
       'cta.title': 'Convertí tu idea en <span class="text-gradient">software</span>',
       'cta.subtitle': 'Desde sitios web increibles hasta automatizaciones complejas. Estamos listos para construir la solución que tu negocio necesita.',
       'cta.btn': 'Comenzar proyecto',
+      'reunion.title': 'Asesorate en una videollamada Gratuita con Vestra',
+      'reunion.desc': 'En esta sesión rápida y personalizada de 40 minutos vamos a analizar la idea de tu producto digital, definir su alcance operativo y plantear la mejor estrategia técnica para hacerlo realidad.',
+      'reunion.slots': 'Seleccioná la Hora',
 
       'footer.claim': 'Desarrollamos webs, automatizaciones y sistemas a medida para empresas y emprendimientos.',
       'footer.sitemap': 'Mapa del Sitio',
@@ -133,6 +142,12 @@
       'footer.servicios': 'Servicios',
       'footer.portfolio': 'Portfolio',
       'footer.social': 'Redes Sociales',
+      'wpp.tooltip': '¿Cómo podemos ayudarte?',
+      'wpp.heroTooltip': '¿En qué podemos ayudarte?',
+      'cal.month': 'Julio 2026',
+      'cal.selected': 'Lun., 20 de Jul. de 2026',
+      'cal.d0': 'Dom', 'cal.d1': 'Lun', 'cal.d2': 'Mar', 'cal.d3': 'Mié',
+      'cal.d4': 'Jue', 'cal.d5': 'Vie', 'cal.d6': 'Sáb',
       'footer.rights': 'Vestra. Todos los derechos reservados.',
       'footer.privacy': 'Privacidad',
       'footer.terms': 'Términos'
@@ -195,7 +210,7 @@
       'proceso.cta': 'Start project',
 
       'services.badge': 'Choose what you need',
-      'services.title': 'Our Services',
+      'services.title': 'Our <span class="title-accent">Services</span>',
       'services.subtitle': 'Elite software solutions designed to scale your business.',
       'svc1.tag': '01. WEB',
       'svc1.t': 'Websites',
@@ -228,6 +243,12 @@
       'port.nda': 'Project under a confidentiality agreement',
       'port3.t': 'WhatsApp Automation',
       'port3.d': 'Automation system for WhatsApp Business: automatic replies, catalog integration and promotional campaign management.',
+      'port4.t': 'Premium E-Commerce',
+      'port4.d': 'High-performance online store with integrated payment gateway, real-time inventory management, admin panel and an optimized mobile-first experience.',
+      'port5.t': 'SaaS Analytics Dashboard',
+      'port5.d': 'SaaS data analytics platform with advanced visualizations, automatic reports, multi-tenant support and granular role and permission management per organization.',
+      'port6.t': 'Management Mobile App',
+      'port6.d': 'Cross-platform mobile app for team management: task assignment, real-time tracking, push notifications and productivity reports.',
 
       'clients.badge': '+28 SUCCESSFUL PROJECTS',
       'clients.title': 'Companies that trust <span class="title-accent">us</span>',
@@ -258,6 +279,9 @@
       'cta.title': 'Turn your idea into <span class="text-gradient">software</span>',
       'cta.subtitle': 'From stunning websites to complex automations. We\'re ready to build the solution your business needs.',
       'cta.btn': 'Start project',
+      'reunion.title': 'Book a free video call with Vestra',
+      'reunion.desc': 'In this quick, personalized 40-minute session we will analyze your digital product idea, define its operational scope and outline the best technical strategy to make it real.',
+      'reunion.slots': 'Choose a time',
 
       'footer.claim': 'We build custom websites, automations and systems for companies and ventures.',
       'footer.sitemap': 'Sitemap',
@@ -266,6 +290,12 @@
       'footer.servicios': 'Services',
       'footer.portfolio': 'Portfolio',
       'footer.social': 'Social Media',
+      'wpp.tooltip': 'How can we help you?',
+      'wpp.heroTooltip': 'How can we help you?',
+      'cal.month': 'July 2026',
+      'cal.selected': 'Mon., Jul. 20, 2026',
+      'cal.d0': 'Sun', 'cal.d1': 'Mon', 'cal.d2': 'Tue', 'cal.d3': 'Wed',
+      'cal.d4': 'Thu', 'cal.d5': 'Fri', 'cal.d6': 'Sat',
       'footer.rights': 'Vestra. All rights reserved.',
       'footer.privacy': 'Privacy',
       'footer.terms': 'Terms'
@@ -273,6 +303,9 @@
   };
 
   const STORE_KEY = 'vestra_lang';
+  // Limpiar cualquier preferencia de idioma guardada en visitas anteriores:
+  // la web debe arrancar SIEMPRE en español.
+  try { localStorage.removeItem(STORE_KEY); } catch (e) {}
 
   function applyLang(lang) {
     const dict = translations[lang] || translations.es;
@@ -281,6 +314,10 @@
       if (dict[key] != null) el.innerHTML = dict[key];
     });
     document.documentElement.setAttribute('lang', lang);
+    // Cartel del botón WhatsApp del hero (está en CSS ::after → vía variable CSS)
+    if (dict['wpp.heroTooltip'] != null) {
+      document.documentElement.style.setProperty('--wpp-hero-tooltip', '"' + dict['wpp.heroTooltip'] + '"');
+    }
     // Estado del selector
     document.querySelectorAll('.lang-current').forEach(function (c) {
       c.textContent = lang.toUpperCase();
@@ -288,16 +325,20 @@
     document.querySelectorAll('.lang-option').forEach(function (opt) {
       opt.classList.toggle('active', opt.getAttribute('data-lang') === lang);
     });
-    try { localStorage.setItem(STORE_KEY, lang); } catch (e) {}
+    // Traducir los nombres de países del globo 3D (México/Spain, etc.)
+    if (window.__globe && typeof window.__globe.updateLanguage === 'function') {
+      window.__globe.updateLanguage(lang);
+    }
+    // Nota: la elección NO se persiste entre visitas — la web SIEMPRE arranca en español
+    // y el cambio de idioma dura solo la sesión actual (ver más abajo).
   }
 
   document.addEventListener('DOMContentLoaded', function () {
     const switcher = document.getElementById('langSwitcher');
 
-    // Idioma inicial: guardado > por defecto ES
-    let saved = 'es';
-    try { saved = localStorage.getItem(STORE_KEY) || 'es'; } catch (e) {}
-    applyLang(saved);
+    // Idioma inicial: SIEMPRE español. La persona lo cambia cuando entra si quiere,
+    // pero al recargar / volver otro día vuelve a arrancar en ES.
+    applyLang('es');
 
     if (!switcher) return;
     const trigger = switcher.querySelector('.lang-trigger');

@@ -27,14 +27,37 @@ class HolographicGlobe {
         this.camera.position.z = 400;
 
         this.globeGroup = new THREE.Group();
-        // Ángulo inicial: el globo aparece más adelantado en su rotación
-        this.globeGroup.rotation.y = -1.2;
+        // Ángulo inicial: América/Latinoamérica de frente (Colombia centrada).
+        // El globo SIEMPRE arranca acá y empieza a girar recién al entrar en viewport.
+        this.initialRotationY = -0.282;
+        this.globeGroup.rotation.y = this.initialRotationY;
         this.scene.add(this.globeGroup);
+
+        // El globo NO gira hasta que la sección esté a la vista (se activa por IntersectionObserver)
+        this.spinning = false;
 
         this.init();
         this.animate();
+        this.setupVisibilityObserver();
 
         window.addEventListener('resize', () => this.onWindowResize());
+    }
+
+    // Gira solo cuando la sección del globo está en pantalla; al salir vuelve a la posición inicial
+    setupVisibilityObserver() {
+        const target = this.container.closest('.global-reach, #alcance, .map-visual-content') || this.container;
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    this.spinning = true;
+                } else {
+                    this.spinning = false;
+                    // Al salir de la vista, reset a la posición inicial (siempre arranca igual)
+                    if (this.globeGroup) this.globeGroup.rotation.y = this.initialRotationY;
+                }
+            });
+        }, { threshold: 0.35 });
+        obs.observe(target);
     }
 
     init() {
@@ -133,14 +156,22 @@ class HolographicGlobe {
     }
 
     addMarkers(radius) {
+        // Idioma activo (lo setea el i18n en <html lang="..">). Los nombres se muestran
+        // en español o inglés según corresponda.
+        const lang = (document.documentElement.getAttribute('lang') || 'es').toLowerCase();
         const locations = [
-            { name: 'México', lat: 19.4326, lon: -99.1332 },
-            { name: 'Colombia', lat: 4.7110, lon: -74.0721 },
-            { name: 'Argentina', lat: -34.6037, lon: -58.3816 },
-            { name: 'España', lat: 40.4168, lon: -3.7038 }
+            { es: 'México',    en: 'Mexico',    lat: 19.4326, lon: -99.1332 },
+            { es: 'Colombia',  en: 'Colombia',  lat: 4.7110,  lon: -74.0721 },
+            { es: 'Argentina', en: 'Argentina', lat: -34.6037, lon: -58.3816 },
+            { es: 'España',    en: 'Spain',     lat: 40.4168, lon: -3.7038 }
         ];
 
-        locations.forEach(loc => {
+        // Guardamos las locations para poder re-etiquetar al cambiar de idioma
+        this.locations = locations;
+        this.labelSprites = [];
+
+        locations.forEach(locData => {
+            const loc = { name: (lang === 'en' ? locData.en : locData.es), lat: locData.lat, lon: locData.lon };
             const position = this.latLongToVector3(loc.lat, loc.lon, radius + 2);
             
             // Marker point
@@ -170,8 +201,35 @@ class HolographicGlobe {
             this.pings.push(ring);
 
             // Add Label
-            this.addLabel(loc.name, position);
+            const sprite = this.addLabel(loc.name, position);
+            this.labelSprites.push({ sprite: sprite, data: locData });
         });
+    }
+
+    // Reemplaza la textura de un sprite de label con un texto nuevo (para cambiar idioma)
+    setLabelText(sprite, text) {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = 256;
+        canvas.height = 64;
+        ctx.font = 'Bold 24px Poppins, Arial';
+        ctx.fillStyle = `rgba(${themeColor('--white-rgb')}, 0.9)`;
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(text.toUpperCase(), 10, 32);
+        const texture = new THREE.CanvasTexture(canvas);
+        if (sprite.material.map) sprite.material.map.dispose();
+        sprite.material.map = texture;
+        sprite.material.needsUpdate = true;
+    }
+
+    // Actualiza todos los labels al idioma dado ('es' | 'en')
+    updateLanguage(lang) {
+        if (!this.labelSprites) return;
+        const useEn = String(lang).toLowerCase() === 'en';
+        this.labelSprites.forEach(function (item) {
+            this.setLabelText(item.sprite, useEn ? item.data.en : item.data.es);
+        }, this);
     }
 
     addLabel(text, position) {
@@ -198,8 +256,9 @@ class HolographicGlobe {
         const labelPos = position.clone().multiplyScalar(1.08);
         sprite.position.copy(labelPos);
         sprite.scale.set(40, 10, 1);
-        
+
         this.globeGroup.add(sprite);
+        return sprite;
     }
 
     latLongToVector3(lat, lon, radius) {
@@ -225,8 +284,9 @@ class HolographicGlobe {
     animate() {
         requestAnimationFrame(() => this.animate());
 
-        if (this.globeGroup) {
-            this.globeGroup.rotation.y -= 0.005; // Inverted from +=
+        // Solo gira cuando la sección está a la vista (this.spinning lo activa el observer)
+        if (this.globeGroup && this.spinning) {
+            this.globeGroup.rotation.y -= 0.005;
         }
 
         // Animate pings
@@ -251,5 +311,6 @@ class HolographicGlobe {
 
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
-    new HolographicGlobe('globe-3d-container');
+    // Exponer la instancia para que el i18n pueda actualizar los labels al cambiar idioma
+    window.__globe = new HolographicGlobe('globe-3d-container');
 });

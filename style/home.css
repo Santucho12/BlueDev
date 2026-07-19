@@ -415,7 +415,8 @@
 
 .hero-buttons .btn-primary {
   box-shadow: none;
-  animation: fadeInUp 0.8s ease-out 1s both;
+  /* Sin animation propia: el contenedor .hero-buttons ya hace el fade-in.
+     Tenerla acá dejaba un transform fijado (fill-mode both) que peleaba con el :hover. */
 }
 
 /* Scroll Indicator */

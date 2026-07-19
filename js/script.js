@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
       duration: 2.2, // Increased from 1.25 for slower scroll
       lerp: 0.045,   // Decreased from 0.085 for more inertia
       smoothWheel: true,
-      smoothTouch: true,
+      syncTouch: true, // en Lenis 1.1.x la opción es syncTouch, no smoothTouch
       wheelMultiplier: 0.65, // Reduced for less aggressive scroll impulse
       touchMultiplier: 0.8,
       normalizeWheel: true,
@@ -73,6 +73,86 @@ document.addEventListener('DOMContentLoaded', function () {
         window.ScrollTrigger.update();
       });
     }
+
+    // ── Teclado: flechas, PageUp/Down, Espacio, Home/End con scroll SUAVE ──
+    // Lenis solo suaviza la rueda/trackpad; el teclado lo maneja el navegador (salto seco).
+    // Interceptamos las teclas de scroll y las pasamos por Lenis.
+    const smoothEase = function (t) { return 1 - Math.pow(1 - t, 4); };
+    window.addEventListener('keydown', function (e) {
+      // No secuestrar el teclado cuando se escribe en un campo
+      const tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : '';
+      if (tag === 'input' || tag === 'textarea' || tag === 'select' || (e.target && e.target.isContentEditable)) {
+        return;
+      }
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
+
+      const viewport = window.innerHeight;
+      const maxY = document.documentElement.scrollHeight - viewport;
+      const current = window.pageYOffset;
+      const lineStep = 90;      // flechas ↑/↓
+      const pageStep = viewport * 0.9; // PageUp/Down y Espacio
+      let destY = null;
+
+      switch (e.key) {
+        case 'ArrowDown':  destY = current + lineStep; break;
+        case 'ArrowUp':    destY = current - lineStep; break;
+        case 'PageDown':   destY = current + pageStep; break;
+        case 'PageUp':     destY = current - pageStep; break;
+        case ' ':          destY = current + (e.shiftKey ? -pageStep : pageStep); break; // Espacio / Shift+Espacio
+        case 'Home':       destY = 0; break;
+        case 'End':        destY = maxY; break;
+        default: return;
+      }
+
+      e.preventDefault();
+      destY = Math.max(0, Math.min(maxY, destY));
+      if (typeof lenis.start === 'function') lenis.start();
+      lenis.scrollTo(destY, { duration: 0.8, easing: smoothEase });
+    }, { passive: false });
+
+    // ── Barra de scroll (arrastre) ──
+    // Al arrastrar la barra, el navegador mueve el scroll de forma nativa. Lenis, en su raf,
+    // sigue interpolando hacia SU target interno y "pelea" contra el arrastre → se traba.
+    // Solución segura: mientras se arrastra la barra, sincronizamos el target de Lenis con
+    // la posición nativa usando lenis.resize()/sync sin disparar scrollTo animados.
+    // IMPORTANTE: NO llamamos scrollTo dentro del evento 'scroll' (rompe cualquier animación
+    // en curso, incl. la de los links del menú). Solo actuamos entre mousedown y mouseup.
+    let draggingBar = false;
+    let dragRAF = null;
+
+    const isOnScrollbar = function (e) {
+      // La scrollbar vertical vive a la derecha del ancho útil (clientWidth).
+      return e.clientX >= document.documentElement.clientWidth - 2;
+    };
+
+    const syncLenisToNative = function () {
+      // Pega la posición interna de Lenis a la del navegador, sin animar.
+      if (lenis) {
+        if (typeof lenis.scrollTo === 'function') {
+          lenis.scrollTo(window.pageYOffset, { immediate: true });
+        }
+      }
+    };
+
+    const dragLoop = function () {
+      if (!draggingBar) return;
+      syncLenisToNative();
+      dragRAF = requestAnimationFrame(dragLoop);
+    };
+
+    window.addEventListener('mousedown', function (e) {
+      if (e.button === 0 && isOnScrollbar(e)) {
+        draggingBar = true;
+        dragLoop(); // seguir la barra 1:1 mientras se arrastra (no se traba)
+      }
+    }, { passive: true });
+
+    window.addEventListener('mouseup', function () {
+      if (!draggingBar) return;
+      draggingBar = false;
+      if (dragRAF) cancelAnimationFrame(dragRAF);
+      syncLenisToNative(); // dejar Lenis sincronizado donde se soltó
+    }, { passive: true });
   }
 
   // ── Navbar scroll style (enhanced) ────
@@ -104,30 +184,114 @@ document.addEventListener('DOMContentLoaded', function () {
 
       const navH = navbar ? navbar.offsetHeight : 0;
       const targetId = href.slice(1);
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      let extraOffset = 10;
-      if (targetId === 'sobre-nosotros') extraOffset = 0;
-      if (targetId === 'servicios') extraOffset = window.innerWidth <= 768 ? 100 : 120;
-      if (targetId === 'portfolio' && this.closest('.navbar')) extraOffset = 20;
+      // Lenis pudo quedar DETENIDO por la intro (scrollTo entonces salta en seco). Reactivarlo.
+      // (NO refrescamos ScrollTrigger acá: hacerlo en cada click interrumpe el scroll en curso
+      //  y provoca el bug de "hay que clickear 2-3 veces". El refresh se hace 1 sola vez al load.)
+      if (lenis && typeof lenis.start === 'function') lenis.start();
 
-      const y = target.getBoundingClientRect().top + window.pageYOffset - navH - extraOffset;
+      // Margen de aire entre la navbar y el título de la sección de destino.
+      const gap = 28;
 
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        window.scrollTo(0, y);
+      // Calcular el Y ABSOLUTO de destino de forma robusta (no dependemos de la posición
+      // visual del elemento, que el pin de GSAP falsea). Un Y numérico fijo hace que el
+      // primer click siempre llegue al mismo lugar → sin necesidad de reclickear.
+      let destY;
+      const hCont = window.__horizontalContainer;
+      const hST = window.__horizontalST;
+      if (hCont && hST && hCont.contains(target)) {
+        // Target dentro del scroll horizontal pinneado → usar el inicio real del pin.
+        // El pin fija la sección en el top del viewport cuando scrollY == hST.start, pero
+        // el badge/título está algo más abajo por el padding interno. Restamos esa distancia
+        // (badge respecto al top del contenedor) para dejar el título cómodo bajo la navbar.
+        const badge = target.querySelector('[class*="badge"], .section-title, h2');
+        let innerOffset = 0;
+        if (badge) {
+          innerOffset = badge.getBoundingClientRect().top - hCont.getBoundingClientRect().top;
+        }
+        destY = hST.start + innerOffset - navH - gap;
+      } else {
+        // Las secciones tienen padding vertical grande (p.ej. 180px), así que apuntar al
+        // borde de la <section> deja el TÍTULO muy abajo con un hueco vacío arriba. En su
+        // lugar apuntamos al primer contenido real (badge o, si no hay, el título) para
+        // dejarlo cómodo bajo la navbar. Buscamos en orden de prioridad (no de documento).
+        let anchorEl = null;
+        const sels = [
+          '.about-badge', '.services-badge', '.proceso-badge', '.cta-badge',
+          '.section-title', 'h2', 'h1'
+        ];
+        for (let i = 0; i < sels.length && !anchorEl; i++) {
+          anchorEl = target.querySelector(sels[i]);
+        }
+        anchorEl = anchorEl || target;
+        // offsetTop acumulado = posición de LAYOUT (ignora los transforms de las animaciones
+        // de entrada AOS). getBoundingClientRect incluiría ese transform y el badge quedaría
+        // descolgado, porque el elemento se mueve cuando su animación se dispara al llegar.
+        let y = 0;
+        let node = anchorEl;
+        while (node && node !== document.body) {
+          y += node.offsetTop || 0;
+          node = node.offsetParent;
+        }
+        destY = y - navH - gap;
+      }
+      destY = Math.max(0, destY);
+
+      if (targetId === 'inicio') destY = 0;
+
+      // "Comenzar Proyecto" (navbar, hero, como trabajamos, etc.) → SALTO DIRECTO al último
+      // CTA (#comenzar), sin scroll animado. Es el único link que teletransporta.
+      if (targetId === 'comenzar') {
+        if (lenis && typeof lenis.scrollTo === 'function') {
+          lenis.scrollTo(destY, { immediate: true });
+        } else {
+          window.scrollTo(0, destY);
+        }
         return;
       }
+
+      // Si el usuario YA está por debajo del inicio de "Servicios", un scroll suave desde
+      // tan lejos tardaría mucho → mejor salto DIRECTO (instantáneo) a la sección clickeada.
+      // Arriba de Servicios (hero / sobre nosotros) se mantiene la animación suave.
+      const serviciosEl = document.getElementById('servicios');
+      if (serviciosEl) {
+        let serviciosY = 0;
+        let sn = serviciosEl;
+        while (sn && sn !== document.body) { serviciosY += sn.offsetTop || 0; sn = sn.offsetParent; }
+        // margen: consideramos "por debajo" cuando ya pasamos el borde superior de Servicios.
+        if (window.pageYOffset >= serviciosY - navH - 4) {
+          if (lenis && typeof lenis.scrollTo === 'function') {
+            lenis.scrollTo(destY, { immediate: true });
+          } else {
+            window.scrollTo(0, destY);
+          }
+          return;
+        }
+      }
+
+      // El scroll suave de la navegación es una decisión de diseño (no es una animación
+      // "decorativa" que reduced-motion deba anular con un salto en seco). Con reduced-motion
+      // solo lo hacemos MÁS RÁPIDO, pero seguimos animando para que nunca teletransporte.
+      const dur = reduceMotion ? 1.2 : 2.2;
+      const ease = function (t) { return 1 - Math.pow(1 - t, 4); };
 
       if (lenis) {
-        lenis.scrollTo(y, {
-          duration: 1.4,
-          easing: function (t) {
-            return 1 - Math.pow(1 - t, 4);
-          },
-        });
+        lenis.scrollTo(destY, { duration: dur, easing: ease });
         return;
       }
-
-      window.scrollTo({ top: y, behavior: 'smooth' });
+      // Fallback sin Lenis: animación manual con rAF (window.scrollTo({behavior:'smooth'})
+      // es ignorado por muchos navegadores cuando reduced-motion está activo).
+      const startY = window.pageYOffset;
+      const dist = destY - startY;
+      const t0 = performance.now();
+      const durMs = dur * 1000;
+      const step = function (now) {
+        const p = Math.min(1, (now - t0) / durMs);
+        window.scrollTo(0, startY + dist * ease(p));
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
     });
   });
 
@@ -432,6 +596,12 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       });
 
+      // Exponer el ScrollTrigger + el contenedor para que el smooth-scroll del menú
+      // sepa a qué scroll-Y saltar cuando el target está DENTRO del pin horizontal
+      // (getBoundingClientRect da la posición visual del pin, no el scroll real → salto/doble-click).
+      window.__horizontalST = tl.scrollTrigger;
+      window.__horizontalContainer = horizontalContainer;
+
       // Colchón inicial (quieto) → desplazamiento horizontal con easing suave → colchón final (quieto)
       const total = () => getScrollDistance() * 0.42 + startDelay + endDelay;
       tl.to(horizontalWrapper, { duration: startDelay / total(), x: 0, ease: "none" })
@@ -473,6 +643,48 @@ document.addEventListener('DOMContentLoaded', function () {
           el.removeAttribute('data-aos');
         });
       });
+    }
+  }
+
+  // "Sobre Nosotros": badge, título, descripción y cada check aparecen de a uno
+  // en cascada suave (misma animación para todo el bloque, de arriba hacia abajo).
+  const aboutLeft = document.querySelector('.about-content-left');
+  if (aboutLeft) {
+    const aboutRevealItems = Array.from(
+      aboutLeft.querySelectorAll('.about-reveal, .about-list-modern li')
+    );
+    if (aboutRevealItems.length) {
+      const aboutRevealObserver = new IntersectionObserver(function (entries, obs) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            aboutRevealItems.forEach(function (el, i) {
+              setTimeout(function () { el.classList.add('is-in'); }, i * 150);
+            });
+            obs.disconnect();
+          }
+        });
+      }, { threshold: 0.2, rootMargin: '0px 0px -10% 0px' });
+      aboutRevealObserver.observe(aboutRevealItems[0]);
+    }
+  }
+
+  // ── Refresh ÚNICO de ScrollTrigger tras estabilizar el layout ──
+  // El pin del scroll horizontal define su .start (que usan los links del menú). Fuentes,
+  // imágenes y la intro cambian la altura del documento; refrescamos cuando todo cargó
+  // para que hST.start sea correcto desde el primer click (y NO en cada click).
+  if (hasGsap && hasScrollTrigger) {
+    const refreshST = function () {
+      if (window.ScrollTrigger && typeof window.ScrollTrigger.refresh === 'function') {
+        window.ScrollTrigger.refresh();
+      }
+    };
+    window.addEventListener('load', function () {
+      refreshST();
+      // Reintento tras la intro cinematográfica (que altera el layout unos segundos).
+      setTimeout(refreshST, 4200);
+    });
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(refreshST);
     }
   }
 
