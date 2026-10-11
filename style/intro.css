@@ -1,7 +1,7 @@
 /* ============================================================
    INTRO CINEMATOGRÁFICA — solo blur de fondo
    Overlay a pantalla completa con backdrop-filter blur.
-   El VESTRA del hero se ve a través del desenfoque.
+   El DALLAS del hero se ve a través del desenfoque.
    Sin logo, sin glow extra — solo el efecto de desenfoque.
    ============================================================ */
 
@@ -63,11 +63,11 @@ body.intro-active {
 
 /* ============================================================
    CONTENIDO DEL HERO DIFERIDO
-   El VESTRA (hero-wordmark base) se ve a través del blur.
+   El DALLAS (hero-wordmark base) se ve a través del blur.
    Todo lo demás queda invisible hasta que termina la intro.
    ============================================================ */
 
-/* Mientras la intro no esté completada, ocultar todo excepto el wordmark VESTRA y el fondo */
+/* Mientras la intro no esté completada, ocultar todo excepto el wordmark DALLAS y el fondo */
 html:not(.intro-done) .hero-badge,
 html:not(.intro-done) .hero-title,
 html:not(.intro-done) .hero-subtitle,

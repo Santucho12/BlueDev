@@ -1,5 +1,5 @@
 /* ============================================================
-   i18n Vestra — cambio de idioma ES / EN sin recargar
+   i18n Dallas — cambio de idioma ES / EN sin recargar
    Marca los textos con  data-i18n="clave"  y aquí van las
    traducciones. Al cambiar de idioma se reemplaza el innerHTML.
    ============================================================ */
@@ -30,7 +30,7 @@
 
       'about.badge': 'SOBRE NOSOTROS',
       'about.title': 'POTENCIAMOS NEGOCIOS CON <span class="about-title-highlight">TECNOLOGÍA.</span>',
-      'about.desc': 'En <strong class="text-vestra">Vestra</strong> desarrollamos webs, automatizaciones y sistemas a medida para empresas y emprendimientos. Con más de 3 años experiencia, combinamos conocimiento técnico y enfoque estratégico para crear productos alineados a los objetivos de cada cliente.',
+      'about.desc': 'En <strong class="text-dallas">Dallas</strong> desarrollamos webs, automatizaciones y sistemas a medida para empresas y emprendimientos. Con más de 3 años experiencia, combinamos conocimiento técnico y enfoque estratégico para crear productos alineados a los objetivos de cada cliente.',
       'about.li1': '<strong>Entrega en 3 a 6 semanas</strong> — cumplimos los tiempos acordados',
       'about.li2': '<strong>Código propio, sin dependencia de terceros</strong> — vos sos dueño de lo que construimos',
       'about.li3': '<strong>Soporte activo post-lanzamiento</strong> — seguimos acompañandote despues de la entrega',
@@ -119,7 +119,7 @@
       'faq.q1': '¿Cuánto tiempo toma desarrollar un software?',
       'faq.a1': 'El tiempo de desarrollo varía según la complejidad, pero la mayoría de nuestros proyectos (webs premium, sistemas internos o automatizaciones) se completan en un rango de <strong>3 a 6 semanas</strong>.',
       'faq.q2': '¿El código es de mi propiedad?',
-      'faq.a2': 'Absolutamente. Al finalizar el proyecto y completar el pago, entregamos la propiedad total del código fuente y toda la documentación técnica necesaria. En Vestra construimos activos para tu negocio, no dependencias.',
+      'faq.a2': 'Absolutamente. Al finalizar el proyecto y completar el pago, entregamos la propiedad total del código fuente y toda la documentación técnica necesaria. En Dallas construimos activos para tu negocio, no dependencias.',
       'faq.q3': '¿Ofrecen soporte después del lanzamiento?',
       'faq.a3': 'Sí. Ofrecemos planes de soporte y mantenimiento post-lanzamiento para asegurar que tu software se mantenga actualizado, seguro y funcionando al 100% de su capacidad.',
       'faq.q4': '¿Qué tecnologías utilizan?',
@@ -131,7 +131,7 @@
       'cta.title': 'Convertí tu idea en <span class="text-gradient">software</span>',
       'cta.subtitle': 'Desde sitios web increibles hasta automatizaciones complejas. Estamos listos para construir la solución que tu negocio necesita.',
       'cta.btn': 'Comenzar proyecto',
-      'reunion.title': 'Asesorate en una videollamada Gratuita con Vestra',
+      'reunion.title': 'Asesorate en una videollamada Gratuita con Dallas',
       'reunion.desc': 'En esta sesión rápida y personalizada de 40 minutos vamos a analizar la idea de tu producto digital, definir su alcance operativo y plantear la mejor estrategia técnica para hacerlo realidad.',
       'reunion.slots': 'Seleccioná la Hora',
 
@@ -148,7 +148,7 @@
       'cal.selected': 'Lun., 20 de Jul. de 2026',
       'cal.d0': 'Dom', 'cal.d1': 'Lun', 'cal.d2': 'Mar', 'cal.d3': 'Mié',
       'cal.d4': 'Jue', 'cal.d5': 'Vie', 'cal.d6': 'Sáb',
-      'footer.rights': 'Vestra. Todos los derechos reservados.',
+      'footer.rights': 'Dallas. Todos los derechos reservados.',
       'footer.privacy': 'Privacidad',
       'footer.terms': 'Términos'
     },
@@ -178,7 +178,7 @@
 
       'about.badge': 'ABOUT US',
       'about.title': 'WE EMPOWER BUSINESSES WITH <span class="about-title-highlight">TECHNOLOGY.</span>',
-      'about.desc': 'At <strong class="text-vestra">Vestra</strong> we build custom websites, automations and systems for companies and ventures. With over 3 years of experience, we combine technical expertise and a strategic focus to create products aligned with each client\'s goals.',
+      'about.desc': 'At <strong class="text-dallas">Dallas</strong> we build custom websites, automations and systems for companies and ventures. With over 3 years of experience, we combine technical expertise and a strategic focus to create products aligned with each client\'s goals.',
       'about.li1': '<strong>Delivery in 3 to 6 weeks</strong> — we meet the agreed deadlines',
       'about.li2': '<strong>Your own code, no third-party lock-in</strong> — you own what we build',
       'about.li3': '<strong>Active post-launch support</strong> — we keep supporting you after delivery',
@@ -267,7 +267,7 @@
       'faq.q1': 'How long does it take to develop software?',
       'faq.a1': 'Development time varies with complexity, but most of our projects (premium websites, internal systems or automations) are completed within <strong>3 to 6 weeks</strong>.',
       'faq.q2': 'Do I own the code?',
-      'faq.a2': 'Absolutely. Once the project is finished and paid for, we hand over full ownership of the source code and all the technical documentation needed. At Vestra we build assets for your business, not dependencies.',
+      'faq.a2': 'Absolutely. Once the project is finished and paid for, we hand over full ownership of the source code and all the technical documentation needed. At Dallas we build assets for your business, not dependencies.',
       'faq.q3': 'Do you offer post-launch support?',
       'faq.a3': 'Yes. We offer post-launch support and maintenance plans to keep your software updated, secure and running at 100% capacity.',
       'faq.q4': 'What technologies do you use?',
@@ -279,7 +279,7 @@
       'cta.title': 'Turn your idea into <span class="text-gradient">software</span>',
       'cta.subtitle': 'From stunning websites to complex automations. We\'re ready to build the solution your business needs.',
       'cta.btn': 'Start project',
-      'reunion.title': 'Book a free video call with Vestra',
+      'reunion.title': 'Book a free video call with Dallas',
       'reunion.desc': 'In this quick, personalized 40-minute session we will analyze your digital product idea, define its operational scope and outline the best technical strategy to make it real.',
       'reunion.slots': 'Choose a time',
 
@@ -296,13 +296,13 @@
       'cal.selected': 'Mon., Jul. 20, 2026',
       'cal.d0': 'Sun', 'cal.d1': 'Mon', 'cal.d2': 'Tue', 'cal.d3': 'Wed',
       'cal.d4': 'Thu', 'cal.d5': 'Fri', 'cal.d6': 'Sat',
-      'footer.rights': 'Vestra. All rights reserved.',
+      'footer.rights': 'Dallas. All rights reserved.',
       'footer.privacy': 'Privacy',
       'footer.terms': 'Terms'
     }
   };
 
-  const STORE_KEY = 'vestra_lang';
+  const STORE_KEY = 'dallas_lang';
   // Limpiar cualquier preferencia de idioma guardada en visitas anteriores:
   // la web debe arrancar SIEMPRE en español.
   try { localStorage.removeItem(STORE_KEY); } catch (e) {}

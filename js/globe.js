@@ -1,5 +1,5 @@
 /**
- * Vestra - 3D Holographic Globe
+ * Dallas - 3D Holographic Globe
  * Powered by Three.js
  */
 

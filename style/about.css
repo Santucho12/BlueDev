@@ -48,8 +48,8 @@
   flex-shrink: 0;
 }
 
-/* "Vestra" resaltado en violeta dentro del párrafo */
-.about-desc strong.text-vestra {
+/* "Dallas" resaltado en violeta dentro del párrafo */
+.about-desc strong.text-dallas {
   color: var(--color-celeste);
   font-weight: 700;
 }
